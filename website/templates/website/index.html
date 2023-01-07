@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block title %}
+  <title>Reena.uk</title>
+  {% endblock title %}
+  {% load static %}
+  <!--snow-->
+  <!--css-->
+  {% block csslink %}
+  <link href="{% static 'css/body.css' %}" rel="stylesheet">
+  {% endblock csslink %}
+
+
+  <!-- Bootstrap CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <!--animate css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+    integrity="sha512-doJrC/ocU8VGVRx3O9981+2aYUn3fuWVWvqLi1U+tA2MWVzsw+NVKq1PrENF03M+TYBP92PnYUlXFH1ZW0FpLw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!--fontawesome-->
+  <script src="https://kit.fontawesome.com/8feaa5fbd6.js" crossorigin="anonymous"></script>
+  <!--icon-->
+  <link rel="icon" type="image/x-icon" href="{% static 'images/a2.png' %}">
+  <!--jquery-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+    integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- jQuery Ripples JS -->
+
+
+</head>
+
+{% block body %}
+
+<body
+  style="background-image: url('../../../static/images/a5.png'); background-position: center; background-size: cover; background-repeat: no-repeat;">
+  {% endblock body %}
+
+
+  <div id="preloader"></div>
+
+  <div class="header sticky-top">
+    <div class="container-fluid bg-secondary" style="height: 2em">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="contact mt-1 mx-auto">
+            <div class="number">
+              <i class="fa-solid fa-phone mt-1 mx-1"></i>
+              07969385877
+            </div>
+            <span class="line mx-2">|</span>
+            <div class="email">
+              <i class="fa-solid fa-envelope mt-1 mx-1"></i>
+              reenavirdee@hotmail.com
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5"></div>
+        <div class="col-sm-1">
+          <div class="socials mt-1 mx-auto">
+            <div class="instagram">
+              <a href="#"><i class="fa-brands fa-instagram mx-2"></i></a>
+            </div>
+            <div class="facebook">
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand mx-3" href="#"><img src="{% static 'images/a2.png' %}" class="img-fluid" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item" style="list-style: none">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown" style="list-style: none">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Treatments
+              </a>
+              <ul class="dropdown-menu" style="list-style: none">
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'dermalogica' %}">Dermalogica Treatments</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'caciview' %}">CACI Synergy</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'iplview' %}">Elight IPL / SHR Hair Removal Treatments</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'waxingview' %}">Waxing</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'bridalview' %}">Bridal Services</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'nailextview' %}">Nail Extension</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'Hennaview' %}">Henna</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'tintingview' %}">Tinting</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'earpview' %}">Ear Piercing</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'electroview' %}">Electrolysis</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'manicureview' %}">Manicure & Pedicure</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'massageview' %}">Massage</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item" style="list-style: none">
+              <a class="nav-link" href="{% url 'pricing' %}">Pricelist</a>
+            </li>
+            <li class="nav-item" style="list-style: none">
+              <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+            </li>
+            <li class="nav-item" style="list-style: none">
+              <a class="nav-link" href="{% url 'contactus' %}">Contact</a>
+            </li>
+          </ul>
+          <hr />
+          <div class="conatiner text-center">
+            <a href="{% url 'add_booking' %}"><button class="btn-1 text-center">
+                <i class="fa-solid fa-calendar mx-2"></i>Book Now
+              </button></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  </div>
+
+  {% block content %}
+  <div class="main mx-auto">
+    <div class="box">
+      <img style="max-width: 100%" src="{% static 'images/a5.jpg' %}" class="img-1 img-fluid">
+      <div class="container-fluid mx-auto">
+        <h1 class="up mx-auto mt-2">Welcome To Reena's Spa & Salon.</h1>
+        <a href="#"><button class="glow-on-hover mx-auto mt-2" type="button">Login</button></a>
+      </div>
+    </div>
+
+    <div class="box">
+      <img style="max-width: 100%" src="{% static 'images/n2.jpg' %}" class="img-2 img-fluid">
+      <div class="container mx-auto">
+        <h1 class="centered mx-auto">Always Make Room for Beauty in Your Life.</h1>
+        <a href="#"><button class="glow-on-hover mx-auto" type="button">Book An Experience</button></a>
+      </div>
+    </div>
+
+    <div class="box">
+      <img style="max-width: 100%" src="{% static 'images/w1.jpg' %}" class="img-3 img-fluid">
+      <div class="container mx-auto">
+        <h1 class="right mx-auto">Relax, Enjoy and Love Yourself.</h1>
+        <a href="#"><button class="glow-on-hover mx-auto" type="button">About Us</button></a>
+      </div>
+    </div>
+
+
+    <div class="box">
+      <img style="max-width: 100%" src="{% static 'images/n4.jpg' %}" class="img-4 img-fluid">
+      <div class="container mx-auto">
+        <h1 class="left mx-auto mb-5">Rewards</h1>
+        <a href="#"><button class="glow-on-hover mx-auto" type="button">Find Out More</button></a>
+      </div>
+    </div>
+  </div>
+
+  {% endblock content %}
+
+  <!--footer-->
+  <section class="section bg-black">
+    <footer class="footer theme-bg-black">
+      <div class="container-fluid mx-auto py-1 mt-3">
+        <div class="row">
+          <div class="col-sm-4">
+            <h4 class="col-heading" style="margin-left: 31px">
+              Opening Hours
+            </h4>
+            <ul class="ul" style="text-align: left">
+              <p>Monday: Closed</p>
+              <p>Tuesday: 10am - 6pm</p>
+              <p>Wednesday: 10am - 6pm</p>
+              <p>Thursday: 10am - 6pm</p>
+              <p>Friday: 10am - 6pm</p>
+              <p>Saturday: 10am - 6pm</p>
+              <p>Sunday: Closed</p>
+            </ul>
+          </div>
+          <div class="col-sm-3 mx-auto">
+            <h4 class="col-heading mt-0" style="margin-left: 31px">
+              Reena's
+            </h4>
+            <ul class="ul" style="text-align: left">
+              <li>
+                <a href="#" class="nav-link mb-2" style="font-size: 1.2em">Home</a>
+              </li>
+              <li>
+                <a href="#" class="nav-link mb-2" style="font-size: 1.2em">About Us</a>
+              </li>
+              <li>
+                <a href="#" class="nav-link mb-2" style="font-size: 1.2em">Services</a>
+              </li>
+              <li>
+                <a href="#" class="nav-link mb-2" style="font-size: 1.2em">Pricing</a>
+              </li>
+              <li>
+                <a href="#" class="nav-link mb-2" style="font-size: 1.2em">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-sm-5 mx-auto">
+            <h4 class="col-heading mt-1" style="margin-left: 31px">
+              Contact Us
+            </h4>
+            <p style="margin-left: 33px">
+              Our Salon Is Situated in Teddington, London.
+            </p>
+            <p style="margin-left: 33px">
+              Feel Free to Visit Us, Call or Book an Appointment!
+            </p>
+            <div class="container-fluid">
+              <div class="row g-3">
+                <div class="col-sm-12" style="margin-left: 20px">
+                  <i class="fa-solid fa-location-pin mx-1"></i>
+                  <p style="display: inline; text-align: center">
+                    207 Waldegrave Road, Teddington, TW11 8LX
+                  </p>
+                </div>
+                <div class="col-sm-12" style="margin-left: 20px">
+                  <i class="fa-solid fa-envelope mx-1"></i>
+                  <p style="display: inline">reenavirdee@hotmail.com</p>
+                </div>
+                <div class="col-sm-12 mb-3" style="margin-left: 20px">
+                  <i class="fa-solid fa-phone mx-2"></i>
+                  <p style="display: inline">07969385877</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr style="border: 2px solid white" />
+        <div class="container-fluid mx-auto text-center mb-5">
+          <div class="row">
+            <div class="col-sm-6 mt-3">
+              <p style="font-size: 1.5em; font-weight: 600">Visit Us Here!</p>
+              <div class="map-responsive">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2487.391926902979!2d-0.34093818481731963!3d51.43259582399166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760c82e87c8f89%3A0x2cbb42bc02982b9c!2sReena&#39;s%20Hair%20and%20Beauty%20Salon!5e0!3m2!1sen!2sin!4v1669811046699!5m2!1sen!2sin"
+                  width="600" height="450" frameborder="0" style="border: 0" allowfullscreen="" aria-hidden="false"
+                  tabindex="0"></iframe>
+              </div>
+            </div>
+            <div class="col-sm-6 mt-3 text-center">
+              <p style="font-size: 1.5em; font-weight: 600">Follow Us</p>
+              <iframe
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FReenasHairAndBeauty%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                width="340" height="500" style="
+                    border: none;
+                    overflow: hidden;
+                    box-shadow: 2px 2px 50px 8px lightblue;
+                    padding: 1em 1em 1em;
+                  " scrolling="no" frameborder="0" allowfullscreen="true"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <hr style="border: 2px solid white" />
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-4 mt-3">
+              <p>All Rights Reserved</p>
+            </div>
+            <div class="col-sm-4 mx-auto"></div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+
+
+  <!--jsfile-->
+  <script src="{% static 'javascript/body.js' %}"></script>
+  <!--jquery-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!--maps-->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+
+  <script>
+    $(document).ready(function () {
+      $(".img-1").ripples({
+        resolution: 512,
+        dropRadius: 20,
+        perturbance: 1,
+      });
+    });
+  </script>
+</body>
+
+</html>

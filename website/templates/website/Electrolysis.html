@@ -1,0 +1,97 @@
+{% extends 'website/index.html' %}
+
+{% block title %}
+  <title>Electrolysis</title>
+{% endblock title %}
+
+{% block csslink %}
+{% load static %}
+  <link href="{% static 'css/caci.css' %}" rel="stylesheet" />
+{% endblock csslink %}
+
+{% block body %}
+
+<body class="bg-light">
+  {% endblock body %}
+
+  {% block content %}
+  <div class="main mx-auto">
+    <div class="box">
+      <img src="{% static 'images/electrolysis salon.jpg' %}" alt="Dermalogica Treatments" class="img-fluid" />
+      <h1 class="left mx-auto">Electrolysis</h1>
+    </div>
+
+    <div class="container mt-4 mb-3" data-aos="fade-up" data-aos-duration="3000">
+      <p class="text" style="text-align: left; font-size: 1.2em">
+        Electrolysis is a popular, highly skilled, progressive treatment
+        method for permanent hair removal, however to achieve this it can take
+        several sessions. We use disposable materials and a full range of
+        professional hygiene products to ensure your comfort and safety.
+
+        <br />
+        Electrolysis is most commonly used on smaller areas such as the lip,
+        chin and any other unwanted facial hair. This is because you only work
+        on a small area of hair per session. So treating a larger area of
+        unwanted hair on the legs for example would take considerably more
+        sessions.
+        <br />
+
+        A detailed consultation is carried out on the first appointment.
+        <br />
+
+        The area that is going to be treated is sanitised.
+        <br />
+
+        A new probe is used for every client these are sealed in a sterile
+        pouch and opened in front of the client.
+        <br />
+
+        The probe is inserted into the hairs follicle; this does not pierce
+        the skin as it enters the skin in its natural opening. A low current
+        is applied for a few seconds. The probe is then removed and we try to
+        remove the hair with tweezers. If the hair does not slide out we may
+        need to treat that hair once more, the current would then be increased
+        for the other hairs to find the correct working current.
+        <br />
+
+        After all the required hairs are removed, an aftercare lotion is
+        applied to soothe the skin. The lotion will also prevent any infection
+        to the treated follicles.
+      </p>
+    </div>
+
+    <hr style="border: 1px solid rgb(94, 255, 0)" />
+
+    <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <h1>Aftercare</h1>
+      <div class="container">
+        <p class="text" style="text-align: left">
+          Aftercare lotions are available in retail size for homecare use.
+          <br />
+          Do not put any makeup for at least 24 hours after treatment.
+          <br />
+          Do not apply any other product(s) to the skin for at least 24 hours
+          after treatment. Apply soothing lotion only.
+          <br />
+          No swimming and exercise for at least 48 hours after the treatment.
+          <br />
+          No heat treatment, sun beds or sunbathing for at least 72 hours
+          after the treatment. Drink plenty of water.
+          <br />
+          Simple, facial exercise should be carried out. These exercises will
+          continue to firm the facial muscles and reinforce the firming effect
+          of the treatment.
+          <br />
+          Avoid alcohol and smoking as these will affect the skin. Follow a
+          healthy diet and drink natural, un-carbonated water to help remove
+          toxins from the body.
+        </p>
+      </div>
+      <div class="container text-center">
+        <a href="{% static 'pricing' %}" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto" type="button">
+            Aftercare
+          </button></a>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}

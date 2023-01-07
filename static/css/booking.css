@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+* {
+  max-width: 100%;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+ html{
+   overflow-x: hidden;
+   scroll-behavior: smooth;
+   overflow-y: scroll; 
+ }  
+  :root{
+    --neon-border-color: #1e90ff;
+  }
+  .navbar {
+    max-width: 100%;
+    /* box-shadow: 0 1px 4px rgb(146 161 176 / 15%); */
+    box-shadow: inset 0 0 2000px rgb(255, 255, 255);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    /* position: relative; */
+    flex-wrap: wrap;
+  }
+  
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+  }
+  
+  .navbar .menu-items {
+    display: flex;
+  }
+  
+  .navbar .nav-container li {
+    list-style: none;
+  }
+  
+  .navbar .nav-container a {
+    text-decoration: none;
+    color: #0e2431;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0.7rem;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .navbar .nav-container a:hover {
+    font-weight: bolder;
+  }
+  
+  .nav-container {
+    display: block;
+    position: relative;
+    height: 60px;
+  }
+  
+  .nav-container .checkbox {
+    position: absolute;
+    display: block;
+    height: 32px;
+    width: 32px;
+    top: 20px;
+    left: 20px;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .nav-container .hamburger-lines {
+    display: block;
+    height: 26px;
+    width: 32px;
+    position: absolute;
+    top: 17px;
+    left: 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .nav-container .hamburger-lines .line {
+    display: block;
+    height: 4px;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+    border-radius: 10px;
+    background: #0e2431;
+  }
+  
+  .nav-container .hamburger-lines .line1 {
+    transform-origin: 0% 0%;
+    transition: transform 0.4s ease-in-out;
+  }
+  
+  .nav-container .hamburger-lines .line2 {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .nav-container .hamburger-lines .line3 {
+    transform-origin: 0% 100%;
+    transition: transform 0.4s ease-in-out;
+  }
+  
+  .navbar .menu-items {
+    background-image: url(/images/n12.jpg);
+    padding-top: 70px;
+    /* box-shadow: inset 0 0 2000px rgb(255, 255, 255); */
+    height: 100vh;
+    width: 50%;
+    transform: translate(-150%);
+    display: flex;
+    font-family: "Poppins", sans-serif;
+    /* backdrop-filter: blur(30px); */
+    /* -webkit-backdrop-filter: blur(30px); */
+    flex-direction: column;
+    margin-left: -40px;
+    padding-left: 50px;
+    transition: transform 0.5s ease-in-out;
+    text-align: center;
+    z-index: 1;
+  }
+  
+  .navbar .menu-items li {
+    margin-bottom: 1.2rem;
+    font-size: 2rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+  }
+  
+  .logo {
+    transform: translateX(-50%);
+    left: 50%;
+    position: absolute;
+  }
+  .brand {
+    display: flex;
+    flex-direction: row;
+    transform: translateX(-50%);
+    left: 90%;
+    font-size: 1em;
+    position: absolute;
+  }
+  .fa-facebook {
+    font-size: 2em;
+    margin-left: -18px;
+  }
+  .fa-twitter {
+    margin-left: -14px;
+    font-size: 2em;
+  }
+  
+  .nav-container input[type="checkbox"]:checked ~ .menu-items {
+    transform: translateX(0);
+  }
+  
+  .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+    transform: rotate(45deg);
+  }
+  
+  .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+    transform: scaleY(0);
+  }
+  
+  .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+    transform: rotate(-45deg);
+  }
+  
+  .nav-container input[type="checkbox"]:checked ~ .logo {
+    display: none;
+  }
+  .nav-container input[type="checkbox"]:checked ~ .brand {
+    display: none;
+  }
+.main{
+  margin-top: 8em;
+}
+.form-label{
+  font-size: 1em;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: black;
+  border-radius: 0;
+}
+.booking{
+  font-size: 1em;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: black;
+}
+#formGroupExampleInput{
+  border-radius: 0;
+  font-family: "Poppins", sans-serif;
+}
+.btn-1{
+  color: white;
+  background-color: black;
+  font-size: 1em;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  border: none;
+  padding: 5px 5px;
+}
+p{
+  font-size: 1em;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}

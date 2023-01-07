@@ -1,0 +1,104 @@
+{% extends 'website/index.html' %}
+
+{% block title %}
+<title>Bridal Services</title>
+{% endblock title %}
+
+{% block csslink %}
+<link href="/css/caci.css" rel="stylesheet" />
+{% endblock csslink %}
+
+{% block body %}
+
+<body class="bg-light">
+  {% endblock body %}
+
+  {% block content %}
+  <div class="main mx-auto">
+    <div class="box">
+      <img src="{% static 'images/bride.jpg' %}" alt="Dermalogica Treatments" class="img-fluid" />
+      <h1 class="left mx-auto">Bridal Services</h1>
+    </div>
+
+    <div class="rectangle mt-4 bg-light" data-aos="fade-up" data-aos-duration="3000">
+      <h1>Make Up and Beauty Package</h1>
+      <p class="text">
+        Full consultation with our make up artist, where colour choices and
+        skin tones will be discussed.
+      </p>
+      <div class="container text-center">
+        <a href="#" target="_blank"><button class="button" type="submit">Know More</button></a>
+      </div>
+    </div>
+    <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <ul class="ul" style="
+            color: rgb(0, 0, 0);
+            list-style: disc;
+            font-family: Poppins;
+            text-align: center;
+          ">
+        <div class="row">
+          <div class="col-sm-6">
+            <li>Practice Trial Run for make Up</li>
+            <li>Optional False Eyelashes</li>
+            <li>Full Consultation With Our Beauty Therapist</li>
+            <li>Skin Analysis With Full Skin Care Advice</li>
+            <li>Dermalogica Samples</li>
+            <li>Beauty Maintenance Pack</li>
+            <li>Dermalogica Facial To Suit Your Skin Type</li>
+            <li>Hand And Arm Massage</li>
+            <li>Head, Neck and Shoulder Massage</li>
+          </div>
+          <div class="col-sm-6">
+            <li>Revital Eye Treatments</li>
+            <li>Eyebrow make over (wax & tint)</li>
+            <li>Eye Lash Tint</li>
+            <li>Luxury Manicure</li>
+            <li>Luxury Pedicure</li>
+            <li>Perfect French Polish</li>
+            <li>Make up on the day</li>
+            <li>Pampering Hand Massage</li>
+            <li>
+              Gentle face cleanse, tone and<br />
+              moisturize to suit your skin tone on the day
+            </li>
+          </div>
+        </div>
+      </ul>
+    </div>
+    <hr style="border: 1px solid rgb(94, 255, 0)" />
+    <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <h1>Hair Styling</h1>
+      <p class="text">
+        Full hair consultation, in which we will discuss all the details of
+        your pre and post wedding plans for you and your wedding party.
+        <br />
+        Full trial run for your hair, including the fixing of your tiara and
+        veil. Hair on the day, including fixing of your tiara and veil. Hair
+        extensions or hair pieces fixed in and yours to keep.
+        <br />
+        The following hair up's are available on request:
+      </p>
+
+      <ul class="ul" style="
+            color: rgb(0, 0, 0);
+            list-style: disc;
+            font-family: Poppins;
+            text-align: center;
+          ">
+        <li>French pleat</li>
+        <li>Buns</li>
+        <li>Chignon</li>
+        <li>Blow dry or straightening</li>
+        <li>Curls in all forms</li>
+        <li>Barrel curls</li>
+        <li>Hair extensions</li>
+        <li>Hair pieces</li>
+      </ul>
+
+      <div class="container text-center">
+        <a href="#" target="_blank"><button class="button mb-2" type="submit">Know More</button></a>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

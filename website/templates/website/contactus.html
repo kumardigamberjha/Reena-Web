@@ -1,0 +1,84 @@
+{% extends 'website/index.html' %}
+
+{% block csslink %}
+  {% load static %}
+
+  <link rel="stylesheet" href="{% static 'css/contactus.css' %}">
+{% endblock csslink %}
+
+
+{% block content %}
+
+{% block body %}
+
+{% endblock body %}
+
+
+  <div class="main mx-auto mb-5">
+    <div class="container-fluid mt-5">
+      <h2 style="margin-top: 100px; color: black">Contact Us</h2>
+    </div>
+    <div class="container" style="width: 50%">
+      <form class="row g-3" method="POST" >
+        {% csrf_token %}
+        <div class="col-md-12">
+          <label for="inputPassword4" class="form-label">Name</label>
+          <input type="text" class="form-control" id="inputPassword4" name="name" />
+        </div>
+        <div class="col-md-12">
+          <label for="inputEmail4" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail4" name="email" />
+        </div>
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Leave a comment here" name="message" id="floatingTextarea"></textarea>
+          <label for="floatingTextarea">Message</label>
+        </div>
+        <div class="col-12 text-center">
+          <a href="#"><button class="button mx-auto" type="submit">Submit</button></a>
+        </div>
+      </form>
+    </div>
+
+    <div class="container mt-5" style="width: 50%">
+      <h1>Our Documents</h1>
+      <ul class="ul">
+        <a href="/pdf/Reenas_Hair_and_Beauty_Salon_Price_List_Leaflet_2013.png' %}" download>
+          <li>Reena's Hair and Beauty Salon Leaflet</li>
+        </a>
+        <a href="/pdf/Aftercare Advice for Body Massage Treatment.pdf" download>
+          <li>Aftercare Massage Treatment</li>
+        </a>
+        <a href="/pdf/Aftercare Advice for Ear Piercing.pdf" download>
+          <li>Aftercare Advice For Ear Treatment</li>
+        </a>
+        <a href="/pdf/Aftercare Advice for Facial Electrical Treatment.pdf" download>
+          <li>Aftercare Advice For Facial Treatment</li>
+        </a>
+        <a href="/pdf/Aftercare Advice for IPL Hair Removal Treatment.pdf" download>
+          <li>Aftercare Advice For IPL Hair Removal Treatment</li>
+        </a>
+        <a href="/pdf/Aftercare Advice for Manicure and Pedicure.pdf" download>
+          <li>Aftercare Advice for Manicure And Pedicure</li>
+        </a>
+        <a href="/pdf/Aftercare Advice for Nail Extensions Treatment.pdf" download>
+          <li>Aftercare Advice For Nail and Extensions</li>
+        </a>
+        <a href="/pdf/CND_Shellac_Flyer.pdf" download>
+          <li>CND Shellac Flyer</li>
+        </a>
+        <a href="/pdf/IPL Poster (1).pdf" download>
+          <li>IPL Poster</li>
+        </a>
+        <a href="/pdf/Reena'scaci.pdf" download>
+          <li>Aftercare Scaci</li>
+        </a>
+        <a href="/pdf/Shellac_Application_and_Removal.pdf">
+          <li>Shellac Application and Removal</li>
+        </a>
+        <a href="/pdf/Shellac_QA_Consumer.pdf">
+          <li>Shellac Q/A Consumer</li>
+        </a>
+      </ul>
+    </div>
+  </div>
+{% endblock content %}

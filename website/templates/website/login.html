@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+     <!--snow-->
+  <script src="/javascript/snow.js"></script>
+    <!--css-->
+    <link href="/css/login.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/a2.png">
+</head>
+<body>
+    <section>
+        <div class="form-container">
+            <h1>Login</h1>
+            <form action="#">
+                <div class="control">
+                    <label for="email">Email</label>
+                    <input type="text" name="username" id="email">
+                </div>
+                <div class="control">
+                    <label for="psw">Password</label>
+                    <input type="password" name="password" id="psw">
+                </div>
+                <span><input type="checkbox" value="lsRememberMe" id="rememberMe"> Remember Me </span>
+                 <div class="control">
+                    <input type="submit" value="Login" onclick="lsRememberMe()">
+                 </div>
+            </form>
+            <div class="link">
+                <a href="#">Forgot Password ?</a>
+            </div>
+            <div class="container">
+              <a href="#" class="sign-up"> or Sign-Up</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const rmCheck = document.getElementById("rememberMe"),
+    emailInput = document.getElementById("email");
+
+if (localStorage.checkbox && localStorage.checkbox !== "") {
+  rmCheck.setAttribute("checked", "checked");
+  emailInput.value = localStorage.username;
+} else {
+  rmCheck.removeAttribute("checked");
+  emailInput.value = "";
+}
+
+function lsRememberMe() {
+  if (rmCheck.checked && emailInput.value !== "") {
+    localStorage.username = emailInput.value;
+    localStorage.checkbox = rmCheck.value;
+  } else {
+    localStorage.username = "";
+    localStorage.checkbox = "";
+  }
+}
+    </script>
+</body>
+</html>

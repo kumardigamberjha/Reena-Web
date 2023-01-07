@@ -1,0 +1,102 @@
+{% extends 'website/index.html' %}
+
+{% block title %}
+<title>Tinting</title>
+{% endblock title %}
+
+{% block csslink %}
+
+{% load static %}
+<link href="{% static 'css/caci.css' %}" rel="stylesheet" />
+{% endblock csslink %}
+
+{% block body %}
+
+<body class="bg-light">
+  {% endblock body %}
+
+
+  {% block content %}
+
+  <div class="main mx-auto">
+    <div class="box">
+      <img src="{% static 'images/eyelashes1.jpg' %}" alt="Dermalogica Treatments" class="img-fluid" />
+      <h1 class="left mx-auto">Tinting</h1>
+    </div>
+
+    <div class="container mt-4 mb-3" data-aos="fade-up" data-aos-duration="3000">
+      <p class="text" style="text-align: center">
+        By shaping and tinting your eyelashes and brows to suit the contours
+        of your face and colour of your hair you can bring out the beauty in
+        your eyes and transform your look.
+      </p>
+    </div>
+
+    <hr style="border: 1px solid rgb(94, 255, 0)" />
+
+    <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <h1>Lash Tint</h1>
+      <p class="text">
+        Your eyelashes are tinted with a healthy, glossy and natural finish,
+        replacing the need to use mascara, this will help them to stand out
+        and frame your eyes.
+      </p>
+      <div class="container text-center">
+        <a href="{% url 'add_booking' %}" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto"
+            type="button">
+            Book An Experience
+          </button></a>
+      </div>
+    </div>
+    <hr style="border: 1px solid rgb(94, 255, 0)" />
+
+    <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <h1>Brow Tint</h1>
+      <p class="text">
+        Eyebrows come in many shapes and forms and a good eyebrow shape can
+        frame the face and give an instant lifted appearance. A tint can work
+        wonders as our natural eyebrow colour can fade with age. A tint even
+        just a shade or two deeper or darker can instantly take years off us.
+        Of course for those of us who want the darkest of dark defined
+        eyebrows we can do that too.
+      </p>
+      <div class="container text-center">
+        <a href="{% url 'add_booking' %}" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto"
+            type="button">
+            Book An Experience
+          </button></a>
+      </div>
+    </div>
+    <hr style="border: 1px solid rgb(94, 255, 0)" />
+
+    <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <h1>Eyelash Perming</h1>
+      <p class="text">
+        Eyelash perm will allow your straight lashes to become curved
+        eyelashes, which look great and your eyes will appear bigger.
+      </p>
+      <div class="container text-center">
+        <a href="{% url 'add_booking' %}" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto"
+            type="button">
+            Book An Experience
+          </button></a>
+      </div>
+    </div>
+    <hr style="border: 1px solid rgb(94, 255, 0)" />
+
+    <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <h1>Eyelash Extensions</h1>
+      <p class="text">
+        Lash extensions - that look very natural are joined to your own lash.
+        You can keep the long lash illusion going for ages. Lasts up to 6
+        weeks.
+      </p>
+      <div class="container text-center">
+        <a href="{% url 'add_booking' %}" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto"
+            type="button">
+            Book An Experience
+          </button></a>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

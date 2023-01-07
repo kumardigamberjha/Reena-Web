@@ -1,0 +1,106 @@
+{% extends 'website/index.html' %}
+
+{% block title %}
+<title>Massage</title>
+{% endblock title %}
+
+{% block csslink %}
+{% load static %}
+
+<link href="{% static 'css/caci.css' %}" rel="stylesheet" />
+{% endblock csslink %}
+
+{% block body %}
+
+<body class="bg-light">
+  {% endblock body %}
+
+  {% block content %}
+  <div class="main">
+    <div class="box">
+      <img src="{% static 'images/m1.jpg' %}" class="img-fluid" />
+      <h1 class="left mx-auto">MASSAGE</h1>
+    </div>
+
+    <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <p class="text">
+        Experience the benefits of massage using individually blended
+        essential oils to totally immerse yourself with one of Reena's
+        massages. In tranquil surroundings all of your senses will be
+        indulged. A totally luxurious and relaxing treatment promotes
+        wellbeing of the mind and body to relieve you of all of your stresses,
+        worries & aches.
+      </p>
+      <div class="container text-center">
+        <a href="{% url 'add_booking' %}"><button class=" button text-center mt-3 mb-3 mx-auto" type="button">
+            Click On Me
+          </button></a>
+      </div>
+    </div>
+    <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <h1>Indian Head Massage</h1>
+      <p class="text">
+        Indian massage therapy is based on the ayurvedic system of healing
+        which works by releasing the stress. You will leave feeling deeply
+        calm, revitalised and energised.
+      </p>
+      <div class="container text-center">
+        <a href="{% url 'add_booking' %}"><button class=" button text-center mt-3 mb-3 mx-auto" type="button">
+            Book An Experience
+          </button></a>
+      </div>
+    </div>
+
+    <hr style="border: 1px solid rgb(94, 255, 0)" />
+
+    <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <h1>Neck and Shoulder Massage</h1>
+      <p class="text">
+        Using a blend of essential oils focusing purely on the neck & shoulder
+        area to relieve tension and aching muscles.
+      </p>
+      <div class="container text-center">
+        <a href="{% url 'add_booking' %}"><button class=" button text-center mt-3 mb-3 mx-auto" type="button">
+            Book An Experience
+          </button></a>
+      </div>
+    </div>
+
+    <hr style="border: 1px solid rgb(94, 255, 0)" />
+
+    <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <h1>Body Massage</h1>
+      <p class="text">
+        A full body massage designed to ease tension, relieve stress and
+        promote a general state of well being, using essential aroma oils.
+      </p>
+      <div class="container text-center">
+        <a href="{% url 'add_booking' %}"><button class=" button text-center mt-3 mb-3 mx-auto" type="button">
+            Book An Experience
+          </button></a>
+      </div>
+    </div>
+
+    <hr style="border: 1px solid rgb(94, 255, 0)" />
+
+    <div class="rectangle mt-4 mb-3" data-aos="fade-up" data-aos-duration="3000">
+      <h1>Aftercare</h1>
+      <p class="text">
+        You are advised to rest quietly after the treatment and drink lots of
+        water to flush out toxins and to rehydrate. Tea, coffee, alcohol and
+        carbonated drinks should be avoided as these are diuretics and can
+        aggravate contra-actions.
+        <br />
+        Heat treatments such as sauna, steam and Jacuzzi's should be avoided
+        as the blood pressure may be lowered, which may cause dizziness or
+        fainting.
+      </p>
+    </div>
+    <div class="container text-center">
+      <a href="{% static 'pdf/waxing.pdf' %}"><button class=" button text-center mt-3 mb-3 mx-auto" type="button">
+          Click On Me
+        </button></a>
+    </div>
+  </div>
+
+  {% endblock content %}

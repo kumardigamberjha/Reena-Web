@@ -1,0 +1,65 @@
+{% extends 'website/index.html' %}
+
+{% block title %}
+
+<title>Waxing</title>
+{% endblock title %}
+
+{% block csslink %}
+{% load static %}
+<link href="{% static 'css/caci.css' %}" rel="stylesheet" />
+{% endblock csslink %}
+
+{% block body %}
+
+<body class="bg-light">
+  {% endblock body %}
+
+  {% block content %}
+
+  <div class="main mx-auto">
+    <div class="box">
+      <img src="{% static 'images/wax.jpg' %}" alt="Dermalogica Treatments" class="img-fluid">
+      <h1 class="left mx-auto">Waxing</h1>
+    </div>
+
+    <div class="container mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <p class="text" style="text-align:center; font-size: 1.2em;">
+        Waxing is the removal of unwanted, superfluous hair usually found under the arm, bikini line, legs &
+        the
+        full body.
+        <br>
+        Wax is applied at a comfortable temperature to the hair whilst still in a liquid state.
+        It dries almost instantly on the skin contracting around the hairs. When removed, it pulls the hair
+        from
+        the root thus removing it.
+        <br>Waxing is a very popular and successful treatment which our experienced
+        therapists can perform fast and efficiently without causing unnecessary pain.
+        <br>
+        The effects will last for between 4 to 6 weeks on the body, up to 2 weeks on the face. <br>This will
+        vary
+        with the individual and re-growth is normally faster in the warmer months of the year.
+        <br>
+        Enjoy a smooth feeling body with our range of hair removal treatments. Remember that regular
+        treatments
+        will leave finer hairs and slower growth so you won't have to return as often.
+        <br>
+        For best effect we recommend four to six weeks growth prior to treatment.
+    </div>
+
+    <hr style="border: 1px solid rgb(94, 255, 0)" />
+
+    <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <h1>Aftercare</h1>
+      <p class="text" style="font-size: 1.2em;">
+        Please follow the guidelines below to ensure your skin is cared for properly over the next few days.
+
+      </p>
+      <div class="container text-center">
+        <a href="{% static 'pdf/waxing.pdf' %}" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto"
+            type="button">Aftercare</button></a>
+      </div>
+    </div>
+
+  </div>
+  {% endblock content %}

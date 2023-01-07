@@ -1,0 +1,58 @@
+{% extends 'website/index.html' %}
+
+{% block content %}
+{% load static %}
+
+<!--jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--datesrc-->
+
+
+<link rel="stylesheet" href="{% static 'css/addstaff.css' %}">
+
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }} p-2 mb-2 bg-success text-white" style="list-style: none; border-radius: 10px; width: 95%; margin: auto auto; margin-top: 75px; z-index: 1;" {% endif %}>{{ message }}</li>
+        {% endfor %}
+</ul>
+{% endif %}
+
+<div class="main-content" style="padding-left: 70px; margin-top: 75px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2><b><i class="fa-solid fa-clipboard-user mx-2"></i>Add Product Category</b></h2>
+            </div>
+            <div class="col-sm-4">
+                <a href="{% url 'add_product_view' %}"><button class="btn-1"><i class='bx bxs-file-plus'></i>Add Products</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="padding-left: 20px;">
+    <form class="row g-3 mt-3" method="POST" action="">
+        {% csrf_token %}
+        
+        <div class="col-md-3">
+            <label for="text" class="form-label">Name</label>
+            <input type="text" class="form-control" id="text" name="name">
+        </div>
+        
+        <div class="col-md-12">
+                <button type="submit" class="btn-2" style="background-color: ff5f1f;">Submit</button>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </form>
+</div>
+
+<script>
+    $(function () {
+        $('#datepicker').datepicker();
+    });
+</script>
+
+{% endblock content %}

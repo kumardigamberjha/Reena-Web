@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+
+    {% load static %}
+    <!--link css-->
+    <!-- <link href="{% static 'css/booking.css' %}" rel="stylesheet" /> -->
+    <!--fontawesome-->
+    <script src="https://kit.fontawesome.com/8feaa5fbd6.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS only -->
+    <!--animate css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+        integrity="sha512-doJrC/ocU8VGVRx3O9981+2aYUn3fuWVWvqLi1U+tA2MWVzsw+NVKq1PrENF03M+TYBP92PnYUlXFH1ZW0FpLw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--aos-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!--favicon-->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/a2.png' %}">
+    <!--time-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_red.css">
+    <!--jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+
+    <!-- JS & CSS library of MultiSelect plugin -->
+
+
+    <!-- Sample PayPal credentials (client-id) are included -->
+    <!-- <script src="https://www.paypal.com/sdk/js?client-id=AY-bROZFB_y8Ul9YQVnFp9WAi5HddplFqoOs0Q7Dl064fSyjAlZgPbgDhF1AsIE11eXrXb5Z9nPz78uo&currency=USD&intent=capture&enable-funding=venmo" data-sdk-integration-source="integrationbuilder"></script> -->
+
+</head>
+
+<body style="background-color: #0e2431;">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }} p-2 mb-2 bg-success text-white"
+            style="list-style: none; border-radius: 10px; width: 95%; margin: auto auto;" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    {% load widget_tweaks %}
+
+
+    <div class="main mx-auto ">
+        <div class="container bg-light">
+            <div class="row g-3">
+                <div class="col-sm-7">
+                    <div class="container border-danger text-center" style="padding: 5px 5px;">
+                    </div>
+
+                    <div class="container">
+                        <h1>Appointment Details</h1>
+                    </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label mt-3">Customer Name</label>
+                                <input type="text" id="name" name="name" class="form-control" required value="{{data.name}}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label mt-3">Phone</label>
+                                <input type="text" name="phone" id="phone" class="form-control" required value="{{data.phone}}">
+
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label mt-3">Booking Date</label>
+                                <input type="text" name="phone" id="phone" class="form-control" required value="{{data.BookingTime}}">
+
+                            </div>
+                        </div>
+
+                        <div class="container text-center mx-auto mb-3">
+                            <label for="datetime-local" class="form-label mt-3">Appointment Date</label>
+                            <!-- <input type="datetime-local" class="form-control mx-auto" required name="datentime" id="datentime" placeholder="Select Date and Time" value="{{data.datentime}}" style="border-radius:0; text-align: center ; width: 50%;"> -->
+                            <p style="padding: 15px; border: 1px solid black; font-weight: 600;">{{data.datentime}}</p>
+                            <input type="text" name="" id="timeslot" style="text-align: center; border: none; margin-top: 5px; background-color: transparent;">
+
+                        </div>
+
+                        <input type="hidden" name="payment_status" id="paymentstatus">
+
+                        <div class="container">
+                            <!-- <p class="form-label mt-3">Service Selected</p> -->
+                            <hr>
+                            <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Service</th>
+                                    <th scope="col">Price</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in data.services.all %}
+                                    <tr>
+                                        <th scope="row">{{forloop.counter}}</th>
+                                        <td>{{i.name}}</td>
+                                        <td><strong>&#163;</strong>{{i.price}}</td>
+                                      </tr>
+                                    {% endfor %}
+                                      <tr>
+                                        <td></td>
+                                        <td><strong>Total</strong></td>
+                                        <td><strong>&#163;{{total}}</strong></td>
+                                      </tr>
+                                </tbody>
+                              </table>
+
+                            <input type="hidden" id="total_amount"></input>
+                            <input type="hidden" name="total_payment" id="total_payment"></input>
+                        </div>
+
+
+                </div>
+                <div class="col-sm-5">
+                    <img src="{% static 'images/silhouette-3605401.png' %}" class="img-fluid" alt="makeup">
+                    <div class="container">
+                        <h4>Opening Hours</h4>
+                        <p>Monday: Closed<br>
+                            Tuesday: 10am - 6pm<br>
+                            Wednesday: 10am - 6pm<br>
+                            Thursday: 10am - 6pm<br>
+                            Friday: 10am - 6pm<br>
+                            Saturday: 10am - 6pm<br>
+                            Sunday: Closed</p>
+                    </div>
+                    <div class="container">
+                        <h4>Address</h4>
+                        <p>207 Waldegrave Road, Teddington, TW11 8LX</p>
+                    </div>
+                    <div class="container">
+                        <h4>Contact</h4>
+                        <p>07969385877</p>
+                    </div>
+                    <div class="container">
+                        <h4>Email</h4>
+                        <p>reenavirdee@hotmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--javascript-->
+    <!--js-->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!--js-->
+    <script>
+
+        // Right Click Disabled
+        // document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        $(document).ready(function () {
+            $('#id_services').select2({ width: '100%', placeholder: "Select an Option", allowClear: true, });
+        });
+    </script>
+
+    <script>
+        $('#id_services').change(function () {
+            let x = $('#id_services').val()
+            $("#contactnumber").attr("autocomplete", "off");
+
+            console.log("C: ", x)
+            console.log("HEllo Coding")
+            $.ajax({
+                type: 'GET',
+                url: "{% url 'get_booking_price' %}",
+                data: { 'services': x },
+                success: function (data) {
+                    var instance = JSON.parse(data["amount"]);
+                    console.log(instance)
+                    $('#total_amount').val(instance);
+                    console.log("Done");
+                },
+                error: function (response) {
+                    // alert the error if any error occured
+                    alert(response["responseJSON"]["error"]);
+                }
+            })
+        })
+
+
+
+        // ################## CHECK FOR TIME AND DATE
+
+        $('#datentime').change(function () {
+            let x = $('#datentime').val()
+            $("#contactnumber").attr("autocomplete", "off");
+
+            console.log("C: ", x)
+            console.log("HEllo Coding")
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'get_booking_datentime' %}",
+                data: { 'datentime': x , 'csrfmiddlewaretoken':"{{csrf_token}}"},
+                success: function (data) {
+                    // var instance = JSON.parse(data["amount"]);
+                    console.log(data['amount'])
+                    $('#timeslot').val(data['amount']);
+                    console.log("Done");
+                    if (data['amount'] == "Ready To Go"){
+                        $('#timeslot').style.color ="green";
+                    }
+                },
+                error: function (error) {
+                    // alert the error if any error occured
+                    
+                    // alert(response["responseJSON"]["error"]);
+                }
+            })
+        })
+
+
+        // Booking Model AJAX CALL 
+        $(document).on('submit', '#bookingform', function (event) {
+            event.preventDefault();
+            let x = $('#bookingform')
+            let serv = $('#id_services').val()
+            console.log(serv)
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'add_booking' %}",
+                data: x.serialize(),
+                
+                success: function (data) {
+                    console.log("Done");
+                    window.location="/"
+                },
+                error: function (error) {
+                    alert("There is some error")
+                    var instance = JSON.parse(data["error"]);
+                    alert(instance)
+                    console.log("error: ", error)
+                }
+            })
+        })
+
+    </script>
+
+    <script>
+        config = {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            minDate: "today",
+            minTime: "10:00",
+            maxTime: "18:00",
+            "disable": [
+                function (date) {
+                    return (date.getDay() === 0 || date.getDay() === 1);
+                }
+            ],
+            "locale": {
+                "firstDayOfWeek": 2 // start week on Monday
+            }
+        }
+        flatpickr("input[type=datetime-local]", config);
+    </script>
+</body>
+
+</html>

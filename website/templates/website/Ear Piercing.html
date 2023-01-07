@@ -1,0 +1,49 @@
+{% extends 'website/index.html' %}
+
+{% block title %}
+<title>Ear Piercing</title>
+{% endblock title %}
+
+{% block csslink %}
+{% load static %}
+<link href="{% static 'css/caci.css' %}" rel="stylesheet" />
+{% endblock csslink %}
+
+{% block body %}
+
+<body class="bg-light">
+  {% endblock body %}
+
+  {% block content %}
+  <div class="main mx-auto">
+    <div class="box">
+      <img src="{% static 'images/ear piercing.jpg' %}" alt="Dermalogica Treatments" class="img-fluid">
+      <h1 class="left mx-auto">Ear Piercing</h1>
+    </div>
+
+    <div class="container mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <p class="text" style="text-align:center">
+        Quick and Painless, Our Ear Piercing Treatment Will Allow You To Wear All Types Of Earrings. In Fact We
+        Have A Selection You Can Choose From.
+      <div class="container text-center">
+        <a href="{% url 'add_booking' %}"><button class="button" type="submit">Book An Experience</button></a>
+      </div>
+    </div>
+
+    <hr style="border: 1px solid rgb(94, 255, 0)" />
+
+    <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
+      <h1>Treatment</h1>
+      <p class="text">
+      <ul class="ul" style="color: rgb(0, 0, 0); list-style:disc; font-family: Poppins; text-align: center;">
+        <li>Ear Piercing (one side)</li>
+        <li> Ear Piercing (both sides)</li>
+      </ul>
+      </p>
+      <div class="container text-center">
+        <a href="{% static 'pdf/Aftercare Advice for Ear Piercing.pdf' %}" target="_blank"><button class="button mb-2"
+            type="submit">Aftercare</button></a>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}
