@@ -33,5 +33,6 @@ urlpatterns = [
     path('login/', views.Login_view, name="login"),
     path('logout/', views.Logout_view, name="logout"),
     path('SignUp/', views.Signup_view, name="signup"),
+    path('accounts/', include('allauth.urls')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

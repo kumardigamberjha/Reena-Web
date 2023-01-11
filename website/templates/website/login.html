@@ -8,36 +8,40 @@
 	<title>LOGIN/SIGN UP</title>
 	{% load static %}
 	<link href="{% static 'css/login.css' %}" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.3.js"
+		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
+		<script src="https://kit.fontawesome.com/a895c3d792.js" crossorigin="anonymous"></script>
 	<style>
-		.red{
+		.red {
 			border: 1px solid red;
 		}
-		.green{
+
+		.green {
 			border: 1px solid transparent;
 		}
 	</style>
 </head>
 
 <body>
+	{% load socialaccount %}
+	
+
 	<div class="container" id="container">
 		<div class="form-container sign-up-container">
-			<form action="" method="POST" id="submit-form">
+			<form action="" method="POST" id="submit-form" autocomplete="off">
 				{% csrf_token %}
 				<h1>Create Account</h1>
 				<div class="social-container">
-					<a href="#" class="social"><ion-icon name="logo-facebook"></ion-icon></i></a>
-					<a href="#" class="social"><ion-icon name="logo-google"></ion-icon></i></a>
+					<a href="{% provider_login_url 'google' %}" class="social"><ion-icon name="logo-google"></ion-icon></a>
+
 				</div>
 				<span>or use your email for registration</span>
 				<input type="text" placeholder="username" name="username" id="username" />
-				<p id="usernamecheck" style="display: none;"></p>
 				<input type="email" placeholder="Email" name="email" id="email" />
 				<input type="password" placeholder="Password" name="password1" />
 				<input type="password" placeholder="Password" name="password2" />
-				<!-- <button type="submit">Sign Up</button> -->
-				<input type="submit" value="Submit">
+				<input type="submit" value="Submit" style="cursor: pointer;">
 			</form>
 			<div id="message">
 				<h3>Password must contain the following:</h3>
@@ -45,21 +49,20 @@
 				<p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
 				<p id="number" class="invalid">A <b>number</b></p>
 				<p id="length" class="invalid">Minimum <b>8 characters</b></p>
-			  </div>
+			</div>
 		</div>
 		<div class="form-container sign-in-container">
 			<form action="" method="POST">
 				{% csrf_token %}
 				<h1>Sign in</h1>
 				<div class="social-container">
-					<a href="#" class="social"><ion-icon name="logo-facebook"></ion-icon></i></a>
-					<a href="#" class="social"><ion-icon name="logo-google"></ion-icon></a>
+					<a href="{% provider_login_url 'google' %}" class="social"><ion-icon name="logo-google"></ion-icon></a>
 				</div>
 				<span>or use your e-mail account</span>
 				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="password" placeholder="Password" />
 				<a href="#">Forgot your password?</a>
-				<input type="submit" value="Submit">
+				<input type="submit" value="Submit" style="cursor: pointer;">
 			</form>
 		</div>
 		<div class="overlay-container">
@@ -77,6 +80,13 @@
 			</div>
 		</div>
 	</div>
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }} p-2 mb-2 bg-success text-white" style="list-style: none; border-radius: 10px; width: 95%; margin: auto auto; z-index: 10000;" {% endif %}>{{ message }}</li>
+			{% endfor %}
+	</ul>
+	{% endif %}
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
@@ -123,56 +133,55 @@
 
 
 		// ###################### USername Check ################
-        $('#username').change(function () {
-            let x = $('#username').val()
+		$('#username').change(function () {
+			let x = $('#username').val()
 
-            console.log("C: ", x)
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'getUsername' %}",
-                data: { 'username': x , 'csrfmiddlewaretoken':"{{csrf_token}}"},
-                success: function (data) {
-                    // var instance = JSON.parse(data["amount"]);
-                    console.log(data['amount'])
-                    // $('#usernamecheck').val(data['amount']);
-                    console.log("Done");
-                    if (data['amount'] == ""){
-                        $('#username').addClass("green");
-                    }
-					else{
+			console.log("C: ", x)
+			$.ajax({
+				type: 'POST',
+				url: "{% url 'getUsername' %}",
+				data: { 'username': x, 'csrfmiddlewaretoken': "{{csrf_token}}" },
+				success: function (data) {
+					// var instance = JSON.parse(data["amount"]);
+					console.log(data['amount'])
+					// $('#usernamecheck').val(data['amount']);
+					console.log("Done");
+					if (data['amount'] == "") {
+						$('#username').addClass("green");
+					}
+					else {
 						$('#username').addClass("red");
 					}
-                },
-                error: function (error) {
-                    // alert the error if any error occured
-                    
-                    // alert(response["responseJSON"]["error"]);
-                }
-            })
-        })
+				},
+				error: function (error) {
+					// alert the error if any error occured
 
+					// alert(response["responseJSON"]["error"]);
+				}
+			})
+		})
 
 		// ###################### Username Check ################
 		$('#email').change(function () {
-            let x = $('#email').val()
+			let x = $('#email').val()
 
-            console.log("C: ", x)
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'getEmail' %}",
-                data: { 'email': x , 'csrfmiddlewaretoken':"{{csrf_token}}"},
-                success: function (data) {
-                    console.log(data['amount'])
-                    console.log("Done");
-                    if (data['amount'] == ""){
-                        $('#email').addClass("green");
-                    }
-					else{
+			console.log("C: ", x)
+			$.ajax({
+				type: 'POST',
+				url: "{% url 'getEmail' %}",
+				data: { 'email': x, 'csrfmiddlewaretoken': "{{csrf_token}}" },
+				success: function (data) {
+					console.log(data['amount'])
+					console.log("Done");
+					if (data['amount'] == "") {
+						$('#email').addClass("green");
+					}
+					else {
 						$('#email').addClass("red");
 					}
-                },
-            })
-        })
+				},
+			})
+		})
 
 	</script>
 
