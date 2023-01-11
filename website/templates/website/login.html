@@ -8,23 +8,44 @@
 	<title>LOGIN/SIGN UP</title>
 	{% load static %}
 	<link href="{% static 'css/login.css' %}" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+	<style>
+		.red{
+			border: 1px solid red;
+		}
+		.green{
+			border: 1px solid transparent;
+		}
+	</style>
 </head>
 
 <body>
 	<div class="container" id="container">
 		<div class="form-container sign-up-container">
-			<form action="#">
+			<form action="" method="POST" id="submit-form">
+				{% csrf_token %}
 				<h1>Create Account</h1>
 				<div class="social-container">
 					<a href="#" class="social"><ion-icon name="logo-facebook"></ion-icon></i></a>
 					<a href="#" class="social"><ion-icon name="logo-google"></ion-icon></i></a>
 				</div>
 				<span>or use your email for registration</span>
-				<input type="text" placeholder="Name" />
-				<input type="email" placeholder="Email" />
-				<input type="password" placeholder="Password" />
-				<button>Sign Up</button>
+				<input type="text" placeholder="username" name="username" id="username" />
+				<p id="usernamecheck" style="display: none;"></p>
+				<input type="email" placeholder="Email" name="email" id="email" />
+				<input type="password" placeholder="Password" name="password1" />
+				<input type="password" placeholder="Password" name="password2" />
+				<!-- <button type="submit">Sign Up</button> -->
+				<input type="submit" value="Submit">
 			</form>
+			<div id="message">
+				<h3>Password must contain the following:</h3>
+				<p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+				<p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+				<p id="number" class="invalid">A <b>number</b></p>
+				<p id="length" class="invalid">Minimum <b>8 characters</b></p>
+			  </div>
 		</div>
 		<div class="form-container sign-in-container">
 			<form action="" method="POST">
@@ -56,7 +77,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="/js/login/signup.js"></script>
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
@@ -72,6 +92,88 @@
 		signInButton.addEventListener('click', () => {
 			container.classList.remove("right-panel-active");
 		});
+	</script>
+
+
+	<script>
+
+		// Booking Model AJAX CALL 
+		$(document).on('submit', '#submit-form', function (event) {
+			event.preventDefault();
+			let x = $('#submit-form')
+
+			$.ajax({
+				type: 'POST',
+				url: "{% url 'signup' %}",
+				data: x.serialize(),
+
+				success: function (data) {
+					console.log("Done");
+					window.location = "/"
+				},
+				error: function (data) {
+					const errdata = data;
+					console.log("Error: ", errdata.responseText)
+					alert(errdata.responseText)
+					// console.log("Error: ", errdata.responseText.error.password2)
+					// alert(data.responseText)
+				}
+			})
+		})
+
+
+		// ###################### USername Check ################
+        $('#username').change(function () {
+            let x = $('#username').val()
+
+            console.log("C: ", x)
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'getUsername' %}",
+                data: { 'username': x , 'csrfmiddlewaretoken':"{{csrf_token}}"},
+                success: function (data) {
+                    // var instance = JSON.parse(data["amount"]);
+                    console.log(data['amount'])
+                    // $('#usernamecheck').val(data['amount']);
+                    console.log("Done");
+                    if (data['amount'] == ""){
+                        $('#username').addClass("green");
+                    }
+					else{
+						$('#username').addClass("red");
+					}
+                },
+                error: function (error) {
+                    // alert the error if any error occured
+                    
+                    // alert(response["responseJSON"]["error"]);
+                }
+            })
+        })
+
+
+		// ###################### Username Check ################
+		$('#email').change(function () {
+            let x = $('#email').val()
+
+            console.log("C: ", x)
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'getEmail' %}",
+                data: { 'email': x , 'csrfmiddlewaretoken':"{{csrf_token}}"},
+                success: function (data) {
+                    console.log(data['amount'])
+                    console.log("Done");
+                    if (data['amount'] == ""){
+                        $('#email').addClass("green");
+                    }
+					else{
+						$('#email').addClass("red");
+					}
+                },
+            })
+        })
+
 	</script>
 
 </body>

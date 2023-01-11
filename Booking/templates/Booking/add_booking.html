@@ -7,6 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking</title>
 
+    <style>
+        #phonecon{
+            display: none;
+        }
+        #id_servicescon{
+            display: none;
+        }
+        #datentimecon{
+            display: none;
+        }
+        #paypal-button-container{
+            display: none;
+        }
+        #submit{
+            display: none;
+        }
+    </style>
+
     {% load static %}
 
     <script src="https://kit.fontawesome.com/8feaa5fbd6.js" crossorigin="anonymous"></script>
@@ -53,7 +71,6 @@
     </ul>
     {% endif %}
 
-
     {% load widget_tweaks %}
 
     <div class="main mx-auto ">
@@ -75,13 +92,13 @@
                                 <label for="name" class="form-label mt-3">Your Name</label>
                                 <input type="text" id="name" name="name" class="form-control" required>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="phonecon">
                                 <label for="phone" class="form-label mt-3">Phone</label>
                                 <input type="text" name="phone" id="phone" class="form-control" required>
 
                             </div>
                         </div>
-                        <div class="container">
+                        <div class="container" id="id_servicescon">
                             <p class="form-label mt-3">Search For Service</p>
                             <!-- {% render_field form.services|add_class:"form-control" %} -->
                             <select name="services" id="id_services" class="form-control select2" multiple="multiple">
@@ -94,10 +111,13 @@
                         </div>
 
 
-                        <div class="container text-center mx-auto mb-3">
+                        <div class="container text-center mx-auto mb-3" id="datentimecon">
                             <label for="datetime-local" class="form-label mt-3">Select Date and Time</label>
-                            <input type="datetime-local" class="form-control mx-auto" required name="datentime" id="datentime" placeholder="Select Date and Time" style="border-radius:0; text-align: center ; width: 50%;">
-                            <input type="text" name="" id="timeslot" style="text-align: center; border: none; margin-top: 5px; background-color: transparent;">
+                            <input type="datetime-local" class="form-control mx-auto" required name="datentime"
+                                id="datentime" placeholder="Select Date and Time"
+                                style="border-radius:0; text-align: center ; width: 50%;">
+                            <input type="text" name="" id="timeslot"
+                                style="text-align: center; border: none; margin-top: 5px; background-color: transparent;">
 
                         </div>
 
@@ -105,7 +125,8 @@
 
                         <!-- <div id="paypal-button-container"></div> -->
                         <div id="paypal-button-container"></div>
-                        <script src="https://www.paypal.com/sdk/js?client-id=AWFL7YRuIbPx-nbOh0-l8K8yxbOKsaaIzjSC4NMMJEcR3el2R0hEjF26UrosJAx7f9R-QQEXMgb_LT7u&currency=USD"></script>
+                        <script
+                            src="https://www.paypal.com/sdk/js?client-id=AWFL7YRuIbPx-nbOh0-l8K8yxbOKsaaIzjSC4NMMJEcR3el2R0hEjF26UrosJAx7f9R-QQEXMgb_LT7u&currency=USD"></script>
 
                         <script>
 
@@ -131,6 +152,7 @@
                                         alert(`Payment has been Done`)
                                         $('#paymentstatus').val("PaymentisDonecheckit");
                                         $('#total_payment').val(amounttt);
+                                        $('#submit').css('display','block')
 
                                     });
                                 }
@@ -138,11 +160,9 @@
                         </script>
 
                         <div class="container">
-                            <input type="submit" value="Submit" id="submit" style="padding: 4px 55px; margin: 25px auto; width: 100%;">
+                            <input type="submit" value="Submit" id="submit"
+                                style="padding: 4px 55px; margin: 25px auto; width: 100%;">
                         </div>
-
-
-
                     </form>
 
                 </div>
@@ -174,8 +194,6 @@
             </div>
         </div>
     </div>
-
-
 
     <!--javascript-->
     <!--js-->
@@ -223,7 +241,6 @@
         })
 
 
-
         // ################## CHECK FOR TIME AND DATE
 
         $('#datentime').change(function () {
@@ -235,19 +252,19 @@
             $.ajax({
                 type: 'POST',
                 url: "{% url 'get_booking_datentime' %}",
-                data: { 'datentime': x , 'csrfmiddlewaretoken':"{{csrf_token}}"},
+                data: { 'datentime': x, 'csrfmiddlewaretoken': "{{csrf_token}}" },
                 success: function (data) {
                     // var instance = JSON.parse(data["amount"]);
                     console.log(data['amount'])
                     $('#timeslot').val(data['amount']);
                     console.log("Done");
-                    if (data['amount'] == "Ready To Go"){
-                        $('#timeslot').style.color ="green";
+                    if (data['amount'] == "Ready To Go") {
+                        $('#timeslot').style.color = "green";
                     }
                 },
                 error: function (error) {
                     // alert the error if any error occured
-                    
+
                     // alert(response["responseJSON"]["error"]);
                 }
             })
@@ -264,10 +281,10 @@
                 type: 'POST',
                 url: "{% url 'add_booking' %}",
                 data: x.serialize(),
-                
+
                 success: function (data) {
                     console.log("Done");
-                    window.location="/"
+                    window.location = "/"
                 },
                 error: function (error) {
                     alert("There is some error")
@@ -277,6 +294,55 @@
                 }
             })
         })
+
+        let name = document.getElementById('name').value
+        let phone = document.getElementById('phone').value
+        let services = document.getElementById('id_services').value
+        let datentime= document.getElementById('datentime').value
+        let paypal_button_container= document.getElementById('paypal-button-container').value
+
+        let paymentstatus= document.getElementById('paymentstatus').value
+        let submit = document.getElementById('submit').value
+
+        if (name != ""){ 
+            $('#phonecon').css('display','block')
+        }
+        else{
+            $("#name").on("change paste keyup", function() {
+                $('#phonecon').css('display','block')
+            });
+        }
+        if (phone != ""){ 
+            $('#id_servicescon').css('display','block')
+        }
+        else{
+            $("#phone").on("change paste keyup", function() {
+                $('#id_servicescon').css('display','block')
+            });
+        }
+        if (services != ""){ 
+            $('#datentimecon').css('display','block')
+        }
+        else{
+            $("#id_services").on("change paste keyup", function() {
+                $('#datentimecon').css('display','block')
+            });
+        }
+        if (datentime != ""){ 
+            $('#paypal-button-container').css('display','block')
+        }
+        else{
+            $("#datentime").on("change paste keyup", function() {
+                $('#paypal-button-container').css('display','block')
+            });
+        }
+        if (paymentstatus != ""){ 
+            $('#submit').css('display','block')
+        }
+        else{
+            $("#paymentstatus").on("change paste keyup", function() {
+            });
+        }
 
     </script>
 

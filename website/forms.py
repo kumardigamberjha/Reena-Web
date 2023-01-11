@@ -6,10 +6,10 @@ from website.models import ContactUsPage
 
 
 class CreateUserForm(UserCreationForm):
-    phone_no = forms.CharField(max_length = 10)
+    # phone_no = forms.CharField(max_length = 10)
     class Meta:
         model = User
-        fields = ["first_name","last_name", "username","email","phone_no","password1", 'password2']
+        fields = ["username","email","password1", 'password2']
 
 
 class ContactForm(ModelForm):
