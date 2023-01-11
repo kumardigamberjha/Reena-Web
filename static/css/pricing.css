@@ -8,7 +8,8 @@
 }
 html{
   scroll-behavior: smooth;
-}
+  overflow-x: hidden;
+} 
 .navbar{
     display: flex;
     flex-direction: row;

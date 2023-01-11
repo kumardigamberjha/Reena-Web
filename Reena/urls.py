@@ -17,11 +17,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from Reena.views import Login_view, Logout_view, Signup_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('website.urls')),
     path('Booking/', include('Booking.urls')),
     # path(r'^paypal/', include('paypal.standard.ipn.urls')),
+
+    path('login/', Login_view, name="login"),
+    path('logout/', Logout_view, name="logout"),
+    path('SignUp/', Signup_view, name="signup"),
+
+
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -6,13 +6,7 @@
   <link rel="stylesheet" href="{% static 'css/contactus.css' %}">
 {% endblock csslink %}
 
-
 {% block content %}
-
-{% block body %}
-
-{% endblock body %}
-
 
   <div class="main mx-auto mb-5">
     <div class="container-fluid mt-5">
@@ -42,40 +36,40 @@
     <div class="container mt-5" style="width: 50%">
       <h1>Our Documents</h1>
       <ul class="ul">
-        <a href="/pdf/Reenas_Hair_and_Beauty_Salon_Price_List_Leaflet_2013.png' %}" download>
-          <li>Reena's Hair and Beauty Salon Leaflet</li>
+        <a href="{% static 'pdf/Reenas_Hair_and_Beauty_Salon_Price_List_Leaflet_2013.png' %}" download>
+          <li class="">Reena's Hair and Beauty Salon Leaflet</li>
         </a>
-        <a href="/pdf/Aftercare Advice for Body Massage Treatment.pdf" download>
+        <a href="{% static 'pdf/Aftercare Advice for Body Massage Treatment.pdf' %}" download>
           <li>Aftercare Massage Treatment</li>
         </a>
-        <a href="/pdf/Aftercare Advice for Ear Piercing.pdf" download>
+        <a href="{% static 'pdf/Aftercare Advice for Ear Piercing.pdf' %}" download>
           <li>Aftercare Advice For Ear Treatment</li>
         </a>
-        <a href="/pdf/Aftercare Advice for Facial Electrical Treatment.pdf" download>
+        <a href="{% static 'pdf/Aftercare Advice for Facial Electrical Treatment.pdf' %}" download>
           <li>Aftercare Advice For Facial Treatment</li>
         </a>
-        <a href="/pdf/Aftercare Advice for IPL Hair Removal Treatment.pdf" download>
+        <a href="{% static 'pdf/Aftercare Advice for IPL Hair Removal Treatment.pdf' %}" download>
           <li>Aftercare Advice For IPL Hair Removal Treatment</li>
         </a>
-        <a href="/pdf/Aftercare Advice for Manicure and Pedicure.pdf" download>
+        <a href="{% static 'pdf/Aftercare Advice for Manicure and Pedicure.pdf' %}" download>
           <li>Aftercare Advice for Manicure And Pedicure</li>
         </a>
-        <a href="/pdf/Aftercare Advice for Nail Extensions Treatment.pdf" download>
+        <a href="{% static 'pdf/Aftercare Advice for Nail Extensions Treatment.pdf' %}" download>
           <li>Aftercare Advice For Nail and Extensions</li>
         </a>
-        <a href="/pdf/CND_Shellac_Flyer.pdf" download>
+        <a href="{% static 'pdf/CND_Shellac_Flyer.pdf' %}" download>
           <li>CND Shellac Flyer</li>
         </a>
-        <a href="/pdf/IPL Poster (1).pdf" download>
+        <a href="{% static 'pdf/IPL Poster (1).pdf' %}" download>
           <li>IPL Poster</li>
         </a>
-        <a href="/pdf/Reena'scaci.pdf" download>
+        <a href="{% static 'pdf/Reenas_caci.pdf' %}" download>
           <li>Aftercare Scaci</li>
         </a>
-        <a href="/pdf/Shellac_Application_and_Removal.pdf">
+        <a href="{% static 'pdf/Shellac_Application_and_Removal.pdf' %}">
           <li>Shellac Application and Removal</li>
         </a>
-        <a href="/pdf/Shellac_QA_Consumer.pdf">
+        <a href="{% static 'pdf/Shellac_QA_Consumer.pdf' %}">
           <li>Shellac Q/A Consumer</li>
         </a>
       </ul>

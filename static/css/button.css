@@ -9,6 +9,10 @@
     border-radius: 6px;
     font-family: "Poppins", sans-serif;
 }
+html{
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  } 
 .button:hover{
     color:white;
     background-color: black;

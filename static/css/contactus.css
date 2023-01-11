@@ -8,7 +8,11 @@
 }
 html{
   scroll-behavior: smooth;
+  overflow-x: hidden;
 } 
+.navbar-nav{
+  list-style: none;
+}
 .navbar{
  display: flex;
  flex-direction: row;
@@ -119,8 +123,11 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
+ul{
+  list-style: none;
+}
 li{
-    list-style:square;
+    list-style:none;
     color: black;
     text-decoration: none;
     font-size: 1em;
@@ -190,7 +197,6 @@ p {
   margin-top: -5em;
 }
 #preloader {
-    center;
   background-size: 25%;
   background-size: cover;
   height: 100%;

@@ -9,12 +9,14 @@
 }
 html{
   scroll-behavior: smooth;
+  overflow-x: hidden;
 } 
 .navbar{
  display: flex;
  flex-direction: row;
  box-shadow: 0px 5px 20px black;
 }
+
 .nav-item .nav-link {
   font-size: 1.1em;
   font-family: "Poppins", sans-serif;
@@ -79,25 +81,16 @@ h2{
  color: black;
  font-size: 1.5em;
 }
+.fa-brands:hover{
+  color: lightcoral;
+  font-size: 1.5em;
+}
 /* .main{
   margin-top: 8em;
 } */
 h1 {
   color: rgb(0, 0, 0);
   font-family: "Poppins", sans-serif;
-}
-.button{
-  border: 2px solid black;
-  padding: 10px 40px 10px;
-  text-align: center;
-  background-color: white;
-  border-radius: 6px;
-  font-family: "Poppins", sans-serif;
-}
-.button:hover{
-  color:white;
-  background-color: black;
-  cursor: pointer;
 }
 
 .box {
@@ -106,6 +99,35 @@ h1 {
   color: white;
   /* height: 120vh; */
 }
+.button{
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  border: 1px solid black;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 65%;
+  left: 50%;
+  font-size: 16px;
+  font-weight: 500;
+  /* padding: 10px 50px 10px; */
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+}
+.button:hover{
+  color:white;
+  background-color: black;
+  cursor: pointer;
+}
+@media all and (max-width:30em){
+  .button{
+   display:block;
+   margin:0.4em auto;
+   }
+  } 
 .centered {
   position: absolute;
   display: block;
@@ -143,37 +165,7 @@ h1 {
   font-weight: 1000;
   color: whitesmoke;
 }
-/*text-animation*/
-.centered {
-  opacity: 0;
-  transition: all 2s;
-  transform: translateX(-100%);
-}
-.right {
-  opacity: 0;
-  transition: all 2s;
-  transform: translateX(100%);
-}
-.left {
-  opacity: 0;
-  transition: all 2s;
-  transform: translateY(100%);
-}
-.up {
-  opacity: 0;
-  transition: all 2s;
-  transform: translateY(-100%);
-}
-.glow-on-hover {
-  opacity: 0;
-  transition: all 2s;
-  transform: translateY(-100%);
-}
-.show {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateX(-50%);
-}
+
 p {
   color: rgb(255, 255, 255);
   font-size: 18px;
@@ -199,7 +191,7 @@ p {
   font-style: normal;
 }
 .ul .nav-link:hover {
-  color: rgb(94, 255, 0) ;
+  color: rgb(255, 0, 0) ;
   font-size: 20px;
   font-weight: 400;
   font-family: "Poppins", sans-serif;

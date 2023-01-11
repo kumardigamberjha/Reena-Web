@@ -1,64 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-     <!--snow-->
-  <script src="/javascript/snow.js"></script>
-    <!--css-->
-    <link href="/css/login.css" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="/images/a2.png">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>LOGIN/SIGN UP</title>
+	{% load static %}
+	<link href="{% static 'css/login.css' %}" rel="stylesheet">
 </head>
+
 <body>
-    <section>
-        <div class="form-container">
-            <h1>Login</h1>
-            <form action="#">
-                <div class="control">
-                    <label for="email">Email</label>
-                    <input type="text" name="username" id="email">
-                </div>
-                <div class="control">
-                    <label for="psw">Password</label>
-                    <input type="password" name="password" id="psw">
-                </div>
-                <span><input type="checkbox" value="lsRememberMe" id="rememberMe"> Remember Me </span>
-                 <div class="control">
-                    <input type="submit" value="Login" onclick="lsRememberMe()">
-                 </div>
-            </form>
-            <div class="link">
-                <a href="#">Forgot Password ?</a>
-            </div>
-            <div class="container">
-              <a href="#" class="sign-up"> or Sign-Up</a>
-            </div>
-        </div>
-    </section>
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+			<form action="#">
+				<h1>Create Account</h1>
+				<div class="social-container">
+					<a href="#" class="social"><ion-icon name="logo-facebook"></ion-icon></i></a>
+					<a href="#" class="social"><ion-icon name="logo-google"></ion-icon></i></a>
+				</div>
+				<span>or use your email for registration</span>
+				<input type="text" placeholder="Name" />
+				<input type="email" placeholder="Email" />
+				<input type="password" placeholder="Password" />
+				<button>Sign Up</button>
+			</form>
+		</div>
+		<div class="form-container sign-in-container">
+			<form action="" method="POST">
+				{% csrf_token %}
+				<h1>Sign in</h1>
+				<div class="social-container">
+					<a href="#" class="social"><ion-icon name="logo-facebook"></ion-icon></i></a>
+					<a href="#" class="social"><ion-icon name="logo-google"></ion-icon></a>
+				</div>
+				<span>or use your e-mail account</span>
+				<input type="email" name="email" placeholder="Email" />
+				<input type="password" name="password" placeholder="Password" />
+				<a href="#">Forgot your password?</a>
+				<input type="submit" value="Submit">
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Welcome Back!</h1>
+					<p>To keep connected with us please login with your personal info</p>
+					<button class="ghost" id="signIn">Sign In</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Hello! New Here?</h1>
+					<p>Enter your personal details and start journey with us</p>
+					<button class="ghost" id="signUp">Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/login/signup.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-    <script>
-        const rmCheck = document.getElementById("rememberMe"),
-    emailInput = document.getElementById("email");
+	<script>
+		const signUpButton = document.getElementById('signUp');
+		const signInButton = document.getElementById('signIn');
+		const container = document.getElementById('container');
 
-if (localStorage.checkbox && localStorage.checkbox !== "") {
-  rmCheck.setAttribute("checked", "checked");
-  emailInput.value = localStorage.username;
-} else {
-  rmCheck.removeAttribute("checked");
-  emailInput.value = "";
-}
+		signUpButton.addEventListener('click', () => {
+			container.classList.add("right-panel-active");
+		});
 
-function lsRememberMe() {
-  if (rmCheck.checked && emailInput.value !== "") {
-    localStorage.username = emailInput.value;
-    localStorage.checkbox = rmCheck.value;
-  } else {
-    localStorage.username = "";
-    localStorage.checkbox = "";
-  }
-}
-    </script>
+		signInButton.addEventListener('click', () => {
+			container.classList.remove("right-panel-active");
+		});
+	</script>
+
 </body>
+
 </html>

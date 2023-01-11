@@ -18,6 +18,11 @@ def Services(request):
     return render(request, 'website/Services.html', context)
 
 
+def RewardsView(request):
+    context = {}
+    return render(request, 'website/gifts.html', context)
+
+
 def Pricing(request):
     context = {}
     return render(request, 'website/pricing.html', context)

@@ -20,5 +20,6 @@ urlpatterns = [
     path('BridalMakeUp/', views.BridalServicesView, name="bridalview"),
     path('NailExtension/', views.NailExtensionView, name="nailextview"),
     path('Henna/', views.HennaView, name="Hennaview"),
+    path('Rewards/', views.RewardsView, name="rewards"),
 
 ]

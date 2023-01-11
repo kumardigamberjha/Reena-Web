@@ -31,7 +31,10 @@
     align-items: center;
     height: 70px;
   }
-  
+  html{
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  } 
   .navbar .menu-items {
     display: flex;
   }

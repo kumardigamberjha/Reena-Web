@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from Reena import settings
-
+from django.contrib.auth.models import User
 from datetime import date
 
 
@@ -38,25 +38,20 @@ def Signup_view(request):
 
 def Login_view(request):
     if request.method == "POST":
-        username = request.POST.get('username')
+        email = request.POST.get('email')
         password = request.POST.get('password')
-
+        username = User.objects.get(email=email).username
+        print("Username: ", username)
         user = authenticate(request, username= username, password=password)
 
         if user is not None:
             login(request, user)
             request.session['user'] = username
-            # return redirect('/')
-            if user.is_superuser:
-                messages.info(request, 'Login Success')
-                if 'next' in request.POST:
-                    return redirect(request.POST.get('next'))
-                else:
-                    return redirect('homepage')
-                # return HttpResponseRedirect(request.META.get('HTTP_REFERER','/'))
-            else:
-                messages.info(request, 'Login Success')
-                return redirect('homepage')
+            
+            print("Login Done")
+            messages.info(request, 'Login Success')
+            return redirect('/')
+            
         else:
             messages.info(request, 'Invalid username/password')
 

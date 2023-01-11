@@ -5,7 +5,8 @@
 {% endblock title %}
 
 {% block csslink %}
-<link href="/css/caci.css" rel="stylesheet" />
+{% load static %}
+<link href="{% static 'css/caci.css' %}" rel="stylesheet" />
 {% endblock csslink %}
 
 {% block body %}
@@ -33,7 +34,7 @@
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
       <ul class="ul" style="
             color: rgb(0, 0, 0);
-            list-style: disc;
+            list-style: none;
             font-family: Poppins;
             text-align: center;
           ">
@@ -82,7 +83,7 @@
 
       <ul class="ul" style="
             color: rgb(0, 0, 0);
-            list-style: disc;
+            list-style: none;
             font-family: Poppins;
             text-align: center;
           ">
