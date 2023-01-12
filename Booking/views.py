@@ -4,9 +4,10 @@ from Booking.forms import ProductCatForm, ProductForm, BookingModelForm
 from django.contrib import messages
 from django.core import serializers
 from django.http import JsonResponse, HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
-
+@login_required
 def AddProductCat(request):
     form = ProductCatForm()
 
@@ -24,6 +25,7 @@ def AddProductCat(request):
     return render(request, 'Booking/add_product_cat.html', context)
 
 
+@login_required
 def AddProductView(request):
     form = ProductForm()
 
@@ -42,6 +44,7 @@ def AddProductView(request):
     return render(request, 'Booking/add_product.html', context)
 
 
+@login_required
 def AddBookingView(request):
     form = BookingModelForm()
     data = ProductModel.objects.all()
@@ -116,11 +119,16 @@ def GetBookingDatentime(request):
         return JsonResponse({'amount' : amount}, status=200)
 
 
-
+@login_required
 def ShowBookingModel(request):
-    data = BookingModel.objects.all()
-    context = {'data': data}
-    return render(request, "Booking/show_booking.html", context)
+    if request.user.is_superuser:
+        data = BookingModel.objects.all()
+        context = {'data': data}
+        return render(request, "Booking/show_booking.html", context)
+    else:
+        data = BookingModel.objects.filter(hidname=request.user.username)
+        context = {'data': data}
+        return render(request, "Booking/show_booking.html", context)
 
 
 def ViewBookingModelData(request, id):
@@ -130,3 +138,4 @@ def ViewBookingModelData(request, id):
         total += i.price
     context = {'data': data, 'total': total}
     return render(request, "Booking/viewBooking.html", context)
+

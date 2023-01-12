@@ -26,6 +26,7 @@ class BookingModel(models.Model):
     pending_paymnet = models.IntegerField(blank=True, null=True)
     BookingTime = models.DateTimeField(auto_now_add=True)
     payment_status = models.CharField(max_length=30)
+    hidname = models.CharField(max_length=75)
 
     def __str__(self):
         return self.name

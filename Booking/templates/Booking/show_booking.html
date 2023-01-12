@@ -14,18 +14,25 @@
         style="text-align:center; width :95%; margin: auto auto; list-style:none;" {% endif %}>{{ message }}</li>
         {% endfor %}
 </ul>
+
 {% endif %}
 
 
-<div class="main-content">
+<div class="main-content" style="margin-top: 15%;">
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                <h2><b>All Booking</b></h2>
+                {% if user.is_superuser %}
+                <h2 style="text-align: center;"><b>All Booking</b></h2>
+                {% else %}
+                <h2 style="text-align: center;"><b>My Booking</b></h2>
+                {% endif %}
             </div>
+            <hr>
             {% if user.is_superuser %}
             <div class="col-sm-4">
-                <a href=""><button class="btn-1" style="background-color: #EB7F23;"><i class='bx bxs-file-plus'></i>Add New Architect</button></a>
+                <a href=""><button class="btn-1" style="background-color: #EB7F23;"><i class='bx bxs-file-plus'></i>Add
+                        New Architect</button></a>
             </div>
             {% endif %}
 
@@ -57,10 +64,13 @@
                     </td>
                     <td style="color: #000;">{{i.phone}}</td>
                     <td style="color: #000;">&#163; {{i.total_payment}}</td>
-                    <td><a href="{% url 'view_booking_data' i.id %}" style="color: #000;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                      </svg></a></td>
+                    <td><a href="{% url 'view_booking_data' i.id %}" style="color: #000;"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                <path
+                                    d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                            </svg></a></td>
                 </tr>
                 {% endfor %}
             </tbody>
