@@ -72,16 +72,16 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="name" class="form-label mt-3">Customer Name</label>
-                                <input type="text" id="name" name="name" class="form-control" required value="{{data.name}}">
+                                <input type="text" id="name" name="name" class="form-control" readonly value="{{data.name}}">
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label mt-3">Phone</label>
-                                <input type="text" name="phone" id="phone" class="form-control" required value="{{data.phone}}">
+                                <input type="text" name="phone" id="phone" class="form-control" readonly value="{{data.phone}}">
 
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label mt-3">Booking Date</label>
-                                <input type="text" name="phone" id="phone" class="form-control" required value="{{data.BookingTime}}">
+                                <input type="text" name="phone" id="phone" class="form-control" readonly value="{{data.BookingTime}}">
 
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                             <label for="datetime-local" class="form-label mt-3">Appointment Date</label>
                             <!-- <input type="datetime-local" class="form-control mx-auto" required name="datentime" id="datentime" placeholder="Select Date and Time" value="{{data.datentime}}" style="border-radius:0; text-align: center ; width: 50%;"> -->
                             <p style="padding: 15px; border: 1px solid black; font-weight: 600;">{{data.datentime}}</p>
-                            <input type="text" name="" id="timeslot" style="text-align: center; border: none; margin-top: 5px; background-color: transparent;">
+                            <input type="text" name="" id="timeslot"  readonly style="text-align: center; border: none; margin-top: 5px; background-color: transparent;">
 
                         </div>
 
@@ -123,8 +123,7 @@
                                 </tbody>
                               </table>
 
-                            <input type="hidden" id="total_amount"></input>
-                            <input type="hidden" name="total_payment" id="total_payment"></input>
+                          
                         </div>
 
 
@@ -158,7 +157,8 @@
         </div>
     </div>
 
-
+{% block footer %}
+{% endblock footer %}
 
     <!--javascript-->
     <!--js-->
