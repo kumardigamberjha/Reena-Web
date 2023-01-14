@@ -6,14 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reena.uk</title>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
 
+  <!--jquery-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+    integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   {% block csslink %}
   {% load static %}
   <link href="{% static 'css/body.css' %}" rel="stylesheet" />
   {% endblock csslink %}
+  <!--time-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
 
   <!--aos-->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -21,6 +30,14 @@
   <script src="https://kit.fontawesome.com/8feaa5fbd6.js" crossorigin="anonymous"></script>
   <!--css-->
   <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+  <link href="{% static 'chosen/chosen.css' %}" rel="stylesheet" />
+
+  <style>
+    #paypal-button-container {
+      display: none;
+    }
+  </style>
+
 </head>
 
 {% block body %}
@@ -110,21 +127,136 @@
           </ul>
           <hr />
           <div class="conatiner text-center">
-            <a href="{% url 'add_booking' %}"><button class="btn-1 text-center">
-                <i class="fa-solid fa-calendar mx-2"></i>Book Now
-              </button></a>
+            <button class="btn-1 text-center" data-bs-toggle="modal" data-bs-target="#bookingmodal">
+              <i class="fa-solid fa-calendar mx-2"></i>Book Now
+            </button>
           </div>
         </div>
       </div>
     </nav>
   </div>
 
+
+  <div class="modal mt-5" id="bookingmodal" aria-hidden="true">
+    <div class="container bg-secondary mx-auto"
+      style="width: 50%; padding: 1em 1em 1em; border: 0.4rem solid white; border-radius: 16px; ">
+      <div class="row g-3">
+        <div class="col-sm-12">
+          <div class="container text-center">
+            <!-- <h1>Book Your Appointment</h1> -->
+          </div>
+          <form action="" method="POST" id="bookingform">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6">
+                <label for="name" class="form-label mt-3 text-center"
+                  style="color: white; font-size: 20px; font-weight: 500; "><i class="fa-solid fa-person mx-2"
+                    style="color: lightcoral;"></i>Your
+                  Name</label>
+                <input type="text" id="name" name="name" class="form-control" style="border: 1px solid lightcoral"
+                  required>
+              </div>
+              <div class="col-md-6" id="phonecon">
+                <label for="phone" class="form-label mt-3 text-center"
+                  style="color: white; font-size: 20px; font-weight: 500; "><i class="fa-solid fa-address-book mx-2"
+                    style="color: lightcoral; font-size: 1.2rem; font-weight: 600; "></i>Phone</label>
+                <input type="text" name="phone" id="phone" class="form-control" style="border: 1px solid lightcoral"
+                  required>
+                <input type="hidden" name="hidname" value="{{user.username}}">
+              </div>
+            </div>
+
+            <div class="container mt-2" id="id_servicescon">
+              <p class="form-label mt-3" style="color: white; font-size: 20px; font-weight: 500; text-align: left; "><i
+                  class="fa-solid fa-spa mx-2" style="color: lightcoral;"></i>Search For Multiple Service</p>
+              <select name="services" id="id_services" class="form-control chosen-select p-2" multiple="multiple"
+                style="border: 1px solid lightcoral; width: 100%; padding-bottom: 20px; ">
+                {% for i in data %}
+                <option value="{{i.id}}">{{i.name}} - &#163;{{i.price}}</option>
+                {% endfor %}
+              </select>
+              <input type="hidden" id="total_amount"></input>
+              <input type="hidden" name="total_payment" id="total_payment"></input>
+            </div>
+
+
+            <div class="container mb-3" id="datentimecon">
+              <label for="datetime-local" class="form-label mt-3"
+                style="color: white; font-size: 20px; font-weight: 500;"><i class="fa-solid fa-calendar-days mx-2"
+                  style="color: lightcoral;"></i>Select Date and Time</label>
+              <input type="datetime-local" class="form-control border-dark" required name="datentime" id="datentime"
+                placeholder="Select Date and Time"
+                style="border-radius:5px; border: 2px solid lightcoral; text-align: center ; width: 100%;">
+              <div class="container text-center mt-3">
+                <input type="text" name="" id="timeslot"
+                  style="text-align: center; border: none; margin-top: 5px; background-color: transparent; pointer-events: none;" />
+              </div>
+            </div>
+            <button type="button" class="btn btn-secondary" id="modalclose" data-dismiss="modal"
+              aria-label="Close">Close</button>
+
+            <input type="hidden" name="payment_status" id="paymentstatus">
+
+            <!-- <div id="paypal-button-container"></div> -->
+            <div id="paypal-button-container" style="width: 50%; margin:auto; margin-bottom: 25px;"></div>
+            <script
+              src="https://www.paypal.com/sdk/js?client-id=AWFL7YRuIbPx-nbOh0-l8K8yxbOKsaaIzjSC4NMMJEcR3el2R0hEjF26UrosJAx7f9R-QQEXMgb_LT7u&currency=USD"></script>
+
+            <script>
+
+              paypal.Buttons({
+                // Sets up the transaction when a payment button is clicked
+                createOrder: (data, actions) => {
+                  var amountt = document.getElementById("total_amount").value;
+                  return actions.order.create({
+                    purchase_units: [{
+                      amount: {
+                        value: amountt // Can also reference a variable or function
+                      }
+                    }]
+                  });
+                },
+                // Finalize the transaction after payer approval
+                onApprove: (data, actions) => {
+                  let amounttt = document.getElementById("total_amount").value;
+
+                  return actions.order.capture().then(function (orderData) {
+                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                    const transaction = orderData.purchase_units[0].payments.captures[0];
+                    alert(`Payment has been Done`)
+                    $('#paymentstatus').val("PaymentisDonecheckit");
+                    $('#total_payment').val(amounttt);
+                    // Listen for the payment.success event
+
+                    submitform()
+                    function submitform() {
+                      alert('test');
+                      document.getElementById("bookingform").submit();
+                      alert("Done")
+                    }
+                  });
+                }
+              }).render('#paypal-button-container');
+            </script>
+
+            <div class="container text-center">
+              <input type="submit" value="Book" name="code" id="submitBtn" class="button mt-3" style="display: none;">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer mb-2">
+    <p></p>
+  </div>
+
   {% if messages %}
   <ul class="messages">
-      {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }} p-2 mb-2 bg-success text-white"
-          style="list-style: none; border-radius: 10px; width: 95%; margin: auto auto;" {% endif %}>{{ message }}</li>
-          {% endfor %}
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }} p-2 mb-2 bg-success text-white"
+      style="list-style: none; border-radius: 10px; width: 95%; margin: auto auto;" {% endif %}>{{ message }}</li>
+      {% endfor %}
   </ul>
   {% endif %}
   {% block content %}
@@ -149,9 +281,9 @@
         <h1 class="centered mx-auto">
           Always Make Room for Beauty in Your Life.
         </h1>
-        <a href="{% url 'add_booking' %}"><button class="button mx-auto mt-5" type="button">
-            Book
-          </button></a>
+        <button class="button mx-auto mt-5" data-bs-toggle="modal" data-bs-target="#bookingmodal">
+          <i class="fa-solid fa-calendar mx-2"></i>Book Now
+        </button>
       </div>
     </div>
 
@@ -175,7 +307,7 @@
   </div>
   {% endblock content %}
 
-{% block footer %}
+  {% block footer %}
   <!--footer-->
   <section class="section bg-black">
     <footer class="footer theme-bg-black">
@@ -264,12 +396,9 @@
               <p style="font-size: 1.5em; font-weight: 600">Follow Us</p>
               <iframe
                 src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FReenasHairAndBeauty%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-                width="340" height="500" style="
-                  border: none;
-                  overflow: hidden;
-                  box-shadow: 2px 2px 50px 8px lightblue;
-                  padding: 1em 1em 1em;
-                " scrolling="no" frameborder="0" allowfullscreen="true"
+                width="340" height="500"
+                style="border: none; overflow: hidden; box-shadow: 2px 2px 50px 8px lightblue; padding: 1em 1em 1em;"
+                scrolling="no" frameborder="0" allowfullscreen="true"
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
           </div>
@@ -303,6 +432,126 @@
     crossorigin="anonymous"></script>
 
 
+  <script src="{% static 'chosen/chosen.jquery.js' %}"></script>
+  <script src="{% static 'chosen/chosen.jquery.min.js' %}"></script>
+  <script src="{% static 'chosen/chosen.proto.js' %}"></script>
+  <script src="{% static 'chosen/chosen.proto.min.js' %}"></script>
+  <script src="{% static 'chosen/composer.json' %}"></script>
+
+  <script>
+    $("#id_services").chosen({ width: "100%" });
+
+    document.getElementById("modalclose").addEventListener("click", function () {
+      $('#bookingmodal').modal('hide');
+    });
+  </script>
+
+
+  <script>
+    $('#id_services').change(function () {
+      let x = $('#id_services').val()
+      $("#contactnumber").attr("autocomplete", "off");
+
+      console.log("C: ", x)
+      console.log("HEllo Coding")
+      $.ajax({
+        type: 'GET',
+        url: "{% url 'get_booking_price' %}",
+        data: { 'services': x },
+        success: function (data) {
+          var instance = JSON.parse(data["amount"]);
+          console.log(instance)
+          $('#total_amount').val(instance);
+          console.log("Done");
+        },
+        error: function (response) {
+          // alert the error if any error occured
+          alert(response["responseJSON"]["error"]);
+        }
+      })
+    })
+
+
+    // ################## CHECK FOR TIME AND DATE
+
+    $('#datentime').change(function () {
+      let x = $('#datentime').val()
+
+      console.log("C: ", x)
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'get_booking_datentime' %}",
+        data: { 'datentime': x, 'csrfmiddlewaretoken': "{{csrf_token}}" },
+        success: function (data) {
+          console.log(data['amount'])
+          $('#timeslot').val(data['amount']);
+          console.log("Done");
+          let valueofinp = document.getElementById('timeslot').value
+          console.log("Value: ", valueofinp)
+          if (valueofinp == "Ready To Go") {
+            $('#paypal-button-container').css('display', 'block')
+          }
+          else {
+            $('#paypal-button-container').css('display', 'none')
+
+          }
+        },
+        error: function (error) {
+
+        }
+      })
+    })
+
+
+    // Booking Model AJAX CALL 
+    $(document).on('submit', '#bookingform', function (event) {
+      event.preventDefault();
+      let x = $('#bookingform')
+      let serv = $('#id_services').val()
+      console.log(serv)
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'add_booking' %}",
+        data: x.serialize(),
+
+        success: function (data) {
+          console.log("Done");
+          window.location = "/"
+        },
+        error: function (error) {
+          alert("There is some error")
+          var instance = JSON.parse(data["error"]);
+          alert(instance)
+          console.log("error: ", error)
+        }
+      })
+    })
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+  <script>
+    config = {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      minDate: "today",
+      minTime: "10:00",
+      maxTime: "18:00",
+      inline: false,
+      minuteIncrement: 30,
+
+      "disable": [
+        function (date) {
+          return (date.getDay() === 0 || date.getDay() === 1);
+        }
+      ],
+      "locale": {
+        "firstDayOfWeek": 2 // start week on Monday
+      }
+    }
+    flatpickr("input[type=datetime-local]", config);
+  </script>
 
 </body>
 

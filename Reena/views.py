@@ -71,7 +71,6 @@ def Login_view(request):
 
 
 ######################## Logout Views ##########################
-@login_required
 def Logout_view(request):
     logout(request)
     return redirect('login')

@@ -1,10 +1,47 @@
 from django.shortcuts import render, redirect
 from website.models import ContactUsPage
 from website.forms import ContactForm
-
+from Booking.forms import BookingModelForm
+from Booking.models import BookingModel, ProductModel
+from django.http import JsonResponse, HttpResponse
+from django.contrib import messages
 
 def Index(request):
-    context = {}
+    form = BookingModelForm()
+    data = ProductModel.objects.all()
+    if request.method == "POST":
+        form = BookingModelForm(request.POST)
+
+        payment_status = request.POST.get('payment_status')
+        datentime = request.POST.get('datentime')
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        total_payment = request.POST.get('total_payment')
+
+        if payment_status == "PaymentisDonecheckit":
+            if BookingModel.objects.filter(datentime=datentime).exists():
+                response = JsonResponse({"error": form.errors})
+                response.status_code = 403
+                return response
+                
+            elif form.is_valid():
+                s = form.save()
+                s.save()
+                print(s.id)
+                print("Form Saved")
+                print("Form ID: ", s.pk)
+                return redirect(f"Booking/View_BookingData/{s.id}")
+            else:
+                messages.success(request, form.errors)
+                print("Form Error: ", form.errors)
+                response = JsonResponse({"error":form.errors})
+                response.status_code = 403
+                return response
+        else:
+            print("Form Error", form.errors)
+            messages.success(request, "Please Do Payment before Submittig")
+            return HttpResponse("Please Check this error: ", form.errors)
+    context = {'data': data, 'form': form}
     return render(request, 'website/index.html', context)
 
 
@@ -21,11 +58,6 @@ def Services(request):
 def RewardsView(request):
     context = {}
     return render(request, 'website/gifts.html', context)
-
-
-def Pricing(request):
-    context = {}
-    return render(request, 'website/pricing.html', context)
 
 
 def Pricing(request):
