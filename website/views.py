@@ -9,7 +9,7 @@ from django.contrib import messages
 
 def Index(request):
     form = BookingModelForm()
-    data = ProductModel.objects.all()
+    prods = ProductModel.objects.all()
     homepage = Homepage.objects.all()[0]
 
     if request.method == "POST":
@@ -44,7 +44,7 @@ def Index(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'data': data, 'form': form, 'homepage':homepage}
+    context = {'prods': prods, 'form': form, 'homepage':homepage}
     return render(request, 'website/index.html', context)
 
 
