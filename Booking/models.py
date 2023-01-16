@@ -6,6 +6,7 @@ class ProductCat(models.Model):
 
     def __str__(self):
         return self.name
+        
 
 class ProductModel(models.Model):
     name = models.CharField(max_length= 150)

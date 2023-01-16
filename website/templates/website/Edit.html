@@ -1,0 +1,103 @@
+{% extends 'website/index.html' %}
+
+{% block csslink %}
+<style>
+    .form-control {
+        border: 1px solid rgba(26, 21, 21, 0.514);
+    }
+</style>
+{% load static %}
+<link href="{% static 'css/body.css' %}" rel="stylesheet" />
+
+{% endblock csslink %}
+
+{% block content %}
+<div class="px-4 py-5 mt-5 text-center">
+    <!-- <img class="d-block mx-auto mt-5" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+    <h1 class="display-5 fw-bold mt-5">Edit Text Which you want</h1>
+    <hr>
+    <div class="col-lg-6 mx-auto">
+        <h2>Home Page Design</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="name" class="lead form-control mb-3" value="Home">
+
+            <p class="lead mb-4 text-dark fw-bold">Old Text: {{home.home1}}</p>
+            <input type="text" name="home1" class="lead form-control mb-3" value="{{home.home1}}">
+
+            <p class="lead mb-4 text-dark fw-bold">Old Text: {{home.home2}}</p>
+            <input type="text" name="home2" class="lead form-control mb-3" value="{{home.home2}}">
+
+            <p class="lead mb-4 text-dark fw-bold">Old Text: {{home.home3}}</p>
+            <input type="text" name="home3" class="lead form-control mb-3" value="{{home.home3}}">
+
+            <p class="lead mb-4 text-dark fw-bold">Old Text: {{home.home4}}</p>
+            <input type="text" name="home4" class="lead form-control mb-3" value="{{home.home4}}">
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <input type="submit" style="padding: 4px 35px;" value="Save">
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr>
+
+{% load widget_tweaks %}
+
+<div class="col-lg-6 mx-auto">
+    <h2 class="text-center">About Us Page Design</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="name" class="lead form-control mb-3" value="About Us">
+
+        <p class="lead mb-4 text-dark fw-bold">Old Text: {{about.about1}}</p>
+        <!-- <textarea name="about1" id="" rows="3" style="width: 100%; resize: none;" value="{{about.about1}}"></textarea> -->
+        {% render_field aboutform.about1 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize: none;"|add_class:"form-control" %}
+
+        <p class="lead mb-4 text-dark fw-bold">Old Text: {{about.about2}}</p>
+        <!-- <input type="text" name="about2" class="lead form-control mb-3" value="{{about.about2}}"> -->
+        {% render_field aboutform.about2 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize: none;"|add_class:"form-control" %}
+
+        <p class="lead mb-4 text-dark fw-bold">Old Text: {{about.about3}}</p>
+        <!-- <input type="text" name="about3" class="lead form-control mb-3" value="{{about.about3}}"> -->
+        {% render_field aboutform.about3 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize: none;"|add_class:"form-control" %}
+
+
+        <p class="lead mb-4 text-dark fw-bold">Old Text: {{about.about4}}</p>
+        <!-- <input type="text" name="about4" class="lead form-control mb-3" value="{{about.about4}}"> -->
+        {% render_field aboutform.about4 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize: none;"|add_class:"form-control" %}
+
+        <p class="lead mb-4 text-dark fw-bold">Old Text: {{about.about5}}</p>
+        <!-- <input type="text" name="about4" class="lead form-control mb-3" value="{{about.about5}}"> -->
+        {% render_field aboutform.about5 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize: none;"|add_class:"form-control" %}
+
+        <p class="lead mb-4 text-dark fw-bold">Old Text: {{about.about6}}</p>
+        <!-- <input type="text" name="about4" class="lead form-control mb-3" value="{{about.about6}}"> -->
+        {% render_field aboutform.about6 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize: none;"|add_class:"form-control" %}
+
+
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+
+
+<div class="col-lg-6 mx-auto mt-3">
+    <h2 class="text-center">Products</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for cat in allprodcat %} 
+        {{cat}}
+        <ul class="list-group">
+            {% for prod in allprod %}
+                {% if prod.cat.name == cat.name %}
+                    <a href="{% url 'update_prod_view' prod.id %}"><li class="list-group-item">{{prod.name}}</li></a>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% endfor %}
+
+    </form>
+</div>
+{% endblock content %}

@@ -138,6 +138,11 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'contactus' %}">Contact</a>
             </li>
+            {% if user.is_superuser %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'Edit' %}">Edit</a>
+            </li>
+            {% endif %}
           </ul>
           <hr />
           <div class="conatiner text-center">
@@ -275,7 +280,7 @@
     <div class="box mt-5" data-aos="fade-up" data-aos-duration="3000">
       <img src="{% static 'images/f1 (1).jpeg' %}" class="img-1 mt-5 img-fluid" style="max-width: 100%; width: 100%;" />
       <div class="container-fluid mx-auto">
-        <h1 class="up mx-auto mt-2" style="color: black;">Welcome To Reena's Spa & Salon.</h1>
+        <h1 class="up mx-auto mt-2" style="color: black;">{{homepage.home1}}</h1>
         {% if not user.is_authenticated %}
         <a href="{% url 'login' %}"><button class="button mx-auto mt-5" type="button">Login</button></a>
         {% else %}
@@ -290,7 +295,7 @@
       <img src="{% static 'images/f1 (2).jpeg' %}" class="img-2 img-fluid" style="width: 100%" />
       <div class="container mx-auto">
         <h1 class="centered mx-auto">
-          Always Make Room for Beauty in Your Life.
+          {{homepage.home2}}
         </h1>
         <button class="button mx-auto mt-5" data-bs-toggle="modal" data-bs-target="#bookingmodal">
           <i class="fa-solid fa-calendar mx-2"></i>Book Now
@@ -301,7 +306,7 @@
     <div class="box" data-aos="fade-up" data-aos-duration="3000">
       <img src="{% static 'images/f1 (3).jpeg' %}" class="img-3 img-fluid" style="width: 100%" />
       <div class="container mx-auto">
-        <h1 class="right mx-auto">Relax, Enjoy and Love Yourself.</h1>
+        <h1 class="right mx-auto">{{homepage.home3}}</h1>
         <a href="{% url 'aboutus' %}"><button class="button mx-auto mt-5" type="button">About Us</button></a>
       </div>
     </div>
@@ -309,7 +314,7 @@
     <div class="box" data-aos="fade-up" data-aos-duration="3000">
       <img src="{% static 'images/f4.jpeg' %}" class="img-4 img-fluid" style="width: 100%" />
       <div class="container mx-auto">
-        <h1 class="left mx-auto mb-5">Rewards</h1>
+        <h1 class="left mx-auto mb-5">{{homepage.home4}}</h1>
         <a href="{% url 'rewards' %}"><button class="button mx-auto mt-5" type="button">
             Find Out More
           </button></a>

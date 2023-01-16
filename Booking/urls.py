@@ -14,5 +14,9 @@ urlpatterns = [
     path('Get_booking_datentime/', views.GetBookingDatentime, name='get_booking_datentime'),
 
     path("Show_Booking/", views.ShowBookingModel, name="show_booking"),
-    path("View_BookingData/<int:id>/", views.ViewBookingModelData, name="view_booking_data")
+    path("View_BookingData/<int:id>/", views.ViewBookingModelData, name="view_booking_data"),
+
+    path("Update_ProductCat/<int:id>/", views.UpdateProductCat, name="update_prod_cat"),
+    path("Update_Product/<int:id>/", views.UpdateProductView, name="update_prod_view"),
+
 ]

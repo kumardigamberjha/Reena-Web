@@ -1,14 +1,17 @@
 from django.shortcuts import render, redirect
-from website.models import ContactUsPage
-from website.forms import ContactForm
-from Booking.forms import BookingModelForm
-from Booking.models import BookingModel, ProductModel
+from website.models import ContactUsPage, Homepage, AboutUsPage
+from website.forms import ContactForm, HomeForm, AboutUsForm
+from Booking.forms import BookingModelForm, ProductCatForm, ProductForm
+from Booking.models import BookingModel, ProductModel, ProductCat
 from django.http import JsonResponse, HttpResponse
 from django.contrib import messages
+
 
 def Index(request):
     form = BookingModelForm()
     data = ProductModel.objects.all()
+    homepage = Homepage.objects.all()[0]
+
     if request.method == "POST":
         form = BookingModelForm(request.POST)
 
@@ -41,7 +44,7 @@ def Index(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'data': data, 'form': form}
+    context = {'data': data, 'form': form, 'homepage':homepage}
     return render(request, 'website/index.html', context)
 
 
@@ -137,3 +140,51 @@ def HennaView(request):
 def NailExtensionView(request):
     context = {}
     return render(request, 'website/Nailextension.html', context)
+
+
+def EditTextView(request):
+    home = Homepage.objects.all()[0]
+    homeform = HomeForm(instance=home)
+    if request.method == "POST":
+        homeform = HomeForm(request.POST, instance=home)
+        if homeform.is_valid():
+            homeform.save()
+            print("Form Saved")
+        else:
+            print("Form Error: ", homeform.errors)
+
+        
+    # ########### About Us ################## 
+    about = AboutUsPage.objects.all()[0]
+    aboutform = AboutUsForm(instance=about)
+    if request.method == "POST":
+        aboutform = AboutUsForm(request.POST, instance=about)
+        if aboutform.is_valid():
+            aboutform.save()
+            print("Form Saved")
+        else:
+            print("Form Error: ", aboutform.errors)
+
+    allprodcat = ProductCat.objects.all()
+    prodcat = ProductCatForm()
+    if request.method == "POST":
+        prodcat = ProductCatForm(request.POST)
+        if prodcat.is_valid():
+            prodcat.save()
+            print("Form Saved")
+        else:
+            print("Form Error: ", prodcat.errors)
+
+    allprod = ProductModel.objects.all()
+    prodform = ProductForm()
+    if request.method == "POST":
+        prodcat = ProductForm(request.POST)
+        if prodform.is_valid():
+            prodform.save()
+            print("Form Saved")
+        else:
+            print("Form Error: ", prodcat.errors)
+
+    
+    context = {'home': home, 'about': about, 'aboutform': aboutform, 'homeform':homeform, 'prodcat':prodcat, 'prodform': prodform, 'allprod':allprod, 'allprodcat': allprodcat}
+    return render(request, 'website/Edit.html', context)

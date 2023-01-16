@@ -24,6 +24,24 @@ def AddProductCat(request):
     return render(request, 'Booking/add_product_cat.html', context)
 
 
+def UpdateProductCat(request, id):
+    prodcatid = ProductCat.objects.get(id=id)
+    form = ProductCatForm(instance=prodcatid)
+
+    if request.method == "POST":
+        form = ProductCatForm(request.POST, instance=prodcatid)
+
+        if form.is_valid():
+            form.save()
+            print("Form Saved")
+            messages.success(request, 'Form Saved')
+        else:
+            messages.success(request, 'Form Error: ', form.errors)
+        
+    context = {'form': form}
+    return render(request, 'Booking/add_product_cat.html', context)
+
+
 def AddProductView(request):
     form = ProductForm()
 
@@ -39,6 +57,25 @@ def AddProductView(request):
             messages.success(request, 'Form Error: ', form.errors)
         
     context = {'form': form}
+    return render(request, 'Booking/add_product.html', context)
+
+
+def UpdateProductView(request, id):
+    prodid = ProductModel.objects.get(id = id)
+    form = ProductForm(instance=prodid)
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=prodid)
+
+        if form.is_valid():
+            form.save()
+            print("Form Saved")
+            messages.success(request, 'Form Saved')
+
+        else:
+            messages.success(request, 'Form Error: ', form.errors)
+        
+    context = {'form': form, 'prodid':prodid}
     return render(request, 'Booking/add_product.html', context)
 
 

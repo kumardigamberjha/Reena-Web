@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from website.models import ContactUsPage
+from website.models import ContactUsPage, Homepage, AboutUsPage
 
 
 class CreateUserForm(UserCreationForm):
@@ -15,4 +15,16 @@ class CreateUserForm(UserCreationForm):
 class ContactForm(ModelForm):
     class Meta:
         model = ContactUsPage
+        fields = "__all__"
+        
+
+class HomeForm(ModelForm):
+    class Meta:
+        model = Homepage
+        fields = "__all__"
+
+
+class AboutUsForm(ModelForm):
+    class Meta:
+        model = AboutUsPage
         fields = "__all__"

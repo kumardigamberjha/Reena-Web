@@ -21,5 +21,6 @@ urlpatterns = [
     path('NailExtension/', views.NailExtensionView, name="nailextview"),
     path('Henna/', views.HennaView, name="Hennaview"),
     path('Rewards/', views.RewardsView, name="rewards"),
+    path('Edit/', views.EditTextView, name="Edit"),
 
 ]

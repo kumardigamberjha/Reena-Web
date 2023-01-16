@@ -1,11 +1,9 @@
 from django.forms import ModelForm
 from Booking.models import ProductCat, ProductModel, BookingModel
 # from django_select2 import forms as s2forms
-from django_select2.forms import Select2Widget
-from django_select2.forms import Select2MultipleWidget
 from django import forms
-
 from Booking.models import ProductModel
+
 
 class ProductCatForm(ModelForm):
     class Meta:
