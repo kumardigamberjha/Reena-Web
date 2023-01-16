@@ -190,7 +190,7 @@
                   class="fa-solid fa-spa mx-2" style="color: lightcoral;"></i>Search For Multiple Service</p>
               <select name="services" id="id_services" class="form-control p-2" multiple="multiple"
                 data-live-search="true" style="border: 1px solid lightcoral; width: 100%; padding-bottom: 20px; ">
-                {% for i in data %}
+                {% for i in prods %}
                 <option value="{{i.id}}">{{i.name}} - &#163;{{i.price}}</option>
                 {% endfor %}
               </select>

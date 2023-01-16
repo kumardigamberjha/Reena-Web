@@ -49,40 +49,46 @@ def Index(request):
 
 
 def AboutUs(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/aboutus.html', context)
 
 
 def Services(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/Services.html', context)
 
 
 def RewardsView(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/gifts.html', context)
 
 
 def Pricing(request):
     allprod = ProductModel.objects.all()
     allprodcat = ProductCat.objects.all()
-    context = {'allprod': allprod, 'allprodcat': allprodcat}
+    prods = ProductModel.objects.all()
+    context = {'allprod': allprod, 'allprodcat': allprodcat,'prods':prods}
     return render(request, 'website/pricing.html', context)
 
 
 def DermalogicaView(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/dermalogica.html', context)
     
 
 def CACIView(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/CaciSynergy.html', context)
 
 
 def Contact(request):
     form = ContactForm()
-
+    prods = ProductModel.objects.all()
     if request.method == "POST":
         form = ContactForm(request.POST)
 
@@ -90,63 +96,74 @@ def Contact(request):
             form.save()
             print("Form Saved")
             return redirect("/")
-    context = {'form': form}
+    context = {'form': form, 'prods':prods}
     return render(request, 'website/contactus.html', context)
 
 
 def IPLView(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/Elight.html', context)
 
 
 def WaxingView(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/waxing.html', context)
 
 
 def EarpView(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/Ear Piercing.html', context)
 
 
 def TintingView(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/Tinting.html', context)
 
 
 def ElectroView(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/Electrolysis.html', context)
 
 
 def ManicureandPedicure(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/manicurepedicure.html', context)
 
 
 def MassageView(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/Massage.html', context)
 
 
 def BridalServicesView(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/BridalServices.html', context)
 
 
 def HennaView(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/Henna.html', context)
 
 
 def NailExtensionView(request):
-    context = {}
+    prods = ProductModel.objects.all()
+    context = {'prods':prods}
     return render(request, 'website/Nailextension.html', context)
 
 
 def EditTextView(request):
     home = Homepage.objects.all()[0]
     homeform = HomeForm(instance=home)
+    prods = ProductModel.objects.all()
     if request.method == "POST":
         homeform = HomeForm(request.POST, instance=home)
         if homeform.is_valid():
@@ -188,5 +205,5 @@ def EditTextView(request):
             print("Form Error: ", prodcat.errors)
 
     
-    context = {'home': home, 'about': about, 'aboutform': aboutform, 'homeform':homeform, 'prodcat':prodcat, 'prodform': prodform, 'allprod':allprod, 'allprodcat': allprodcat}
+    context = {'home': home, 'about': about, 'aboutform': aboutform, 'homeform':homeform, 'prodcat':prodcat, 'prodform': prodform, 'allprod':allprod, 'allprodcat': allprodcat,'prods':prods}
     return render(request, 'website/Edit.html', context)
