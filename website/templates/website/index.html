@@ -139,7 +139,7 @@
 
   <div class="modal mt-5" id="bookingmodal" aria-hidden="true">
     <div class="container bg-secondary mx-auto"
-      style="width: 50%; padding: 1em 1em 1em; border: 0.4rem solid white; border-radius: 16px; ">
+      style="width: 80%; padding: 1em 1em 1em; border: 0.4rem solid white; border-radius: 16px; ">
       <div class="row g-3">
         <div class="col-sm-12">
           <div class="container text-center">
@@ -167,8 +167,7 @@
             </div>
 
             <div class="container mt-2" id="id_servicescon">
-              <p class="form-label mt-3" style="color: white; font-size: 20px; font-weight: 500; text-align: left; "><i
-                  class="fa-solid fa-spa mx-2" style="color: lightcoral;"></i>Search For Multiple Service</p>
+              <p class="form-label mt-3" style="color: white; font-size: 20px; font-weight: 500; text-align: left; "><i class="fa-solid fa-spa mx-2" style="color: lightcoral;"></i>Search For Multiple Service</p>
               <select name="services" id="id_services" class="form-control chosen-select p-2" multiple="multiple"
                 style="border: 1px solid lightcoral; width: 100%; padding-bottom: 20px; ">
                 {% for i in data %}
@@ -178,7 +177,6 @@
               <input type="hidden" id="total_amount"></input>
               <input type="hidden" name="total_payment" id="total_payment"></input>
             </div>
-
 
             <div class="container mb-3" id="datentimecon">
               <label for="datetime-local" class="form-label mt-3"
@@ -192,8 +190,7 @@
                   style="text-align: center; border: none; margin-top: 5px; background-color: transparent; pointer-events: none;" />
               </div>
             </div>
-            <button type="button" class="btn btn-secondary" id="modalclose" data-dismiss="modal"
-              aria-label="Close">Close</button>
+            <button type="button" class="btn btn-secondary" id="modalclose" data-bs-dismiss="modal" aria-label="Close">Close</button>
 
             <input type="hidden" name="payment_status" id="paymentstatus">
 
@@ -442,7 +439,7 @@
     $("#id_services").chosen({ width: "100%" });
 
     document.getElementById("modalclose").addEventListener("click", function () {
-      $('#bookingmodal').modal('hide');
+      $('#bookingmodal').style.display="none";
     });
   </script>
 
