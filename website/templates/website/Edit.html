@@ -52,20 +52,20 @@
 
         <p class="lead mb-4 text-dark fw-bold">Old Text: {{about.about1}}</p>
         <!-- <textarea name="about1" id="" rows="3" style="width: 100%; resize: none;" value="{{about.about1}}"></textarea> -->
-        {% render_field aboutform.about1 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize: none;"|add_class:"form-control" %}
+        {% render_field aboutform.about1 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box;border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize:none;"|add_class:"form-control" %}
 
         <p class="lead mb-4 text-dark fw-bold">Old Text: {{about.about2}}</p>
         <!-- <input type="text" name="about2" class="lead form-control mb-3" value="{{about.about2}}"> -->
-        {% render_field aboutform.about2 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize: none;"|add_class:"form-control" %}
+        {% render_field aboutform.about2 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box;border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize:none;"|add_class:"form-control" %}
 
         <p class="lead mb-4 text-dark fw-bold">Old Text: {{about.about3}}</p>
         <!-- <input type="text" name="about3" class="lead form-control mb-3" value="{{about.about3}}"> -->
-        {% render_field aboutform.about3 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize: none;"|add_class:"form-control" %}
+        {% render_field aboutform.about3 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box;border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize:none;"|add_class:"form-control" %}
 
 
         <p class="lead mb-4 text-dark fw-bold">Old Text: {{about.about4}}</p>
         <!-- <input type="text" name="about4" class="lead form-control mb-3" value="{{about.about4}}"> -->
-        {% render_field aboutform.about4 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize: none;"|add_class:"form-control" %}
+        {% render_field aboutform.about4 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box;border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize:none;"|add_class:"form-control" %}
 
         <p class="lead mb-4 text-dark fw-bold">Old Text: {{about.about5}}</p>
         <!-- <input type="text" name="about4" class="lead form-control mb-3" value="{{about.about5}}"> -->
@@ -74,7 +74,6 @@
         <p class="lead mb-4 text-dark fw-bold">Old Text: {{about.about6}}</p>
         <!-- <input type="text" name="about4" class="lead form-control mb-3" value="{{about.about6}}"> -->
         {% render_field aboutform.about6 style="width: 100%; height: 100px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8; font-size: 16px; resize: none;"|add_class:"form-control" %}
-
 
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <input type="submit" value="Submit">
@@ -87,17 +86,40 @@
     <h2 class="text-center">Products</h2>
     <form action="" method="post">
         {% csrf_token %}
-        {% for cat in allprodcat %} 
-        {{cat}}
-        <ul class="list-group">
-            {% for prod in allprod %}
-                {% if prod.cat.name == cat.name %}
-                    <a href="{% url 'update_prod_view' prod.id %}"><li class="list-group-item">{{prod.name}}</li></a>
-                {% endif %}
-            {% endfor %}
-        </ul>
-        {% endfor %}
+        {% for cat in allprodcat %}
 
+        <div class="container-fluid mb-5 bg-light mx-auto">
+            <div class="row g-5 mx-auto">
+
+                <div class="col-sm-5">
+
+                    <p class="heading-2 text-center mt-5 mx-auto" style="color: black;">
+                        {{cat.name}}
+                    </p>
+                </div>
+                <div class="col-sm-7 mb-3">
+                    <div class="boxes">
+                        <div class="Services bg-black">
+                            <i class="fa-solid fa-spa mx-3"></i>Services
+                        </div>
+                        {% for prod in allprod %}
+                        {% if prod.cat.name == cat.name %}
+
+                        <div class="container border-bottom border-dark mt-3 mb-3">
+                            <a href="{% url 'update_prod_view' prod.id %}">{{prod.name}}</a>
+                            {% if prod.price != 0 %}
+                            <div class="rate ms-auto">£ {{prod.price}}</div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        {% endfor %}
     </form>
 </div>
 {% endblock content %}
