@@ -42,7 +42,9 @@
             {% if prod.cat.name == cat.name %}
               
             <div class="container border-bottom border-dark mt-3 mb-3">
-              {{prod.name}}
+              <button class="btn text-center" data-bs-toggle="modal" data-bs-target="#bookingmodal" data-item="{{prod.name}}" style="border: none; background-color: transparent;">
+                {{prod.name}}
+              </button>
               {% if prod.price != 0 %}
               <div class="rate ms-auto">£ {{prod.price}}</div>
               {% endif %}
@@ -59,5 +61,12 @@
 
     <script>
       $('#id_services').selectpicker();
+
+      document.querySelectorAll('[data-toggle="modal"]').forEach(button => {
+          button.addEventListener('click', e => {
+            document.querySelector('#id_services').value = button.getAttribute('data-item');
+            document.querySelector('#name').value = button.getAttribute('data-item');
+          });
+        });
     </script>
   {% endblock content %}
