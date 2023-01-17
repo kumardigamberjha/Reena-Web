@@ -100,6 +100,9 @@ def AddBookingView(request):
             elif form.is_valid():
                 form.save()
                 print("Form Saved")
+                print("Form Values: ", form)
+                print("Request POST: ", request.POST)
+
                 return redirect("add_product_view")
             else:
                 messages.success(request, form.errors)
