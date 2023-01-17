@@ -67,10 +67,9 @@ def RewardsView(request):
 
 
 def Pricing(request):
-    allprod = ProductModel.objects.all()
     allprodcat = ProductCat.objects.all()
     prods = ProductModel.objects.all()
-    context = {'allprod': allprod, 'allprodcat': allprodcat,'prods':prods}
+    context = {'allprodcat': allprodcat,'prods':prods}
     return render(request, 'website/pricing.html', context)
 
 

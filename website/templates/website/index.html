@@ -157,9 +157,8 @@
 
 
   <div class="modal mt-5" id="bookingmodal" aria-hidden="true">
-    <div class="container bg-secondary mx-auto"
-      style="width: 80%; padding: 1em 1em 1em; border: 0.2rem solid lightcoral; border-radius: 16px; ">
-      <div class="row g-3">
+    <div class="container bg-secondary mx-auto" style="width: 80%; padding: 1em 1em 1em; border: 0.2rem solid lightcoral; border-radius: 16px; ">
+      <div class="row g-3" style="width: 100%;">
         <div class="col-sm-12">
           <div class="container text-center">
             <!-- <h1>Book Your Appointment</h1> -->
@@ -170,8 +169,7 @@
               <div class="col-md-6">
                 <label for="name" class="form-label mt-3 text-center"
                   style="color: white; font-size: 20px; font-weight: 500; "><i class="fa-solid fa-person mx-2"
-                    style="color: lightcoral;"></i>Your
-                  Name</label>
+                    style="color: lightcoral;"></i>Your Name</label>
                 <input type="text" id="name" name="name" class="form-control" style="border: 1px solid lightcoral"
                   required>
               </div>
@@ -185,32 +183,35 @@
               </div>
             </div>
 
-            <div class="container mt-2" id="id_servicescon">
-              <p class="form-label mt-3" style="color: white; font-size: 20px; font-weight: 500; text-align: left; "><i
-                  class="fa-solid fa-spa mx-2" style="color: lightcoral;"></i>Search For Multiple Service</p>
-              <select name="services" id="id_services" class="form-control p-2" multiple="multiple"
-                data-live-search="true" style="border: 1px solid lightcoral; width: 100%; padding-bottom: 20px; ">
-                {% for i in prods %}
-                <option value="{{i.id}}">{{i.name}} - &#163;{{i.price}}</option>
-                {% endfor %}
-              </select>
-              <input type="hidden" id="total_amount"></input>
-              <input type="hidden" name="total_payment" id="total_payment"></input>
-            </div>
-
-            <div class="container mb-3" id="datentimecon">
-              <label for="datetime-local" class="form-label mt-3"
-                style="color: white; font-size: 20px; font-weight: 500;"><i class="fa-solid fa-calendar-days mx-2"
-                  style="color: lightcoral;"></i>Select Date and Time</label>
-              <input type="datetime-local" class="form-control border-dark" required name="datentime" id="datentime"
-                placeholder="Select Date and Time"
-                style="border-radius:5px; border: 2px solid lightcoral; text-align: center ; width: 100%;">
-              <div class="container text-center mt-3">
-                <input type="text" name="" id="timeslot"
-                  style="text-align: center; border: none; margin-top: 5px; background-color: transparent; pointer-events: none;" />
+            <div class="row">
+              <div class="mt-2 col-md-12" id="id_servicescon">
+                <p class="form-label mt-3" style="color: white; font-size: 20px; font-weight: 500; text-align: left; ">
+                  <i class="fa-solid fa-spa mx-2" style="color: lightcoral;"></i>Search For Multiple Service
+                </p>
+                <select name="services" id="id_services" class="form-control p-2" multiple="multiple"
+                  data-live-search="true" style="border: 1px solid lightcoral; width: 100%; padding-bottom: 20px; ">
+                  {% for i in prods %}
+                  <option value="{{i.id}}">{{i.name}} - &#163;{{i.price}}</option>
+                  {% endfor %}
+                </select>
+                <input type="hidden" id="total_amount"></input>
+                <input type="hidden" name="total_payment" id="total_payment"></input>
               </div>
             </div>
-
+            <div class="row">
+              <div class="mb-3 col-md-12" id="datentimecon">
+                <label for="datetime-local" class="form-label mt-3"
+                  style="color: white; font-size: 20px; font-weight: 500;"><i class="fa-solid fa-calendar-days mx-2"
+                    style="color: lightcoral;"></i>Select Date and Time</label>
+                <input type="datetime-local" class="form-control border-dark" required name="datentime" id="datentime"
+                  placeholder="Select Date and Time"
+                  style="border-radius:5px; border: 2px solid lightcoral; text-align: center ; width: 100%;">
+                <div class="container text-center mt-3">
+                  <input type="text" name="" id="timeslot"
+                    style="text-align: center; border: none; margin-top: 5px; background-color: transparent; pointer-events: none;" />
+                </div>
+              </div>
+            </div>
             <input type="hidden" name="payment_status" id="paymentstatus">
 
             <!-- <div id="paypal-button-container"></div> -->
@@ -349,19 +350,19 @@
             </h4>
             <ul class="ul" style="text-align: left">
               <li>
-                <a href="#" class="nav-link mb-2" style="font-size: 1.2em">Home</a>
+                <a href="/" class="nav-link mb-2" style="font-size: 1.2em">Home</a>
               </li>
               <li>
-                <a href="#" class="nav-link mb-2" style="font-size: 1.2em">About Us</a>
+                <a href="{% url 'aboutus' %}" class="nav-link mb-2" style="font-size: 1.2em">About Us</a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="#" class="nav-link mb-2" style="font-size: 1.2em">Services</a>
+              </li> -->
+              <li>
+                <a href="{% url 'pricing' %}" class="nav-link mb-2" style="font-size: 1.2em">Pricing</a>
               </li>
               <li>
-                <a href="#" class="nav-link mb-2" style="font-size: 1.2em">Pricing</a>
-              </li>
-              <li>
-                <a href="#" class="nav-link mb-2" style="font-size: 1.2em">Contact Us</a>
+                <a href="{% url 'contactus' %}" class="nav-link mb-2" style="font-size: 1.2em">Contact Us</a>
               </li>
             </ul>
           </div>

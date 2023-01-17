@@ -8,11 +8,6 @@
 
 {% block content %}
 
-{% block body %}
-
-<body class="bg-light">
-  {% endblock body %}
-
   <!--mainbody-->
   <div class="main mx-auto bg-light">
     <div class="box">
@@ -43,7 +38,7 @@
             <div class="Services bg-black">
               <i class="fa-solid fa-spa mx-3"></i>Services
             </div>
-            {% for prod in allprod %}
+            {% for prod in prods %}
             {% if prod.cat.name == cat.name %}
               
             <div class="container border-bottom border-dark mt-3 mb-3">
@@ -62,4 +57,7 @@
 
     {% endfor %}
 
+    <script>
+      $('#id_services').selectpicker();
+    </script>
   {% endblock content %}
