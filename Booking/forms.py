@@ -1,8 +1,10 @@
 from django.forms import ModelForm
 from Booking.models import ProductCat, ProductModel, BookingModel
-# from django_select2 import forms as s2forms
 from django import forms
+from django_select2.forms import Select2MultipleWidget
+
 from Booking.models import ProductModel
+# from better_filter_widget import BetterFilterWidget
 
 
 class ProductCatForm(ModelForm):
@@ -21,17 +23,4 @@ class BookingModelForm(ModelForm):
     class Meta:
         model = BookingModel
         fields = "__all__"
-
-        def form_valid(self, form):
-            services = form.cleaned_data.get('services')
-            instance = BookingModel.objects.create(services=services)
-
-            for i in services:
-                instance.services.set(i)
-
-            data = ProductModel.objects.all()
-
-            for i in data:
-                choices = [('i.id', 'i.name')]
-            
-            services = forms.ChoiceField(choices=choices, widget=Select2MultipleWidget)
+        services = forms.ModelMultipleChoiceField(queryset=ProductModel.objects.all(), widget=forms.SelectMultiple(attrs={'class':'select2'}))

@@ -123,13 +123,14 @@ def AddBookingView(request):
 def GetBookingPrice(request):
     if request.method == "GET":
         services = request.GET.getlist("services[]")
-        
+        print("Services: ", services)
     amount = 0
     arr = []
     for i in services:
         clientdata = ProductModel.objects.filter(id=i)
         arr.append(clientdata)
         
+    print("Services: ", services)
     
     print("Arr: ", arr)
     for i in arr:

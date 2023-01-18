@@ -50,7 +50,22 @@ INSTALLED_APPS = [
     'Booking',
     'widget_tweaks',
     'django_select2',
+    'Pages',
+    'ckeditor',
+    # 'EditPages',
 ]
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ],
+    },
+}
 
 DATABASES = {  
    'default': {  

@@ -13,25 +13,13 @@
 <div class="main">
   <div class="box">
     <img src="{% static 'images/s1.png' %}" class="img-1 img-fluid" style="width: 100%;" />
-    <h1 class="left mx-auto">CACI SYNERGY</h1>
+    <h1 class="left mx-auto">{{caci.name}}</h1>
   </div>
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>New CACI Synergy</h1>
+    <h1>{{caci.cacihead1}}</h1>
     <p class="text">
-      This facial combines our signature Non-Surgical facial toning
-      treatment with ultimate skin rejuvenation. Using breakthrough S.P.E.D
-      microcurrent and LED (light therapy) to enhance results, this new
-      treatment provides the very best in CACI non-surgical facial toning.
-      <br />
-      Ultrasonic peeling and orbital microdermabrasion are used to exfoliate
-      which leaving the skin brighter and smoother, then using microcurrent
-      impulses combined with LED light therapy we will lift and tone the
-      face and neck, followed by CACI's unique wrinkle comb to target fine
-      lines and wrinkles.
-      <br />
-      After a course of treatments, you can expect to see a more youthful
-      and toned appearance with glowing health skin.
+      {{caci.caci1}}
     </p>
     <div class="container text-center">
       <a href="{% static 'pdf/Reenas_caci.pdf' %}" target="_blank"> <button class="button" type="submit">Read More</button></a>
@@ -41,13 +29,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>Synergy CACI Facial Toning</h1>
+    <h1>{{caci.cacihead2}}</h1>
     <p class="text">
-      CACI signature non-surgical facial toning using S.P.E.D facial toning
-      and LED (light therapy) lifts tones and rejuvenate the facial muscles
-      and the neck area improving skin elasticity and reduces the appearance
-      of fine lines and wrinkles, giving the skin a more youthful and fresh
-      appearance.
+      {{caci.caci2}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"> <button class="button" type="submit">Our Prices</button></a>
@@ -57,13 +41,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>Synergy Purifying Facial</h1>
+    <h1>{{caci.cacihead3}}</h1>
     <p class="text">
-      The Skin Rejuvenation treatment uses ultrasonic peeling to revitalise
-      and deeply cleanse the skin, leaving a brighter, smoother complexion.
-      CACI's unique Wrinkle Comb will then target fine lines and wrinkles
-      providing a non-invasive alternative to collagen injections with LED
-      light therapy to help heal the skin and trigger tissue repair.
+      {{caci.caci3}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"> <button class="button" type="submit">Our Prices</button></a>
@@ -73,15 +53,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>CACI Synergy Microdermabrasion</h1>
+    <h1>{{caci.cacihead4}}</h1>
     <p class="text">
-      This 30 minute Orbital microdermabrasion treatment with LED Light
-      Therapy leaves the skin with a healthy glowing complexion. Controlled
-      orbital microdermabrasion is used to deeply cleanse and exfoliate the
-      skin, combined with LED Light Therapy for tissue repair and healing. A
-      mask is then applied to soothe and calm with lymphatic drainage
-      massage to give the face a softer, more radiant and more youthful
-      appearance.
+      {{caci.caci4}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"> <button class="button" type="submit">Our Prices</button></a>
@@ -91,14 +65,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>CACI Electro Cellulite Massager (EGM)</h1>
+    <h1>{{caci.cacihead5}}</h1>
     <p class="text">
-      The electro cellulite massager treatment gives instant lifting and
-      contouring on the buttocks and toning of the thighs. This treatment
-      improves the appearance of cellulite and breaks down fatty deposits.
-      It also stimulates circulation and lymphatic drainage which helps to
-      flush toxins away giving a smoother and tighter, dimple free
-      appearance. Great as a pre-holiday body blitz.
+      {{caci.caci5}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"> <button class="button" type="submit">Our Prices</button></a>
@@ -107,16 +76,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>Synergy Purifying Facial</h1>
+    <h1>{{caci.cacihead6}}</h1>
     <p class="text">
-      The Synergy Purifying facial targets blemishes, age spots and
-      pigmentation. It combines anti-bacterial and anti-inflammatory red and
-      blue LED light therapy to help heal the skin and trigger tissue
-      repair. The treatment uses our new S.P.E.D™ microcurrent LED
-      technology to enhance results by combining CACI microcurrent with high
-      brilliance LED light therapy and ultrasonic peeling, or controlled
-      orbital microdermabrasion, to exfoliate the skin and reveal a
-      brighter, smoother complexion.
+      {{caci.caci6}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"> <button class="button" type="submit">Our Prices</button></a>
@@ -126,12 +88,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>CACI Wrinkle Revolution</h1>
+    <h1>{{caci.cacihead7}}</h1>
     <p class="text">
-      Targets deep lines and wrinkles, such as crow's feet or laughter lines
-      with the CACI wrinkle comb. This treatment is a non-invasive, needle
-      free alternative to collagen injections and dermal fillers that will
-      instantly plump fine lines and wrinkles from the very first treatment.
+      {{caci.caci7}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"> <button class="button" type="submit">Our Prices</button></a>
@@ -141,12 +100,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>CACI Lip Plump Treatment</h1>
+    <h1>{{caci.cacihead8}}</h1>
     <p class="text">
-      Get those lips looking juicy and luscious. CACI's award winning Amino
-      lift Peptide Complex is combined with the wrinkle comb and red LED
-      light therapy to instantly plump the lips and soften lines typically
-      associated with smoking, giving you the perfect party pout.
+      {{caci.caci8}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"> <button class="button" type="submit">Our Prices</button></a>
@@ -156,13 +112,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>CACI Acne Treatment</h1>
+    <h1>{{caci.cacihead9}}</h1>
     <p class="text">
-      This soothing treatment targets severe acne concerns where exfoliation
-      is not advised. The treatment uses blue and red light therapy
-      (renowned for its anti-bacterial and anti-inflammatory healing
-      properties) combined with the hydro mask to soothe and calm the skin,
-      as wee as reduce redness and irritation.
+      {{caci.caci9}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"> <button class="button" type="submit">Our Prices</button></a>
@@ -172,11 +124,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>CACI Scarring/Stretch Marks</h1>
+    <h1>{{caci.cacihead10}}</h1>
     <p class="text">
-      This treatment combines skin exfoliation with the CACI wrinkle comb to
-      refine and soften the appearance of stretch marks and scarring by
-      stimulating tissue repair and healing.
+      {{caci.caci10}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"> <button class="button" type="submit">Our Prices</button></a>
@@ -186,13 +136,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>CACI Jowl Lift</h1>
+    <h1>{{caci.cacihead11}}</h1>
     <p class="text">
-      The CACI Jowl lift has been developed to specifically target muscle
-      laxity around the jaw line which can cause drooping jowls and loose
-      skin. This treatment is specifically designed to lift and firm the
-      muscles and refine facial contours to give a firmer, more toned
-      appearance.
+      {{caci.caci11}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"> <button class="button" type="submit">Our Prices</button></a>
@@ -202,12 +148,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4 mb-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>CACI Eye Revive</h1>
+    <h1>{{caci.cacihead12}}</h1>
     <p class="text">
-      The CACI Eye Revive treatment uses serum filled CACI microcurrent
-      rollers together with a deeply nourishing Hydro Eye Mask to lift
-      hooded eye lids, reduce puffiness and dark circles and soften the
-      appearance of fine lines and wrinkles around the eyes.
+      {{caci.caci12}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"> <button class="button" type="submit">Our Prices</button></a>

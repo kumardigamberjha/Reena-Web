@@ -15,9 +15,7 @@
       <img src="{% static 'images/aboutus1.jpg' %}" class="img-1 img-fluid">
       <div class="container-fluid mx-auto">
         <h1 class="left mx-auto mt-2" data-aos="fade-up" data-aos-duration="3000">ABOUT US</h1>
-        <p class="small-left mx-auto mt-1" data-aos="fade-up" data-aos-duration="3000">Reena's Hair and Beauty Salon
-          Provides a Wide Range Of Beauty Treatments,
-          Whether you Walk-in Or Are Booked In Advance, We Aim To Pamper And Look After You.​
+        <p class="small-left mx-auto mt-1" data-aos="fade-up" data-aos-duration="3000">{{about.about1}}
         </p>
       </div>
     </div>
@@ -27,10 +25,7 @@
     <div class="box bg-light">
       <div class="container text-center mt-0 mb-5">
         <p class="neon mt-3" style=" font-size: 3vw;  color: rgb(0, 0, 0); text-align: center" data-aos="fade-up"
-          data-aos-duration="3000">As a trained therapist, Reena uses the best
-          techniques to help you
-          <br>
-          de-stress and relax.
+          data-aos-duration="3000">{{about.about2}}
         </p>
       </div>
     </div>
@@ -40,9 +35,7 @@
       <div class="row g-5">
         <div class="col-sm-6 text-center" data-aos="fade-up" data-aos-duration="3000">
           <h2 class="neon mb-4 mt-2">Waxing</h2>
-          <p class="waxing">We offer various waxing treatments along with a selection of specialist waxing
-            processes
-            to ensure that hygiene and cleanliness are in place at all times.</p>
+          <p class="waxing">{{about.about3}}</p>
           <div class="container">
             <a href="{% url 'waxingview' %}"><button class="button mt-2 mx-auto">KNOW MORE</button></a>
           </div>
@@ -59,11 +52,7 @@
         </div>
         <div class="col-sm-6 text-center" data-aos="fade-up" data-aos-duration="3000">
           <h2 class="neon mb-4 mt-5">IPL- Intense Pulsed Light</h1>
-            <p class="waxing">
-              IPL stands for Intense Pulsed Light which is a non-laser system using the latest Ecolite machine to remove
-              unwanted hair. The Ecolite treatment is non-invasive, much more cost effective than certain other
-              treatments
-              and is safe.</p>
+            <p class="waxing">{{about.about4}}</p>
             <a href="{% url 'iplview' %}"><button class="button mt-2 text-center" type="submit">KNOW MORE</button></a>
         </div>
 
@@ -72,9 +61,7 @@
         <div class="col-sm-6 text-center" data-aos="fade-up" data-aos-duration="3000">
           <h2 class="neon mb-4 mt-5">Massage Therapy</h1>
             <p class="waxing ">
-              Indian massage therapy is based on the ayurvedic system of healing which works by releasing the stress.
-              You
-              will leave feeling deeply calm, revitalised and energised.
+              {{about.about5}}
             </p>
             <a href="{% url 'massageview' %}"><button class="button mt-2 text-center" type="submit">KNOW MORE</button></a>
         </div>
@@ -90,12 +77,7 @@
         <div class="col-sm-6 text-center" data-aos="fade-up" data-aos-duration="3000">
           <h2 class="neon mt-5">Threading</h1>
             <p class="waxing text-center">
-              Eyebrow shaping using the ancient Indian art of threading provides a precise and fast method for the
-              removal
-              of unwanted facial hair.
-              <br>
-              Reena has trained for many years now to master the art of threading to give you an expert finish, which is
-              kinder to the skin and gives better definition.
+              {{about.about6}}
             </p>
             <a href="{% url 'pricing' %}"><button class="button mt-2 text-center mx-auto" type="submit">KNOW MORE</button></a>
         </div>

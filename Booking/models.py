@@ -19,7 +19,7 @@ class ProductModel(models.Model):
 
 class BookingModel(models.Model):
     name = models.CharField(max_length=75)
-    phone = models.CharField(max_length=10)
+    phone = models.CharField(max_length=15)
     services = models.ManyToManyField(ProductModel)
     datentime = models.DateTimeField()
     total_payment = models.CharField(max_length=20)
@@ -27,7 +27,6 @@ class BookingModel(models.Model):
     pending_paymnet = models.IntegerField(blank=True, null=True)
     BookingTime = models.DateTimeField(auto_now_add=True)
     payment_status = models.CharField(max_length=30)
-    # hidname = models.CharField(max_length=75)
 
     def __str__(self):
         return self.name

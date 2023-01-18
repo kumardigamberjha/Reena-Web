@@ -23,6 +23,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
 
+  <!-- Tel Validation -->
+  <link href="{% static 'build/css/demo.css' %}" rel="stylesheet" />
+  <link href="{% static 'build/css/intlTelInput.css' %}" rel="stylesheet" />
 
   <!--aos-->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -31,13 +34,19 @@
   <!--css-->
   <link href="{% static 'css/index.css' %}" rel="stylesheet" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"> -->
 
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script> -->
 
-  <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"
+    integrity="sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"
+    integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <style>
     #paypal-button-container {
@@ -146,8 +155,9 @@
           </ul>
           <hr />
           <div class="conatiner text-center">
-            <button class="btn-1 text-center" data-bs-toggle="modal" data-bs-target="#bookingmodal">
-              <i class="fa-solid fa-calendar mx-2"></i>Book Now
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              <i class="fa-solid fa-calendar mx-2" style="color: lightcoral"></i>Book
+              Now
             </button>
           </div>
         </div>
@@ -156,110 +166,129 @@
   </div>
 
 
-  <div class="modal mt-5" id="bookingmodal" aria-hidden="true">
-    <div class="container bg-secondary mx-auto" style="width: 80%; padding: 1em 1em 1em; border: 0.2rem solid lightcoral; border-radius: 16px; ">
-      <div class="row g-3" style="width: 100%;">
-        <div class="col-sm-12">
-          <div class="container text-center">
-            <!-- <h1>Book Your Appointment</h1> -->
-          </div>
-          <form action="" method="POST" id="bookingform">
-            {% csrf_token %}
-            <div class="row">
-              <div class="col-md-6">
-                <label for="name" class="form-label mt-3 text-center"
-                  style="color: white; font-size: 20px; font-weight: 500; "><i class="fa-solid fa-person mx-2"
-                    style="color: lightcoral;"></i>Your Name</label>
-                <input type="text" id="name" name="name" class="form-control" style="border: 1px solid lightcoral"
-                  required>
-              </div>
-              <div class="col-md-6" id="phonecon">
-                <label for="phone" class="form-label mt-3 text-center"
-                  style="color: white; font-size: 20px; font-weight: 500; "><i class="fa-solid fa-address-book mx-2"
-                    style="color: lightcoral; font-size: 1.2rem; font-weight: 600; "></i>Phone</label>
-                <input type="text" name="phone" id="phone" class="form-control" style="border: 1px solid lightcoral"
-                  required>
-              </div>
-            </div>
 
-            <div class="row">
-              <div class="mt-2 col-md-12" id="id_servicescon">
-                <p class="form-label mt-3" style="color: white; font-size: 20px; font-weight: 500; text-align: left; ">
-                  <i class="fa-solid fa-spa mx-2" style="color: lightcoral;"></i>Search For Multiple Service
-                </p>
-                <select name="services" id="id_services" class="form-control p-2" multiple="multiple"
-                  data-live-search="true" style="border: 1px solid lightcoral; width: 100%; padding-bottom: 20px; ">
-                  {% for i in prods %}
-                  <option value="{{i.id}}">{{i.name}} - &#163;{{i.price}}</option>
-                  {% endfor %}
-                </select>
-                <input type="hidden" id="total_amount"></input>
-                <input type="hidden" name="total_payment" id="total_payment"></input>
-              </div>
-            </div>
-            <div class="row">
-              <div class="mb-3 col-md-12" id="datentimecon">
-                <label for="datetime-local" class="form-label mt-3"
-                  style="color: white; font-size: 20px; font-weight: 500;"><i class="fa-solid fa-calendar-days mx-2"
-                    style="color: lightcoral;"></i>Select Date and Time</label>
-                <input type="datetime-local" class="form-control border-dark" required name="datentime" id="datentime"
-                  placeholder="Select Date and Time"
-                  style="border-radius:5px; border: 2px solid lightcoral; text-align: center ; width: 100%;">
-                <div class="container text-center mt-3">
-                  <input type="text" name="" id="timeslot"
-                    style="text-align: center; border: none; margin-top: 5px; background-color: transparent; pointer-events: none;" />
-                </div>
-              </div>
-            </div>
-            <input type="hidden" name="payment_status" id="paymentstatus">
 
-            <!-- <div id="paypal-button-container"></div> -->
-            <div id="paypal-button-container" style="width: 50%; margin:auto; margin-bottom: 25px;"></div>
-            <script
-              src="https://www.paypal.com/sdk/js?client-id=AWFL7YRuIbPx-nbOh0-l8K8yxbOKsaaIzjSC4NMMJEcR3el2R0hEjF26UrosJAx7f9R-QQEXMgb_LT7u&currency=USD"></script>
-
-            <script>
-
-              paypal.Buttons({
-                // Sets up the transaction when a payment button is clicked
-                createOrder: (data, actions) => {
-                  var amountt = document.getElementById("total_amount").value;
-                  return actions.order.create({
-                    purchase_units: [{
-                      amount: {
-                        value: amountt // Can also reference a variable or function
-                      }
-                    }]
-                  });
-                },
-                // Finalize the transaction after payer approval
-                onApprove: (data, actions) => {
-                  let amounttt = document.getElementById("total_amount").value;
-
-                  return actions.order.capture().then(function (orderData) {
-                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-                    const transaction = orderData.purchase_units[0].payments.captures[0];
-                    alert(`Payment has been Done`)
-                    $('#paymentstatus').val("PaymentisDonecheckit");
-                    $('#total_payment').val(amounttt);
-                    // Listen for the payment.success event
-
-                    submitform()
-                    function submitform() {
-                      alert('test');
-                      document.getElementById("bookingform").submit();
-                      alert("Done")
-                    }
-                  });
-                }
-              }).render('#paypal-button-container');
-            </script>
-
-            <div class="container text-center">
-              <input type="submit" value="Book" name="code" id="submitBtn" class="button mt-3" style="display: none;">
-            </div>
-          </form>
+  <!-- Modal -->
+  <div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="color: lightcoral">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel"
+            style="color: black; font-size: 20px; font-weight: 500; text-align: left; ">
+            <i class="fa-solid fa-calendar-check" style="color: lightcoral; font-size: 1.2em"></i>
+            Book Appointment
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <div class="main mx-auto mt-3">
+            <div class="container bg-light" style="
+              box-shadow: 2px 2px 2px lightcoral;
+              border-radius: 10px;
+            ">
+              <div class="row g-3">
+                <form method="POST" action="" id="bookingform">
+                  {% csrf_token %}
+                  <div class="col-sm-12">
+                    <div class="container-fluid">
+                      <label for="formGroupExampleInput" class="form-label mt-3"
+                        style="color: black; font-size: 20px; font-weight: 500; text-align: left; ">
+                        <i class="fa-solid fa-user mx-2" style="color: lightcoral; font-size: 1.2em"></i>Name</label>
+                    </div>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" />
+
+                    <div class="container-fluid">
+                      <label for="Phone Number" class="form-label mt-3 mx-auto"
+                        style="color: black; font-size: 20px; font-weight: 500; text-align: left; ">
+                        <i class="fa-solid fa-phone mx-2" style="color: lightcoral; font-size: 1.2em"></i>
+                        Phone Number</label>
+                    </div>
+                    <input type="tel" id="phone" placeholder="Phone Number" name="phone" class="form-control"
+                      style="width: 100%" />
+                  </div>
+
+                  <div class="row">
+                    <div class="mt-2 col-md-12" id="id_servicescon">
+                      <p class="form-label mt-3"
+                        style="color: black; font-size: 20px; font-weight: 500; text-align: left; ">
+                        <i class="fa-solid fa-spa mx-2" style="color: lightcoral;"></i>Search For Multiple Service
+                      </p>
+                      <select name="services" id="id_services" class="form-control p-2" multiple="multiple"
+                        data-live-search="true"
+                        style="border: 1px solid lightcoral; width: 100%; padding-bottom: 20px; ">
+                        {% for i in prods %}
+                        <option value="{{i.id}}">{{i.name}} - &#163;{{i.price}}</option>
+                        {% endfor %}
+                      </select>
+                      <input type="hidden" id="total_amount"></input>
+                      <input type="hidden" name="total_payment" id="total_payment"></input>
+                    </div>
+                  </div>
+
+                  <div class="container text-center mx-auto">
+                    <label for="datetime-local" class="form-label mt-3">Select Date and Time</label>
+                    <input type="datetime-local" class="form-control mx-auto" name="datentime" id="datentime"
+                      placeholder="Select Date and Time" style="
+                      border-radius: 0;
+                      text-align: center;
+                      width: 50%;
+                    " />
+                  </div>
+                  <div class="container text-center mt-3">
+                    <input type="hidden" name="timeslot" id="timeslot"
+                      style="text-align: center; border: none; margin-top: 5px; background-color: transparent; pointer-events: none;" />
+                  </div>
+                  <input type="hidden" name="payment_status" id="paymentstatus">
+
+                  <!-- <div id="paypal-button-container"></div> -->
+                  <div id="paypal-button-container" style="width: 50%; margin:auto; margin-bottom: 25px;"></div>
+                  <script
+                    src="https://www.paypal.com/sdk/js?client-id=AWFL7YRuIbPx-nbOh0-l8K8yxbOKsaaIzjSC4NMMJEcR3el2R0hEjF26UrosJAx7f9R-QQEXMgb_LT7u&currency=USD"></script>
+
+                  <script>
+
+                    paypal.Buttons({
+                      // Sets up the transaction when a payment button is clicked
+                      createOrder: (data, actions) => {
+                        var amountt = document.getElementById("total_amount").value;
+                        return actions.order.create({
+                          purchase_units: [{
+                            amount: {
+                              value: amountt
+                            }
+                          }]
+                        });
+                      },
+                      // Finalize the transaction after payer approval
+                      onApprove: (data, actions) => {
+                        let amounttt = document.getElementById("total_amount").value;
+
+                        return actions.order.capture().then(function (orderData) {
+                          console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                          const transaction = orderData.purchase_units[0].payments.captures[0];
+                          alert(`Payment has been Done`)
+                          $('#paymentstatus').val("PaymentisDonecheckit");
+                          $('#total_payment').val(amounttt);
+                          // Listen for the payment.success event
+
+                          submitform()
+                          function submitform() {
+                            document.getElementById("bookingform").submit();
+                            alert('test');
+                          }
+                        });
+                      }
+                    }).render('#paypal-button-container');
+                  </script>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" value="Book" id="save" style="display: none;">
+        </div>
+        </form>
       </div>
     </div>
   </div>
@@ -280,20 +309,16 @@
     <div class="box mt-5" data-aos="fade-up" data-aos-duration="3000">
       <img src="{% static 'images/f1 (1).jpeg' %}" class="img-1 mt-5 img-fluid" style="max-width: 100%; width: 100%;" />
       <div class="container-fluid mx-auto">
-        <h1 class="up mx-auto mt-2" style="color: black;">{{homepage.home1}}</h1>
-        {% if not user.is_authenticated %}
-        <a href="{% url 'login' %}"><button class="button mx-auto mt-5" type="button">Login</button></a>
-        {% else %}
-        <a href="{% url 'logout' %}"><button class="button mx-auto mt-5" type="button">Logout</button></a>
-        {% endif %}
+        <h1 class="up mx-auto mt-2" style="color: rgb(255, 85, 85); text-shadow: 2px 2px 2px black;">
+          {{homepage.home1}}
+        </h1>
       </div>
     </div>
-
 
     <div class="box" data-aos="fade-up" data-aos-duration="3000">
       <img src="{% static 'images/f1 (2).jpeg' %}" class="img-2 img-fluid" style="width: 100%" />
       <div class="container mx-auto">
-        <h1 class="centered mx-auto">
+        <h1 class="centered mx-auto" style="color: rgb(255, 85, 85); text-shadow: 2px 2px 2px black;">
           {{homepage.home2}}
         </h1>
         <button class="button mx-auto mt-5" data-bs-toggle="modal" data-bs-target="#bookingmodal">
@@ -305,7 +330,9 @@
     <div class="box" data-aos="fade-up" data-aos-duration="3000">
       <img src="{% static 'images/f1 (3).jpeg' %}" class="img-3 img-fluid" style="width: 100%" />
       <div class="container mx-auto">
-        <h1 class="right mx-auto">{{homepage.home3}}</h1>
+        <h1 class="right mx-auto" style="color: rgb(255, 85, 85); text-shadow: 2px 2px 2px black;">
+          {{homepage.home3}}
+        </h1>
         <a href="{% url 'aboutus' %}"><button class="button mx-auto mt-5" type="button">About Us</button></a>
       </div>
     </div>
@@ -313,7 +340,8 @@
     <div class="box" data-aos="fade-up" data-aos-duration="3000">
       <img src="{% static 'images/f4.jpeg' %}" class="img-4 img-fluid" style="width: 100%" />
       <div class="container mx-auto">
-        <h1 class="left mx-auto mb-5">{{homepage.home4}}</h1>
+        <h1 class="left mx-auto mb-5" style="color: rgb(255, 85, 85); text-shadow: 2px 2px 2px black;">
+          {{homepage.home4}}</h1>
         <a href="{% url 'rewards' %}"><button class="button mx-auto mt-5" type="button">
             Find Out More
           </button></a>
@@ -446,14 +474,19 @@
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
 
+  <script src="{% static 'build/js/intlTelInput.js' %}"></script>
+  <script>
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {});
+  </script>
 
   <script>
+
     $('#id_services').change(function () {
+      console.log("Hello");
       let x = $('#id_services').val()
-      $("#contactnumber").attr("autocomplete", "off");
 
       console.log("C: ", x)
-      console.log("HEllo Coding")
       $.ajax({
         type: 'GET',
         url: "{% url 'get_booking_price' %}",
@@ -502,12 +535,14 @@
       })
     })
 
+    // $(function () {
+    //   $("#id_services").selectize({ plugins: ["restore_on_backspace", "clear_button", "remove_button"] });
+    // });
 
     // Booking Model AJAX CALL 
     $(document).on('submit', '#bookingform', function (event) {
       event.preventDefault();
       let x = $('#bookingform')
-      let serv = $('#id_services').val()
       console.log(serv)
       $.ajax({
         type: 'POST',
@@ -527,7 +562,6 @@
       })
     })
 
-    $('#id_services').selectpicker();
 
   </script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

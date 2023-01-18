@@ -10,14 +10,12 @@
 <div class="main mx-auto">
   <div class="box">
     <img src="{% static 'images/facial.jpg' %}" alt="Dermalogica Treatments" class="img-fluid" />
-    <h1 class="left mx-auto">Dermalogica Treatments</h1>
+    <h1 class="left mx-auto">{{derma.name}}</h1>
   </div>
 
   <div class="container mt-4" data-aos="fade-up" data-aos-duration="3000">
     <p class="text" style="text-align: center">
-      These are results targeted facial treatments. By face-mapping your
-      skin zone-by-zone, we'll create a treatment that is customised to meet
-      your needs.
+      {{derma.derma1}}
     </p>
     <div class="container text-center">
       <a href="{% static 'pdf/Aftercare Advice for Facial Electrical Treatment.pdf' %}" target="_blank"><button class="button"
@@ -28,13 +26,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>Deep Cleansing Facial</h1>
+    <h1>{{derma.dermahead1}}</h1>
     <p class="text">
-      A highly effective deep cleansing facial with purifying and
-      antibacterial properties. This treatment will help to decongest and
-      rebalance your skin by controlling excessive oil secretion and will
-      promote healthy looking skin. This facial is ideal for deep cleansing
-      black heads, blocked pores and milia.
+      {{derma.derma2}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"><button class="button" type="submit">Our Prices</button></a>
@@ -44,10 +38,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>Ultra Calming Facial</h1>
+    <h1>{{derma.dermahead2}}</h1>
     <p class="text">
-      Soothing treatment for sensitised skin, calms redness and reduces
-      inflammation.
+      {{derma.derma3}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"><button class="button" type="submit">Our Prices</button></a>
@@ -57,8 +50,8 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>Dermalogica customised Facial</h1>
-    <p class="text">Targets your most pressing concerns (first timers)</p>
+    <h1>{{derma.dermahead3}}</h1>
+    <p class="text">{{derma.derma4}}</p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"><button class="button" type="submit">Our Prices</button></a>
     </div>
@@ -67,14 +60,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>Age Smart Facial</h1>
+    <h1>{{derma.dermahead4}}</h1>
     <p class="text">
-      Ultimate facial for mature skin. Potent vitamin hydroxy re-surfaces
-      and re-texturises the skin whilst energising massage techniques
-      release muscle tension for a lifted appearance.
-      <br />
-      This facial gives a very radiant and youthful look, with vitamins and
-      enzymes to plump out lines and wrinkles.
+      {{derma.derma5}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"><button class="button" type="submit">Our Prices</button></a>
@@ -83,10 +71,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>Chroma White Treatment</h1>
+    <h1>{{derma.dermahead5}}</h1>
     <p class="text">
-      Steam and extractions combined with purification help to keep
-      problematic skin under control and looking fresher
+      {{derma.derma6}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}">
@@ -97,12 +84,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1>Chroma White Treatment</h1>
+    <h1>{{derma.dermahead6}}</h1>
     <p class="text">
-      Whether you are concerned about pigmentation or if you just want to
-      improve your skin tone, this potent brightening facial not only
-      targets cellular discolouration but also leaves a lacklustre
-      complexion looking bright and glowing.
+      {{derma.derma7}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"><button class="button" type="submit">Our Prices</button></a>
@@ -112,10 +96,9 @@
   <hr style="border: 1px solid rgb(94, 255, 0)" />
 
   <div class="rectangle mt-4 mb-3" data-aos="fade-up" data-aos-duration="3000">
-    <h1>Express Facial</h1>
+    <h1>{{derma.dermahead7}}</h1>
     <p class="text">
-      Cleanse, tone, exfoliate and mask for all skin types. Revitalising Eye
-      Rescue Treatment
+      {{derma.derma8}}
     </p>
     <div class="container text-center">
       <a href="{% url 'pricing' %}"><button class="button" type="submit">Our Prices</button></a>

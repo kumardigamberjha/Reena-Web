@@ -16,24 +16,28 @@
   <div class="main mx-auto">
     <div class="box">
       <img src="{% static 'images/nail extension.jpg' %}" alt="Dermalogica Treatments" class="img-fluid" />
-      <h1 class="left mx-auto">Nail Extensions</h1>
+      <h1 class="left mx-auto">{{nail.name}}</h1>
     </div>
 
     <div class="container mt-4 mb-3" data-aos="fade-up" data-aos-duration="3000">
       <p class="text" style="text-align: center; font-size: 1.5em">
-        At Reena's we are passionate about nails, whether they are on your
-        hands or on your feet!
+        {{nail.derma1}}
       </p>
     </div>
 
     <hr style="border: 1px solid rgb(94, 255, 0)" />
 
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-      <h1>Services We Provide</h1>
-      <p class="text">
-        Bio Gel , Shellac Gel, OPI Gel/Polish, Acrylics, Gel Powder, Nail
-        repairs, Nail Extensions, Nail Art, Diamonds and a Take Off Service.
-      </p>
+      <h1>{{nail.dermahead1}}</h1>
+      <ul class="ul" style="
+            color: black;
+            list-style: none;
+            font-family: Poppins;
+            text-align: center;
+          ">
+          {{nail.derma2|safe}}
+
+      </ul>
       <div class="container text-center">
         <a href="{% url 'pricing' %}" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto"
             type="button">
@@ -44,18 +48,15 @@
     <hr style="border: 1px solid rgb(94, 255, 0)" />
 
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-      <h1>Treatment</h1>
+      <h1>{{nail.dermahead2}}</h1>
       <ul class="ul" style="
             color: black;
             list-style: none;
             font-family: Poppins;
             text-align: center;
           ">
-        <li>Nail Art</li>
-        <li>Full Set of Gel</li>
-        <li>Full Set of Acrylic</li>
-        <li>Infills Acrylic / Gel</li>
-        <li>False Nail Removal</li>
+                {{nail.derma3|safe}}
+
       </ul>
       <div class="container text-center">
         <a href="{% url 'pricing' %}" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto"
@@ -68,10 +69,9 @@
     <hr style="border: 1px solid rgb(94, 255, 0)" />
 
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-      <h1>Aftercare</h1>
+      <h1>{{nail.dermahead3}}</h1>
       <p class="text">
-        Please follow the guidelines below to ensure your skin is cared for
-        properly over the next few days.
+        {{nail.derma4}}
       </p>
       <div class="container text-center">
         <a href="#" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto" type="button">

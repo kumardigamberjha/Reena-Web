@@ -18,29 +18,21 @@
   <div class="main mx-auto">
     <div class="box">
       <img src="{% static 'images/manicure & pedicure.jpg' %}" alt="Dermalogica Treatments" class="img-fluid" />
-      <h1 class="left mx-auto">Manicure & Pedicure</h1>
+      <h1 class="left mx-auto">{{man.name}}</h1>
     </div>
 
     <div class="container mt-4 mb-3" data-aos="fade-up" data-aos-duration="3000">
       <p class="text" style="text-align: center">
-        Pamper your hands & feet and rejuvenate your whole body. It not only
-        makes your hands and feet feel amazing, but your whole body will be
-        uplifted. We have a selection of treatments to suit your skin, your
-        timescales and your look (OPI nail polish used for treatments).
-        <br />
-        Remember, if you're having a pedicure you'll need to wear suitable
-        footwear, just ask us when you book an appointment.
+        {{man.derma1}}
       </p>
     </div>
 
     <hr style="border: 1px solid rgb(94, 255, 0)" />
 
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-      <h1>File and Paint</h1>
+      <h1>{{man.dermahead1}}</h1>
       <p class="text">
-        Nails are filed and polished using two coats of varnish, with a choice
-        of colours. A quick treatment when you have little time for the whole
-        manicure.
+        {{man.derma2}}
       </p>
       <div class="container text-center">
         <a href="{% url 'pricing' %}" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto" type="button">
@@ -51,12 +43,9 @@
     <hr style="border: 1px solid rgb(94, 255, 0)" />
 
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-      <h1>Mini Manicure</h1>
+      <h1>{{man.dermahead2}}</h1>
       <p class="text">
-        The perfect "tune-up" service designed for you when time efficiency is
-        important. We'll exfoliate and clean hands, softening any damaged
-        cuticles then tidy up nails and polish to perfection, including base
-        and topcoat.
+        {{man.derma3}}
       </p>
       <div class="container text-center">
         <a href="{% url 'pricing' %}" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto" type="button">
@@ -67,12 +56,9 @@
     <hr style="border: 1px solid rgb(94, 255, 0)" />
 
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-      <h1>Mini Pedicure</h1>
+      <h1>{{man.dermahead3}}</h1>
       <p class="text">
-        This is an ideal "tune-up" service designed for you when time
-        efficiency is important. We will massage your feet then exfoliate and
-        clean them, removing hard skin with a foot file, We will then tidy up
-        nails and polish to perfection, including base and topcoat.
+        {{man.derma4}}
       </p>
       <div class="container text-center">
         <a href="{% url 'pricing' %}" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto" type="button">
@@ -83,14 +69,9 @@
     <hr style="border: 1px solid rgb(94, 255, 0)" />
 
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-      <h1>Luxury Manicure with Heated Mittens</h1>
+      <h1>{{man.dermahead4}}</h1>
       <p class="text">
-        This treatment includes cleaning, buffing, exfoliating, trimming,
-        shaping, base-and-top coating and polishing. During your manicure, we
-        will soften the cuticle and gently push it back, trimming only when
-        needed or requested. A massage for hands and arms is performed (if
-        required paraffin wax is applied as part of the treatment), finished
-        with either a colour or clear polish to complete this gorgeous treat.
+        {{man.derma5}}
       </p>
       <div class="container text-center">
         <a href="{% url 'pricing' %}" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto" type="button">
@@ -101,13 +82,9 @@
     <hr style="border: 1px solid rgb(94, 255, 0)" />
 
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-      <h1>Luxury Pedicure with Heated Booties</h1>
+      <h1>{{man.dermahead5}}</h1>
       <p class="text">
-        With a luxury foot pedicure, your feet will thank you from the bottom
-        of their sole. After receiving a pedicure, your feet will be treated
-        with heated booties to improve circulation. A luxury foot pedicure
-        will nourish, heal, and soothe your feet. If required paraffin wax or
-        foot mask is applied as part of the treatment.
+        {{man.derma6}}
       </p>
       <div class="container text-center">
         <a href="{% url 'pricing' %}" target="_blank"><button class="button text-center mt-3 mb-3 mx-auto" type="button">
@@ -118,7 +95,7 @@
     <hr style="border: 1px solid rgb(94, 255, 0)" />
 
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-      <h1>Aftercare</h1>
+      <h1>{{man.dermahead6}}</h1>
       <div class="container text-center">
         <a href="{% static 'pdf/Aftercare Advice for Manicure and Pedicure.pdf' %}" target="_blank"><button
             class="button text-center mt-3 mb-3 mx-auto" type="button">
