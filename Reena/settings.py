@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'website',
     'Booking',
     'widget_tweaks',
-    'django_select2',
+    'select2',
     'Pages',
     'ckeditor',
     # 'EditPages',

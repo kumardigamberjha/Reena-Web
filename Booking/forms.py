@@ -1,11 +1,13 @@
 from django.forms import ModelForm
 from Booking.models import ProductCat, ProductModel, BookingModel
 from django import forms
-from django_select2.forms import Select2MultipleWidget
-
 from Booking.models import ProductModel
-# from better_filter_widget import BetterFilterWidget
+from django_select2 import forms as s2forms
 
+class ProductWidget(s2forms.ModelSelect2Widget):
+    search_fields = [
+        "services__icontains",
+    ]
 
 class ProductCatForm(ModelForm):
     class Meta:
@@ -23,4 +25,3 @@ class BookingModelForm(ModelForm):
     class Meta:
         model = BookingModel
         fields = "__all__"
-        services = forms.ModelMultipleChoiceField(queryset=ProductModel.objects.all(), widget=forms.SelectMultiple(attrs={'class':'select2'}))

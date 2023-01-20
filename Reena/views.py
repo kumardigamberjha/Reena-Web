@@ -60,10 +60,12 @@ def Login_view(request):
             login(request, user)
             request.session['user'] = username
             
-            print("Login Done")
-            messages.info(request, 'Login Success')
-            return redirect('/')
-            
+            if user.is_superuser:
+                print("Login Done")
+                messages.info(request, 'Login Success')
+                return redirect('homepage')
+            else:
+                return redirect('/')
         else:
             messages.info(request, 'Invalid username/password')
 

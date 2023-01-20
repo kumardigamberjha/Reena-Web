@@ -1,0 +1,116 @@
+{% extends 'Pages/editpage.html' %}
+
+{% block content %}
+{% load widget_tweaks %}
+
+<section class="home-section bg-light" style="padding-left: 5%">
+    <div class="home-content">
+        <i class="bx bx-menu" style="color: rgb(0, 0, 0)"></i>
+        <h1 style="color: rgb(0, 0, 0)" class="ms-4 mt-2"></h1>
+    </div>
+    <div class="main">
+        <div class="container-fluid text-center">
+            <p>Edit Your Text - {{wax.name}}</p>
+        </div>
+        <hr style="border: 1px solid rgb(0, 0, 0)" />
+        <div class="container-fluid text-center">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="row g-3">
+                    <input type="hidden" name="name" value="{{wax.name}}">
+
+                    <div class="col-sm-6"></div>
+                    <div class="container mx-auto"></div>
+                    <div class="col-sm-6">
+                        <div class="container mx-auto">
+                            <p>Original Text</p>
+                            <hr>
+                            <h5>
+                                {{wax.derma1}}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="container mx-auto">
+                            <p>New Text</p>
+                            <hr>
+                            <div class="form-floating">
+                                <!-- <textarea class="form-control" style="height: 5em; resize: none"
+                                placeholder="Leave a comment here" id="floatingTextarea"></textarea> -->
+                                {% render_field waxform.derma1 style="width: 100%; height: 100%; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #fff; font-size: 16px; resize: none;"|add_class:"form-control" %}
+                                <label for="floatingTextarea"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <hr style="border: 1px solid rgb(0, 0, 0)" />
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="container mx-auto">
+                    <p>Original Heading</p>
+                    <h5>{{wax.dermahead1}}</h5>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="container mx-auto">
+                    <p>New Heading</p>
+                    <div class="form-floating">
+                        <input type="text" value="{{wax.dermahead1}}" name="dermahead1" style="padding: 10px; width: 100%; border: 2px solid rgba(0, 0, 0, 0.158); border-radius: 5px;">
+                        <label for="floatingTextarea"></label>
+                    </div>
+                </div>
+            </div>
+          <div class="col-sm-6"></div>
+          <div class="container mx-auto"></div>
+          <div class="col-sm-6">
+            <div class="container mx-auto">
+              <p>Original Text</p>
+              <h5>
+                {{wax.derma2|safe}}
+              </h5>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="container mx-auto">
+              <p>New Text</p>
+
+              <div class="form-floating">
+                {% render_field waxform.derma2 style="width: 100%; height: 100%; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #fff; font-size: 16px; resize: none;"|add_class:"form-control" %}
+                
+                <label for="floatingTextarea"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+        
+        <hr style="border: 1px solid rgb(0, 0, 0)" />
+    </div>
+    <div class="container mx-auto text-center">
+        <button class="btn btn-outline-dark mb-3" type="submit">Submit</button>
+    </div>
+    </form>
+</section>
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e) => {
+            let arrowParent = e.target.parentElement.parentElement; //selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+
+{% endblock content %}

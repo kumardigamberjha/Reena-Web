@@ -28,7 +28,6 @@ urlpatterns = [
 
     # path(r'^paypal/', include('paypal.standard.ipn.urls')),
 
-
     path('GetEmail/', views.GetEmail, name="getEmail"),
     path('GetUsername/', views.GetUsername, name="getUsername"),
 

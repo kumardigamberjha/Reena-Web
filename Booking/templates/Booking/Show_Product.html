@@ -25,7 +25,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8">
-                    <h2 style="text-align: center;"><b>All Booking</b></h2>
+                    <h2 style="text-align: center;"><b>All Products</b></h2>
                 </div>
                 <hr>
             </div>
@@ -38,10 +38,8 @@
                     <tr class="table-dark">
                         <th class="table-dark">S.No</th>
                         <th class="table-dark">Name</th>
-                        <th class="table-dark">Services</th>
-                        <th class="table-dark">Phone</th>
                         <th class="table-dark">Price</th>
-                        <th class="table-dark">View</th>
+                        <th class="table-dark">Options</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,13 +47,7 @@
                     <tr>
                         <td style="color: #000;">{{forloop.counter}}</td>
                         <td style="color: #000;">{{i.name}}</td>
-                        <td style="color: #000;">
-                            {% for k in i.services.all %}
-                            {{k.name}},
-                            {% endfor %}
-                        </td>
-                        <td style="color: #000;">{{i.phone}}</td>
-                        <td style="color: #000;">&#163; {{i.total_payment}}</td>
+                        <td style="color: #000;">{{i.price}}</td>
                         <td><a href="{% url 'view_booking_data' i.id %}" style="color: #000;"><svg
                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-eye-fill" viewBox="0 0 16 16">

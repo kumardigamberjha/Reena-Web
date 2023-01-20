@@ -157,15 +157,24 @@ def GetBookingDatentime(request):
         return JsonResponse({'amount' : amount}, status=200)
 
 
+@login_required
 def ShowBookingModel(request):
     if request.user.is_superuser:
         data = BookingModel.objects.all()
         context = {'data': data}
         return render(request, "Booking/show_booking.html", context)
-    else:
-        data = BookingModel.objects.filter(hidname=request.user.username)
+    context = {}
+    return render(request, "Booking/show_booking.html", context)
+
+
+@login_required
+def ShowProductModel(request):
+    if request.user.is_superuser:
+        data = ProductModel.objects.all()
         context = {'data': data}
-        return render(request, "Booking/show_booking.html", context)
+        return render(request, "Booking/Show_Product.html", context)
+    context = {}
+    return render(request, "Booking/Show_Product.html", context)
 
 
 def ViewBookingModelData(request, id):
@@ -176,3 +185,12 @@ def ViewBookingModelData(request, id):
     context = {'data': data, 'total': total}
     return render(request, "Booking/viewBooking.html", context)
 
+
+@login_required
+def Accounts(request):
+    data = BookingModel.objects.all()
+    total = 0
+    for i in data:
+        total += int(i.total_payment)
+    context = {'data': data, 'total': total}
+    return render(request, 'Booking/accounts.html', context)
