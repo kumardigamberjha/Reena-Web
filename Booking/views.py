@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.core import serializers
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
-
+import datetime
 
 def AddProductCat(request):
     form = ProductCatForm()
@@ -38,10 +38,18 @@ def UpdateProductCat(request, id):
         else:
             messages.success(request, 'Form Error: ', form.errors)
         
-    context = {'form': form}
+    context = {'form': form, 'prodcatid':prodcatid}
     return render(request, 'Booking/add_product_cat.html', context)
 
 
+@login_required
+def DeleteProductCatView(request, id):
+    ProductCat.objects.filter(id=id).delete()
+    return redirect('show_product_cat_model')
+
+
+
+##################### Product Model #######################
 def AddProductView(request):
     form = ProductForm()
 
@@ -78,6 +86,11 @@ def UpdateProductView(request, id):
     context = {'form': form, 'prodid':prodid}
     return render(request, 'Booking/add_product.html', context)
 
+
+@login_required
+def DeleteProductView(request, id):
+    ProductModel.objects.filter(id=id).delete()
+    return redirect('show_product_model')
 
 def AddBookingView(request):
     form = BookingModelForm()
@@ -177,6 +190,16 @@ def ShowProductModel(request):
     return render(request, "Booking/Show_Product.html", context)
 
 
+@login_required
+def ShowProductCategoryModel(request):
+    if request.user.is_superuser:
+        data = ProductCat.objects.all()
+        context = {'data': data}
+        return render(request, "Booking/show_prod_cat.html", context)
+    context = {}
+    return render(request, "Booking/show_prod_cat.html", context)
+
+
 def ViewBookingModelData(request, id):
     data = BookingModel.objects.get(id=id)
     total = 0
@@ -194,3 +217,27 @@ def Accounts(request):
         total += int(i.total_payment)
     context = {'data': data, 'total': total}
     return render(request, 'Booking/accounts.html', context)
+
+
+@login_required
+def DeleteBookingView(request, id):
+    BookingModel.objects.filter(id=id).delete()
+    return redirect('show_booking')
+
+
+@login_required
+def TodayBooking(request):
+    somemonth = datetime.date.today()
+    months = somemonth.month
+    data = BookingModel.objects.filter(datentime__date = somemonth)
+    context = {'data': data}
+    return render(request, 'Booking/today_book.html', context)
+
+
+@login_required
+def TodayAppointment(request):
+    somemonth = datetime.date.today()
+    months = somemonth.month
+    data = BookingModel.objects.filter(BookingTime__date = somemonth)
+    context = {'data': data}
+    return render(request, 'Booking/today_book.html', context)

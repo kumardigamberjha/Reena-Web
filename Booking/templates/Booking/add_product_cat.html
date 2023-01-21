@@ -19,7 +19,10 @@
 </ul>
 {% endif %}
 
-<div class="main-content" style="padding-left: 70px; margin-top: 75px;">
+<section class="home-section bg-light" style="padding-left: 5%">
+    <div class="home-content">
+        <i class="bx bx-menu" style="color: rgb(0, 0, 0)"></i>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
@@ -37,7 +40,7 @@
         
         <div class="col-md-3">
             <label for="text" class="form-label">Name</label>
-            <input type="text" class="form-control" id="text" name="name">
+            <input type="text" class="form-control" id="text" name="name" value="{{prodcatid.name}}">
         </div>
         
         <div class="col-md-12">
@@ -52,6 +55,23 @@
 <script>
     $(function () {
         $('#datepicker').datepicker();
+    });
+</script>
+
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e) => {
+            let arrowParent = e.target.parentElement.parentElement; //selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
     });
 </script>
 

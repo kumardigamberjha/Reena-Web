@@ -6,71 +6,79 @@
 
 <link rel="stylesheet" href="{% static 'css/body.css' %}">
 
+<style>
+  .btn-prod:hover{
+    border: none;
+    background-color: transparent;
+  }
+</style>
+
 {% endblock csslink %}
 
 {% block content %}
 
-  <!--mainbody-->
-  <div class="main mx-auto bg-light">
-    <div class="box">
-      <img src="{% static 'images/p1.jpg' %}" class="img-fluid" />
-      <h1 class="left mx-auto mt-2">Our Prices</h1>
-    </div>
+<!--mainbody-->
+<div class="main mx-auto bg-light">
+  <div class="box">
+    <img src="{% static 'images/p1.jpg' %}" class="img-fluid" />
+    <h1 class="left mx-auto mt-2">Our Prices</h1>
+  </div>
 
-    <div class="container-fluid mx-auto bg-light">
-      <p class="heading-1 mx-auto" data-aos="fade-up" data-aos-duration="3000">
-        Quality Care At Affordable Prices!
-      </p>
-    </div>
-    <hr style="border: 1px solid pink" />
+  <div class="container-fluid mx-auto bg-light">
+    <p class="heading-1 mx-auto" data-aos="fade-up" data-aos-duration="3000">
+      Quality Care At Affordable Prices!
+    </p>
+  </div>
+  <hr style="border: 1px solid rgb(255, 101, 127)" />
 
-    {% for cat in allprodcat %}
+  {% for cat in allprodcat %}
 
-    <div class="container-fluid mb-5 bg-light mx-auto">
-      <div class="row g-5 mx-auto">
+  <div class="container-fluid mb-5 bg-light mx-auto">
+    <div class="row g-5 mx-auto">
 
-        <div class="col-sm-5">
+      <div class="col-sm-5">
 
-          <p class="heading-2 text-center mt-5 mx-auto" data-aos="fade-up" data-aos-duration="3000">
-            {{cat.name}}
-          </p>
-        </div>
-        <div class="col-sm-7 mb-3">
-          <div class="boxes" data-aos="fade-up" data-aos-duration="3000">
-            <div class="Services bg-black">
-              <i class="fa-solid fa-spa mx-3"></i>Services
-            </div>
-            {% for prod in prods %}
-            {% if prod.cat.name == cat.name %}
-              
-            <div class="container border-bottom border-dark mt-3 mb-3">
-              <button class="btn text-center" data-bs-toggle="modal" data-bs-target="#bookingmodal" style="border: none; background-color: transparent;">
-                {{prod.name}}
-              </button>
-              {% if prod.price != 0 %}
-              <div class="rate ms-auto">£ {{prod.price}}</div>
-              {% endif %}
-            </div>
-            {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-
+        <p class="heading-2 text-center mt-5 mx-auto" data-aos="fade-up" data-aos-duration="3000">
+          {{cat.name}}
+        </p>
       </div>
+      <div class="col-sm-7 mb-3">
+        <div class="boxes" data-aos="fade-up" data-aos-duration="3000">
+          <div class="Services bg-black">
+            <i class="fa-solid fa-spa mx-3"></i>Services
+          </div>
+          {% for prod in prods %}
+          {% if prod.cat.name == cat.name %}
+
+          <div class="container border-bottom border-dark mt-3 mb-3">
+            <button class="btn text-center btn-prod" data-bs-toggle="modal" data-bs-target="#bookingmodal" data-item-name="{{ prod.name }}" data-item-price="{{ prod.id }}" style="border: none; background-color: transparent;">
+              
+            </button>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="border: none">
+              {{prod.name}}</button>
+            {% if prod.price != 0 %}
+            <div class="rate ms-auto">£ {{prod.price}}</div>
+            {% endif %}
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
     </div>
+  </div>
 
-    {% endfor %}
+  {% endfor %}
 
-    <script>
+  <script>
 
-      document.querySelectorAll('[data-bs-toggle="modal"]').forEach(button => {
-          button.addEventListener('click', e => {
-            document.querySelector('#id_services').value = button.getAttribute('data-id');
-            document.querySelector('#name').value = button.getAttribute('data-item');
-            let x = button.getAttribute('data-id')
-            let xcd = $(`#id_services option[value="{x}"]`).prop("selected", true);
-            console.log("CDF : ", xcd)
-          });
-        });
-    </script>
+$(document).on('click', '.btn-prod', function () {
+  console.log("Hello")
+  // var itemName = $(this).data('item-name');
+  // var itemPrice = $(this).data('item-price');
+  // $("#bookingModalLabel").text("Booking for " + itemName);
+  // $("#item-name").text(itemName);
+  // $("#item-price").text(itemPrice);
+});
+  </script>
   {% endblock content %}

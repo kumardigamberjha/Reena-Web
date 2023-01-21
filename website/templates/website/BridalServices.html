@@ -18,11 +18,11 @@
   <div class="main mx-auto">
     <div class="box">
       <img src="{% static 'images/bride.jpg' %}" alt="Dermalogica Treatments" class="img-fluid" />
-      <h1 class="left mx-auto">{{makeup.name}}</h1>
+      <h1 class="left mx-auto" style="color: rgb(255, 101, 127); text-shadow: 2px 2px 2px black;">{{makeup.name}}</h1>
     </div>
 
     <div class="rectangle mt-4 bg-light" data-aos="fade-up" data-aos-duration="3000">
-      <h1>{{makeup.dermahead1}}</h1>
+      <h1  style="color: rgb(255, 101, 127); text-shadow: 2px 2px 2px black;">{{makeup.dermahead1}}</h1>
       <p class="text">
         {{makeup.derma1}}
       </p>
@@ -70,18 +70,19 @@
         </div>
       </ul>
     </div>
-    <hr style="border: 1px solid rgb(94, 255, 0)" />
+    <hr style="border: 1px solid rgb(255, 101, 127)" />
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-      <h1>{{makeup.dermahead2}}</h1>
+      <h1  style="color: rgb(255, 101, 127); text-shadow: 2px 2px 2px black;">{{makeup.dermahead2}}</h1>
       <p class="text">
         {{makeup.derma4}}
       </p>
 
       <ul class="ul" style="
             color: rgb(0, 0, 0);
-            list-style: none;
+            list-style:circle;
             font-family: Poppins;
             text-align: center;
+            margin-left: -50px;
           ">
         <!-- <li>French pleat</li>
         <li>Buns</li>

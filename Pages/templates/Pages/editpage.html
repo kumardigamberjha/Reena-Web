@@ -419,8 +419,8 @@
           <li><a class="link_name" href="#">Main Pages</a></li>
           <li><a href="{% url 'homepage' %}">Home</a></li>
           <li><a href="{% url 'aboutpage' %}">About Us</a></li>
-          <li><a href="">Treatments</a></li>
-          <li><a href="">Pricing</a></li>
+          <!-- <li><a href="">Treatments</a></li> -->
+          <!-- <li><a href="">Pricing</a></li> -->
           <li><a href="{% url 'contacteditpage' %}">Contact Us</a></li>
         </ul>
       </li>
@@ -458,15 +458,30 @@
       <li>
         <div class="icon-link">
           <a href="#">
-            <i class="bx bxs-user-circle"></i>
+            <i class='bx bxl-product-hunt'></i>
             <span class="link_name">Services</span>
           </a>
           <i class="bx bxs-chevron-down arrow"></i>
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">Services</a></li>
-          <li><a href="{% url 'show_booking' %}">Booking</a></li>
+          <li><a href="{% url 'show_product_cat_model' %}">Category</a></li>
           <li><a href="{% url 'show_product_model' %}">All Services</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <div class="icon-link">
+          <a href="#">
+            <i class='bx bxs-calendar' ></i>
+            <span class="link_name">Today's Record</span>
+          </a>
+          <i class="bx bxs-chevron-down arrow"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Today's Record</a></li>
+          <li><a href="{% url 'today_booking' %}">Booking</a></li>
+          <li><a href="{% url 'today_appointment' %}">Appointments</a></li>
         </ul>
       </li>
 
