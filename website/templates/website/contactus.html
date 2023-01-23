@@ -5,14 +5,14 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  {% load static %}
-
   <title>Contact Us</title>
-  <!--snow-->
+  {% load static %}
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us</title>
+  <!---swiper-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
   <!--fontawesome-->
   <script src="https://kit.fontawesome.com/8feaa5fbd6.js" crossorigin="anonymous"></script>
   <!--css-->
@@ -32,26 +32,86 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
     integrity="sha512-doJrC/ocU8VGVRx3O9981+2aYUn3fuWVWvqLi1U+tA2MWVzsw+NVKq1PrENF03M+TYBP92PnYUlXFH1ZW0FpLw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"
+    integrity="sha512-gxWow8Mo6q6pLa1XH/CcH8JyiSDEtiwJV78E+D+QP0EVasFs8wKXq16G8CLD4CJ2SnonHr4Lm/yY2fSI2+cbmw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!--aos-->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link rel="icon" type="image/x-icon" href="{% static 'images/a2.png' %}" />
+  <link rel="icon" type="image/x-icon" href="{% static 'images/a2.png" />
+  <style>
+    .swiper {
+      width: 320px;
+      height: 150px;
+    }
+
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+
+      font-weight: bold;
+      color: #fff;
+      border: 2px solid pink;
+      padding: 1em 1em 1em;
+    }
+
+    .swiper-slide:nth-child(1n) {
+      background-color: rgb(255, 101, 127);
+    }
+
+    .swiper-slide:nth-child(2n) {
+      background-color: rgb(255, 101, 127);
+    }
+
+    .swiper-slide:nth-child(3n) {
+      background-color: rgb(255, 101, 127);
+    }
+
+    .swiper-slide:nth-child(4n) {
+      background-color: rgb(255, 101, 127);
+    }
+
+    .swiper-slide:nth-child(5n) {
+      background-color: rgb(255, 101, 127);
+    }
+
+    .swiper-slide:nth-child(6n) {
+      background-color: rgb(255, 101, 127);
+    }
+
+    .swiper-slide:nth-child(7n) {
+      background-color: rgb(255, 101, 127);
+    }
+
+    .swiper-slide:nth-child(8n) {
+      background-color: rgb(255, 101, 127);
+    }
+
+    .swiper-slide:nth-child(9n) {
+      background-color: rgb(255, 101, 127);
+    }
+
+    .swiper-slide:nth-child(10n) {
+      background-color: rgb(255, 101, 127);
+    }
+  </style>
 </head>
 
 <body class="bg-light">
-  <div id="preloader"></div>
 
-  <div class="header fixed-top">
+  <div class="header sticky-top">
     <div class="container-fluid bg-secondary" style="height: 2em">
       <div class="row">
-        <div class="col-sm-6 mx-auto">
+        <div class="col-sm-6">
           <div class="contact mt-1 mx-auto">
             <div class="number">
-              <i class="fa-solid fa-phone mt-1 mx-1" style="color: lightcoral;"></i>
+              <i class="fa-solid fa-phone mt-1 mx-1"></i>
               07969385877
             </div>
             <span class="line mx-2">|</span>
             <div class="email">
-              <i class="fa-solid fa-envelope mt-1 mx-1" style="color: lightcoral;"></i>
+              <i class="fa-solid fa-envelope mt-1 mx-1"></i>
               reenavirdee@hotmail.com
             </div>
           </div>
@@ -70,7 +130,6 @@
       </div>
     </div>
 
-
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
         <a class="navbar-brand mx-3" href="/"><img src="{% static 'images/a2.png' %}" class="img-fluid" /></a>
@@ -79,121 +138,173 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mx-auto mb-2 mb-lg-0" style="list-style: none!important;">
-            <li class="nav-item">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item" style="list-style: none">
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" style="list-style: none">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Treatments
               </a>
-              <ul class="dropdown-menu">
-                <li>
+              <ul class="dropdown-menu" style="list-style: none">
+                <li style="list-style: none">
                   <a class="dropdown-item" href="{% url 'dermalogica' %}">Dermalogica Treatments</a>
                 </li>
-                <li><a class="dropdown-item" href="{% url 'caciview' %}">CACI Synergy</a></li>
-                <li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'caciview' %}">CACI Synergy</a>
+                </li>
+                <li style="list-style: none">
                   <a class="dropdown-item" href="{% url 'iplview' %}">Elight IPL / SHR Hair Removal Treatments</a>
                 </li>
-                <li><a class="dropdown-item" href="{% url 'waxingview' %}">Waxing</a></li>
-                <li><a class="dropdown-item" href="{% url 'nailextview' %}">Nail Extension</a></li>
-                <li><a class="dropdown-item" href="{% url 'bridalview' %}">Make Up</a></li>
-                <li><a class="dropdown-item" href="{% url 'tintingview' %}">Tinting</a></li>
-                <li><a class="dropdown-item" href="{% url 'earpview' %}">Ear Piercing</a></li>
-                <li><a class="dropdown-item" href="{% url 'electroview' %}">Electrolysis</a></li>
-                <li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'waxingview' %}">Waxing</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'nailextview' %}">Nail Extension</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'bridalview' %}">Bridal/Make Up</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'tintingview' %}">Tinting</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'earpview' %}">Ear Piercing</a>
+                </li>
+                <li style="list-style: none">
+                  <a class="dropdown-item" href="{% url 'electroview' %}">Electrolysis</a>
+                </li>
+                <li style="list-style: none">
                   <a class="dropdown-item" href="{% url 'manicureview' %}">Manicure & Pedicure</a>
                 </li>
-                <li>
+                <li style="list-style: none">
                   <a class="dropdown-item" href="{% url 'massageview' %}">Massage</a>
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" style="list-style: none">
               <a class="nav-link" href="{% url 'pricing' %}">Pricelist</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" style="list-style: none">
               <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" style="list-style: none">
               <a class="nav-link" href="{% url 'contactus' %}">Contact</a>
             </li>
           </ul>
-          <hr />
-          
+          <hr /> 
         </div>
       </div>
     </nav>
   </div>
 
-  <div class="main mx-auto mb-5">
-    <div class="container-fluid mt-5">
-      <h2 style="margin-top: 100px; color: black">Contact Us</h2>
+  <div class="main mx-auto mb-5 mt-3">
+    <div class="container-fluid">
+      <!-- <h1 style="margin-top: 100px; color: lightcoral">Contact Us</h1> -->
+      <p class="text-center mt-3" style="
+            color: rgb(0, 0, 0); 
+            font-weight: 600;
+            font-size: 1.5em;
+            text-shadow: 2px 2px 2px white;
+            width: 50%;
+            margin: auto;
+          ">
+        We're always happy to hear from our customers. Whether you have a
+        question about our products or services, or just want to say hello,
+        we'd love to hear from you.
+      </p>
     </div>
-    <div class="container" style="width: 50%">
-      <form class="row g-3" method="post" action="">
-        {% csrf_token %}
-        <div class="col-md-12">
-          <label for="inputPassword4" class="form-label">Name</label>
-          <input type="text" class="form-control" name="name" id="inputPassword4" />
+    <div class="container-fluid bg-secondary" style="width: 60%">
+      <h5 style="text-align: center; font-weight: 700; font-size: 1.5em; color: white;">
+        Contact Info
+      </h5>
+      <p>
+        <i class="fa-solid fa-location-pin mx-2" style="color: lightcoral"></i>207 Waldegrave Road, Teddington, TW11 8LX
+      </p>
+      <p>
+        <i class="fa-solid fa-envelope mx-2" style="color: lightcoral"></i>reenavirdee@hotmail.com
+      </p>
+      <p>
+        <i class="fa-solid fa-phone mx-2" style="color: lightcoral"></i>07969385877
+      </p>
+
+      <div class="brands" style="display: flex; flex-direction: row">
+        <a href="#"><i class="fa-brands fa-facebook mx-3" style="color: lightcoral"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram" style="color: lightcoral"></i></a>
+      </div>
+    </div>
+    <div class="container bg-light" style="width: 60%; border: none; border-radius: 0px">
+      <form action="" method="post">
+      <div class="row g-3">
+          {% csrf_token %}
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Name" name="name" aria-label="Name"
+            style="border-radius: 0px; border: 1px solid lightcoral" />
         </div>
-        <div class="col-md-12">
-          <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" name="email" id="inputEmail4" />
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Telephone" name="phone" aria-label="Telephone"
+            style="border-radius: 0px; border: 1px solid lightcoral" />
+        </div>
+        <div class="col-sm-12">
+          <input type="text" class="form-control" placeholder="Email" name="email" aria-label="Email"
+            style="border-radius: 0px; border: 1px solid lightcoral" />
         </div>
         <div class="form-floating">
-          <textarea class="form-control" placeholder="Leave a comment here" name="message" id="floatingTextarea"></textarea>
+          <textarea class="form-control" placeholder="Leave a comment here" name="message" id="floatingTextarea"
+            style="border-radius: 0px; border: 1px solid lightcoral"></textarea>
           <label for="floatingTextarea">Message</label>
         </div>
-        <div class="col-12 text-center">
-          <!-- <a href="#"><button class="button mx-auto" type="button">Submit</button></a> -->
-          <input type="submit" value="Submit" class="button mx-auto">
-        </div>
-      </form>
+      </div>
+      <div class="container-fluid text-center">
+        <button class="button mt-2 mx-auto" type="Submit" style="margin: auto; width: 50%">
+          Submit
+        </button>
+      </div>
     </div>
+  </form>
+  </div>
 
-    <div class="container mt-5" style="width: 50%">
-      <h1>Our Documents</h1>
-      <ul class="ul">
-        <a href="{% static 'pdf/Reenas_Hair_and_Beauty_Salon_Price_List_Leaflet_2013.png' %}" download>
-          <li class="">Reena's Hair and Beauty Salon Leaflet</li>
-        </a>
-        <a href="{% static 'pdf/Aftercare Advice for Body Massage Treatment.pdf' %}" download>
-          <li>Aftercare Massage Treatment</li>
-        </a>
-        <a href="{% static 'pdf/Aftercare Advice for Ear Piercing.pdf' %}" download>
-          <li>Aftercare Advice For Ear Treatment</li>
-        </a>
-        <a href="{% static 'pdf/Aftercare Advice for Facial Electrical Treatment.pdf' %}" download>
-          <li>Aftercare Advice For Facial Treatment</li>
-        </a>
-        <a href="{% static 'pdf/Aftercare Advice for IPL Hair Removal Treatment.pdf' %}" download>
-          <li>Aftercare Advice For IPL Hair Removal Treatment</li>
-        </a>
-        <a href="{% static 'pdf/Aftercare Advice for Manicure and Pedicure.pdf' %}" download>
-          <li>Aftercare Advice for Manicure And Pedicure</li>
-        </a>
-        <a href="{% static 'pdf/Aftercare Advice for Nail Extensions Treatment.pdf' %}" download>
-          <li>Aftercare Advice For Nail and Extensions</li>
-        </a>
-        <a href="{% static 'pdf/CND_Shellac_Flyer.pdf' %}" download>
-          <li>CND Shellac Flyer</li>
-        </a>
-        <a href="{% static 'pdf/IPL Poster (1).pdf' %}" download>
-          <li>IPL Poster</li>
-        </a>
-        <a href="{% static 'pdf/Reenas_caci.pdf' %}" download>
-          <li>Aftercare Scaci</li>
-        </a>
-        <a href="{% static 'pdf/Shellac_Application_and_Removal.pdf' %}">
-          <li>Shellac Application and Removal</li>
-        </a>
-        <a href="{% static 'pdf/Shellac_QA_Consumer.pdf' %}">
-          <li>Shellac Q/A Consumer</li>
-        </a>
-      </ul>
-    </div>
+  <div class="container mt-5 mb-3" style="width: 60%">
+    <h1>Our Documents</h1>
+    <ul class="ul">
+      <a href="{% static 'pdf/Reenas_Hair_and_Beauty_Salon_Price_List_Leaflet_2013.png' %}" download>
+        <li>Reena's Hair and Beauty Salon Leaflet</li>
+      </a>
+      <a href="{% static 'pdf/Aftercare Advice for Body Massage Treatment.pdf' %}" download>
+        <li>Aftercare Massage Treatment</li>
+      </a>
+      <a href="{% static 'pdf/Aftercare Advice for Ear Piercing.pdf' %}" download>
+        <li>Aftercare Advice For Ear Treatment</li>
+      </a>
+      <a href="{% static 'pdf/Aftercare Advice for Facial Electrical Treatment.pdf' %}" download>
+        <li>Aftercare Advice For Facial Treatment</li>
+      </a>
+      <a href="{% static 'pdf/Aftercare Advice for IPL Hair Removal Treatment.pdf' %}" download>
+        <li>Aftercare Advice For IPL Hair Removal Treatment</li>
+      </a>
+      <a href="{% static 'pdf/Aftercare Advice for Manicure and Pedicure.pdf' %}" download>
+        <li>Aftercare Advice for Manicure And Pedicure</li>
+      </a>
+      <a href="{% static 'pdf/Aftercare Advice for Nail Extensions Treatment.pdf' %}" download>
+        <li>Aftercare Advice For Nail and Extensions</li>
+      </a>
+      <a href="{% static 'pdf/CND_Shellac_Flyer.pdf' %}" download>
+        <li>CND Shellac Flyer</li>
+      </a>
+      <a href="{% static 'pdf/IPL Poster (1).pdf' %}" download>
+        <li>IPL Poster</li>
+      </a>
+      <a href="{% static 'pdf/Reenas_caci.pdf' %}" download>
+        <li>Aftercare Scaci</li>
+      </a>
+      <a href="{% static 'pdf/Shellac_Application_and_Removal.pdf' %}">
+        <li>Shellac Application and Removal</li>
+      </a>
+      <a href="{% static 'pdf/Shellac_QA_Consumer.pdf' %}">
+        <li>Shellac Q/A Consumer</li>
+      </a>
+    </ul>
   </div>
 
   <!--footer-->
@@ -221,19 +332,19 @@
             </h4>
             <ul class="ul" style="text-align: left">
               <li>
-                <a href="#" class="nav-link mb-2" style="font-size: 1.2em">Home</a>
+                <a href="/" class="nav-link mb-2" style="font-size: 1.2em">Home</a>
               </li>
               <li>
-                <a href="#" class="nav-link mb-2" style="font-size: 1.2em">About Us</a>
+                <a href="{% url 'aboutus' %}" class="nav-link mb-2" style="font-size: 1.2em">About Us</a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="#" class="nav-link mb-2" style="font-size: 1.2em">Services</a>
+              </li> -->
+              <li>
+                <a href="{% url 'pricing' %}" class="nav-link mb-2" style="font-size: 1.2em">Pricing</a>
               </li>
               <li>
-                <a href="#" class="nav-link mb-2" style="font-size: 1.2em">Pricing</a>
-              </li>
-              <li>
-                <a href="#" class="nav-link mb-2" style="font-size: 1.2em">Contact Us</a>
+                <a href="{% url 'contactus' %}" class="nav-link mb-2" style="font-size: 1.2em">Contact Us</a>
               </li>
             </ul>
           </div>
@@ -269,10 +380,9 @@
           </div>
         </div>
         <hr style="border: 2px solid white" />
-
         <div class="container-fluid mx-auto text-center mb-5">
           <div class="row">
-            <div class="col-sm-4 mt-3">
+            <div class="col-sm-6 mt-3">
               <p style="font-size: 1.5em; font-weight: 600">Visit Us Here!</p>
               <div class="map-responsive">
                 <iframe
@@ -281,7 +391,7 @@
                   tabindex="0"></iframe>
               </div>
             </div>
-            <div class="col-sm-4 mt-3 text-center">
+            <div class="col-sm-6 mt-3 text-center">
               <p style="font-size: 1.5em; font-weight: 600">Follow Us</p>
               <iframe
                 src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FReenasHairAndBeauty%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
@@ -293,11 +403,6 @@
                   " scrolling="no" frameborder="0" allowfullscreen="true"
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
-            <div class="col-sm-4">
-              <div class="container bg-light">
-                  
-              </div>
-            </div>
           </div>
         </div>
 
@@ -308,17 +413,38 @@
             <div class="col-sm-4 mt-3">
               <p>All Rights Reserved</p>
             </div>
-            <div class="col-sm-4 mx-auto"></div>
           </div>
         </div>
       </div>
     </footer>
   </section>
 
+  <script>
+    $("#tel").intlTelInput({
+      onlyCountries: ["us", "ca", "mx"],
+    });
+  </script>
+  <!--swiper-->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      effect: "cards",
+      grabCursor: true,
+      loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+    });
+  </script>
   <!--javascript-->
   <script src="{% static 'javascript/body.js' %}"></script>
   <!--js-->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!--script-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"
+    integrity="sha512-+gShyB8GWoOiXNwOlBaYXdLTiZt10Iy6xjACGadpqMs20aJOoh+PJt3bwUVA6Cefe7yF7vblX6QwyXZiVwTWGg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!--js-->
   <script>
     AOS.init();
@@ -328,12 +454,12 @@
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
   <script>
-    $(document).ready(function () {
-      $(".row").ripples({
-        resolution: 512,
-        dropRadius: 20,
-        perturbance: 1,
-      });
+    var logID = "log",
+      log = $('<div id="' + logID + '"></div>');
+    $("body").append(log);
+    $('[type*="radio"]').change(function () {
+      var me = $(this);
+      log.html(me.attr("value"));
     });
   </script>
 </body>

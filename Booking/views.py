@@ -230,7 +230,7 @@ def TodayBooking(request):
     somemonth = datetime.date.today()
     months = somemonth.month
     data = BookingModel.objects.filter(datentime__date = somemonth)
-    context = {'data': data}
+    context = {'data': data, 'somemonth': somemonth}
     return render(request, 'Booking/today_book.html', context)
 
 
@@ -239,5 +239,5 @@ def TodayAppointment(request):
     somemonth = datetime.date.today()
     months = somemonth.month
     data = BookingModel.objects.filter(BookingTime__date = somemonth)
-    context = {'data': data}
+    context = {'data': data, 'somemonth': somemonth}
     return render(request, 'Booking/today_book.html', context)
