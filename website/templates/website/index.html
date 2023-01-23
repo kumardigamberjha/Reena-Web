@@ -51,10 +51,8 @@
       width: 95%;
       margin: auto;
     }
+    
   </style>
-
-  <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
 
 </head>
 
@@ -206,10 +204,17 @@
                       </p>
                       <select name="services" id="id_services" class="p-2 selectpicker" multiple="multiple" data-live-search="true"
                         style="border: 1px solid lightcoral; width: 100%; padding-bottom: 20px; border: 1px solid black; ">
-                        {% for pro in prods %}
+                        {% for i in cat %}
+                        <optgroup label="{{i.name}}">
+                            {% for pro in prods %}
+                            {% if pro.cat.name == i.name %}
                         <option value="{{pro.id}}">
                           {{pro.name}} - &#163;{{pro.price}}</option>
+                          {% endif %}
                         {% endfor %}
+                      </optgroup>
+                        {% endfor %}
+
                       </select>
                       <input type="hidden" id="total_amount"></input>
                       <input type="hidden" name="total_payment" id="total_payment"></input>
@@ -311,9 +316,11 @@
         <h1 class="centered mx-auto" style="color: rgb(255, 85, 85); text-shadow: 2px 2px 2px black;">
           {{homepage.home2}}
         </h1>
-        <button class="button mx-auto mt-5" data-bs-toggle="modal" data-bs-target="#bookingmodal">
+        <!-- <button class="button mx-auto mt-5" data-bs-toggle="modal" data-bs-target="#bookingmodal">
           <i class="fa-solid fa-calendar mx-2"></i>Book Now
-        </button>
+        </button> -->
+        <button type="button" class="btn btn-outline-dark button mx-auto mt-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Book Now</button>
+
       </div>
     </div>
 
@@ -554,10 +561,8 @@
       })
     })
 
-
   </script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
 
   <script>
     config = {

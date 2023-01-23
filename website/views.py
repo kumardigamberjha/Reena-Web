@@ -11,7 +11,7 @@ from django.contrib import messages
 def Index(request):
     prods = ProductModel.objects.all()
     homepage = Homepage.objects.all()[0]
-
+    cats = ProductCat.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
         form = BookingModelForm(request.POST)
@@ -46,7 +46,7 @@ def Index(request):
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
             
-    context = {'prods': prods, 'form': form, 'homepage':homepage}
+    context = {'prods': prods, 'form': form, 'homepage':homepage, 'cat': cats}
     return render(request, 'website/index.html', context)
 
 
