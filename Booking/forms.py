@@ -2,12 +2,7 @@ from django.forms import ModelForm
 from Booking.models import ProductCat, ProductModel, BookingModel
 from django import forms
 from Booking.models import ProductModel
-from django_select2 import forms as s2forms
 
-class ProductWidget(s2forms.ModelSelect2Widget):
-    search_fields = [
-        "services__icontains",
-    ]
 
 class ProductCatForm(ModelForm):
     class Meta:

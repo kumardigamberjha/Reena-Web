@@ -52,6 +52,7 @@ def Index(request):
 
 def AboutUs(request):
     about = AboutUsPage.objects.all()[0]
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -87,11 +88,12 @@ def AboutUs(request):
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
 
-    context = {'prods':prods, 'form': form, 'about': about}
+    context = {'prods':prods, 'form': form, 'about': about, 'cat': cats}
     return render(request, 'website/aboutus.html', context)
 
 
 def Services(request):
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -126,12 +128,13 @@ def Services(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'prods':prods, 'form': form}
+    context = {'prods':prods, 'form': form, 'cat':cats}
     return render(request, 'website/Services.html', context)
 
 
 def RewardsView(request):
     gift = GiftPage.objects.all()[0]
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -166,12 +169,13 @@ def RewardsView(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'prods':prods, 'form': form, 'gift': gift}
+    context = {'prods':prods, 'form': form, 'gift': gift, 'cat':cats}
     return render(request, 'website/gifts.html', context)
 
 
 def Pricing(request):
     allprodcat = ProductCat.objects.all()
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -207,12 +211,13 @@ def Pricing(request):
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
 
-    context = {'prods':prods, 'form':form, 'allprodcat': allprodcat}
+    context = {'prods':prods, 'form':form, 'allprodcat': allprodcat, 'cat':cats}
     return render(request, 'website/pricing.html', context)
 
 
 def DermalogicaView(request):
     derma = DermaLogicaPage.objects.all()[0]
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -247,12 +252,13 @@ def DermalogicaView(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'prods':prods, 'form': form, 'derma': derma}
+    context = {'prods':prods, 'form': form, 'derma': derma,'cat': cats}
     return render(request, 'website/dermalogica.html', context)
     
 
 def CACIView(request):
     caci = CaciSynergyPage.objects.all()[0]
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -287,7 +293,7 @@ def CACIView(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'prods':prods, 'form': form, 'caci': caci}
+    context = {'prods':prods, 'form': form, 'caci': caci, 'cat':cats}
     return render(request, 'website/CaciSynergy.html', context)
 
 
@@ -309,6 +315,8 @@ def Contact(request):
 
 def IPLView(request):
     ipl = IPLPage.objects.all()[0]
+    cats = ProductCat.objects.all()
+
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -343,13 +351,13 @@ def IPLView(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'prods':prods, 'form': form, 'ipl': ipl}
+    context = {'prods':prods, 'form': form, 'ipl': ipl, 'cat': cats}
     return render(request, 'website/Elight.html', context)
 
 
 def WaxingView(request):
     wax = WaxingPage.objects.all()[0]
-    print(wax)
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -384,12 +392,13 @@ def WaxingView(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'prods':prods, 'form': form, 'wax': wax}
+    context = {'prods':prods, 'form': form, 'wax': wax, 'cat': cats}
     return render(request, 'website/waxing.html', context)
 
 
 def EarpView(request):
     ear = EarPage.objects.all()[0]
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -424,12 +433,13 @@ def EarpView(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'prods':prods, 'form': form, 'ear': ear}
+    context = {'prods':prods, 'form': form, 'ear': ear, 'cat': cats}
     return render(request, 'website/Ear Piercing.html', context)
 
 
 def TintingView(request):
     tin = TintingPage.objects.all()[0]
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -465,12 +475,13 @@ def TintingView(request):
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
             
-    context = {'prods':prods,'form': form, 'tin': tin}
+    context = {'prods':prods,'form': form, 'tin': tin, 'cat': cats}
     return render(request, 'website/Tinting.html', context)
 
 
 def ElectroView(request):
     electro = ElectroPage.objects.all()[0]
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -505,12 +516,13 @@ def ElectroView(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'prods':prods, 'form': form, 'electro': electro}
+    context = {'prods':prods, 'form': form, 'electro': electro, 'cat': cats}
     return render(request, 'website/Electrolysis.html', context)
 
 
 def ManicureandPedicure(request):
     man = ManPage.objects.all()[0]
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -545,12 +557,13 @@ def ManicureandPedicure(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'prods':prods, 'form': form, 'man': man}
+    context = {'prods':prods, 'form': form, 'man': man, 'cat': cats}
     return render(request, 'website/manicurepedicure.html', context)
 
 
 def MassageView(request):
     massage = MassagePage.objects.all()[0]
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -586,12 +599,13 @@ def MassageView(request):
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
 
-    context = {'prods':prods, 'form': form, 'massage': massage}
+    context = {'prods':prods, 'form': form, 'massage': massage, 'cat': cats}
     return render(request, 'website/Massage.html', context)
 
 
 def BridalServicesView(request):
     makeup = MakeUpPage.objects.all()[0]
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -626,11 +640,12 @@ def BridalServicesView(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'prods':prods, 'form': form, 'makeup': makeup}
+    context = {'prods':prods, 'form': form, 'makeup': makeup, 'cat': cats}
     return render(request, 'website/BridalServices.html', context)
 
 
 def HennaView(request):
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -665,12 +680,13 @@ def HennaView(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'prods':prods, 'form': form}
+    context = {'prods':prods, 'form': form, 'cat': cats}
     return render(request, 'website/Henna.html', context)
 
 
 def NailExtensionView(request):
     nail = NailPage.objects.all()[0]
+    cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
     form = BookingModelForm()
     if request.method == "POST":
@@ -705,52 +721,6 @@ def NailExtensionView(request):
             print("Form Error", form.errors)
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
-    context = {'prods':prods, 'form': form, 'nail': nail}
+    context = {'prods':prods, 'form': form, 'nail': nail, 'cat':cats}
     return render(request, 'website/Nailextension.html', context)
 
-
-def EditTextView(request):
-    home = Homepage.objects.all()[0]
-    homeform = HomeForm(instance=home)
-    prods = ProductModel.objects.all()
-    if request.method == "POST":
-        homeform = HomeForm(request.POST, instance=home)
-        if homeform.is_valid():
-            homeform.save()
-            print("Form Saved")
-        else:
-            print("Form Error: ", homeform.errors)
-
-    # ########### About Us ################## 
-    about = AboutUsPage.objects.all()[0]
-    aboutform = AboutUsForm(instance=about)
-    if request.method == "POST":
-        aboutform = AboutUsForm(request.POST, instance=about)
-        if aboutform.is_valid():
-            aboutform.save()
-            print("Form Saved")
-        else:
-            print("Form Error: ", aboutform.errors)
-
-    allprodcat = ProductCat.objects.all()
-    prodcat = ProductCatForm()
-    if request.method == "POST":
-        prodcat = ProductCatForm(request.POST)
-        if prodcat.is_valid():
-            prodcat.save()
-            print("Form Saved")
-        else:
-            print("Form Error: ", prodcat.errors)
-
-    allprod = ProductModel.objects.all()
-    prodform = ProductForm()
-    if request.method == "POST":
-        prodcat = ProductForm(request.POST)
-        if prodform.is_valid():
-            prodform.save()
-            print("Form Saved")
-        else:
-            print("Form Error: ", prodcat.errors)
-    
-    context = {'home': home, 'about': about, 'aboutform': aboutform, 'homeform':homeform, 'prodcat':prodcat, 'prodform': prodform, 'allprod':allprod, 'allprodcat': allprodcat,'prods':prods}
-    return render(request, 'website/Edit.html', context)

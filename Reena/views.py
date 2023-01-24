@@ -1,6 +1,5 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import UserCreationForm
 from website.forms import CreateUserForm
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, HttpResponseRedirect
