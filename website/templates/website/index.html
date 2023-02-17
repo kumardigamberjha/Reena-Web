@@ -22,8 +22,6 @@
 
   {% endblock csslink %}
   <!--time-->
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css"> -->
 
   <!-- Tel Validation -->
   <link href="{% static 'build/css/demo.css' %}" rel="stylesheet" />
@@ -34,20 +32,6 @@
   <!--fontawesome-->
   <script src="https://kit.fontawesome.com/8feaa5fbd6.js" crossorigin="anonymous"></script>
   <!--css-->
-
-
-  <style>
-    #paypal-button-container {
-      display: none;
-    }
-
-    .bootstrap-select .bs-searchbox {
-      border: 1px solid lightcoral;
-      border-radius: 10px;
-      width: 95%;
-      margin: auto;
-    }
-  </style>
 
 </head>
 
@@ -146,18 +130,17 @@
               <a class="nav-link" href="{% url 'login' %}">Login</a>
             </li>
             {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping"></i></a>
+            </li>
           </ul>
           <hr />
           <div class="conatiner text-center">
-            {% if user.is_authenticated %}
-            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              <i class="fa-solid fa-calendar mx-2" style="color: purple"></i>Book
-              Now
-            </button>
-            {% else %}
-            <a class="btn btn-outline-dark" href="{% url 'login' %}"><i class="fa-solid fa-calendar mx-2"
-                style="color: purple"></i>Book Now</a>
-            {% endif %}
+            <ul style="list-style: none;">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping"></i></a>              
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -263,7 +246,7 @@
                         return actions.order.create({
                           purchase_units: [{
                             amount: {
-                              value: amountt
+                              value: amount//t
                             }
                           }]
                         });
@@ -704,10 +687,6 @@
 
   <script>
 
-    $(document).ready(function () {
-      $('.selectpicker').selectpicker({ width: "100%", header: " " });
-    });
-
     $('#id_services').change(function () {
       console.log("Hello");
       let x = $('#id_services').val()
@@ -724,16 +703,13 @@
           console.log("Done");
         },
         error: function (response) {
-          // alert the error if any error occured
           alert(response["responseJSON"]["error"]);
         }
       })
     })
 
 
-
     // ################## CHECK FOR TIME AND DATE
-
     $('#datentime').change(function () {
       let x = $('#datentime').val()
 
@@ -753,11 +729,9 @@
           }
           else {
             $('#paypal-button-container').css('display', 'none')
-
           }
         },
         error: function (error) {
-
         }
       })
     })
