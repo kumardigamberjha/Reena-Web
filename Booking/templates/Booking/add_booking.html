@@ -251,7 +251,6 @@
                 url: "{% url 'get_booking_datentime' %}",
                 data: { 'datentime': x, 'csrfmiddlewaretoken': "{{csrf_token}}" },
                 success: function (data) {
-                    // var instance = JSON.parse(data["amount"]);
                     console.log(data['amount'])
                     $('#timeslot').val(data['amount']);
                     console.log("Done");

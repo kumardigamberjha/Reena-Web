@@ -7,15 +7,43 @@
 <link rel="stylesheet" href="{% static 'css/body.css' %}">
 
 <style>
-  .btn-prod:hover{
+  .btn-prod:hover {
     border: none;
     background-color: transparent;
+  }
+
+  .btn-2 {
+    background-color: transparent;
+    border: none;
+    padding: 1px 1px 1px;
+    border: 0.1px solid black;
+    height: 1em;
+    width: 1em;
+  }
+
+  .btn-2:hover {
+    background-color: rgb(255, 219, 255);
+    transition: 0.7s;
+  }
+
+  .btn-2:active {
+    background-color: rgb(255, 134, 255);
   }
 </style>
 
 {% endblock csslink %}
 
 {% block content %}
+
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }} p-2 mb-2 bg-success text-white"
+    style="list-style: none; border-radius: 10px; width: 95%; margin: auto auto; z-index: 10000;" {% endif %}>{{ message
+    }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 <!--mainbody-->
 <div class="main mx-auto bg-light">
@@ -32,12 +60,9 @@
   <hr style="border: 1px solid rgb(255, 101, 127)" />
 
   {% for cat in allprodcat %}
-
   <div class="container-fluid mb-5 bg-light mx-auto">
     <div class="row g-5 mx-auto">
-
       <div class="col-sm-5">
-
         <p class="heading-2 text-center mt-5 mx-auto" data-aos="fade-up" data-aos-duration="3000">
           {{cat.name}}
         </p>
@@ -47,38 +72,60 @@
           <div class="Services bg-black">
             <i class="fa-solid fa-spa mx-3"></i>Services
           </div>
-          {% for prod in prods %}
-          {% if prod.cat.name == cat.name %}
+          <form action="#" method="post" id="myforms">
+            {% csrf_token %}
+            {% for prod in prods %}
+            {% if prod.cat.name == cat.name %}
+            <div class="container border-bottom border-dark mt-4 mb-3">
+              <button class="btn-2 mt-1 mx-1 add-item-btn" data-link-id="{{ prod.id }}" data-name="{{ prod.name }}" data-value="{{ prod.price }}">
+                <a href="#" style="color: black">
+                  <i class="fa-solid fa-plus mx-2" style="color: white"></i>
+                </a>
+              </button>
+              {{prod.name}}
 
-          <div class="container border-bottom border-dark mt-3 mb-3">
-            <button class="btn text-center btn-prod" data-bs-toggle="modal" data-bs-target="#bookingmodal" data-item-name="{{ prod.name }}" data-item-price="{{ prod.id }}" style="border: none; background-color: transparent;">
-              
-            </button>
-            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="border: none">
-              {{prod.name}}</button>
-            {% if prod.price != 0 %}
-            <div class="rate ms-auto">£ {{prod.price}}</div>
+              {% if prod.price != 0 %}
+              <div class="rate ms-auto">£ {{ prod.price }}
+                </div>
+
+              {% endif %}
+            </div>
             {% endif %}
-          </div>
-          {% endif %}
-          {% endfor %}
+            {% endfor %}
+          </form>
         </div>
       </div>
-
     </div>
+
   </div>
+</div>
 
-  {% endfor %}
+{% endfor %}
 
-  <script>
+<script>
 
-$(document).on('click', '.btn-prod', function () {
-  console.log("Hello")
-  // var itemName = $(this).data('item-name');
-  // var itemPrice = $(this).data('item-price');
-  // $("#bookingModalLabel").text("Booking for " + itemName);
-  // $("#item-name").text(itemName);
-  // $("#item-price").text(itemPrice);
-});
-  </script>
-  {% endblock content %}
+  $(document).ready(function () {
+    $('.add-item-btn').on('click', function (event) {
+      event.preventDefault();
+      var name = $(this).data('name');
+      var value = $(this).data('value');
+      var catid = $(this).data('link-id');
+
+      var pageurl = "{% url 'pricing' %}";
+      var data = { 'name': name, 'price': value };
+      $.ajax({
+        url: pageurl,
+        method: 'POST',
+        data: data,
+        success: function (response) {
+          // $(this).css('color', 'red');
+          alert('Item Added in Cart: ' + name);
+        },
+        error: function (xhr, status, error) {
+          alert('Error saving form: ' + error);
+        }
+      });
+    });
+  });
+</script>
+{% endblock content %}

@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
-from website.models import ContactUsPage
-from website.forms import ContactForm, HomeForm, AboutUsForm
+from website.models import ContactUsPage, CartItem
+from website.forms import ContactForm, HomeForm, AboutUsForm, CartForm
 from Pages.models import Homepage, AboutUsPage, DermaLogicaPage, CaciSynergyPage, IPLPage, WaxingPage, NailPage, MakeUpPage, TintingPage, EarPage, ElectroPage, ManPage, MassagePage, GiftPage
 from Booking.forms import BookingModelForm, ProductCatForm, ProductForm
 from Booking.models import BookingModel, ProductModel, ProductCat
 from django.http import JsonResponse, HttpResponse
 from django.contrib import messages
-
+from django.views.decorators.csrf import csrf_exempt
 
 def Index(request):
     prods = ProductModel.objects.all()
@@ -173,45 +173,30 @@ def RewardsView(request):
     return render(request, 'website/gifts.html', context)
 
 
+@csrf_exempt
 def Pricing(request):
     allprodcat = ProductCat.objects.all()
     cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
-    form = BookingModelForm()
+    form = CartForm()
     if request.method == "POST":
-        form = BookingModelForm(request.POST)
-
-        payment_status = request.POST.get('payment_status')
-        datentime = request.POST.get('datentime')
         name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        total_payment = request.POST.get('total_payment')
-
-        if payment_status == "PaymentisDonecheckit":
-            if BookingModel.objects.filter(datentime=datentime).exists():
-                response = JsonResponse({"error": form.errors})
-                response.status_code = 403
-                return response
-                
-            elif form.is_valid():
+        form = CartForm(request.POST)
+        print("Name: ", name)
+        if not CartItem.objects.filter(name=name).exists():
+            if form.is_valid():
                 s = form.save()
                 s.save()
-                print(s.id)
+                messages.success(request, "Item Added To Cart")
                 print("Form Saved")
-                print("Form ID: ", s.pk)
-                return redirect(f"Booking/View_BookingData/{s.id}")
             else:
-                messages.success(request, form.errors)
+                messages.success(request, "Some Error")
                 print("Form Error: ", form.errors)
-                response = JsonResponse({"error":form.errors})
-                response.status_code = 403
-                return response
         else:
-            print("Form Error", form.errors)
-            messages.success(request, "Please Do Payment before Submittig")
-            return HttpResponse("Please Check this error: ", form.errors)
+            messages.success(request, "Item already Exists in Cart")
+            print("Item Already Existes")
 
-    context = {'prods':prods, 'form':form, 'allprodcat': allprodcat, 'cat':cats}
+    context = {'prods':prods, 'form':form, 'cat':cats, 'allprodcat': allprodcat, }
     return render(request, 'website/pricing.html', context)
 
 
@@ -724,3 +709,18 @@ def NailExtensionView(request):
     context = {'prods':prods, 'form': form, 'nail': nail, 'cat':cats}
     return render(request, 'website/Nailextension.html', context)
 
+
+def cart(request):
+    allitems = CartItem.objects.all()
+    s = 0
+    for i in allitems:
+        s += i.price
+
+    print("Sum: ", s)
+
+    context={'allitems':allitems, 'total': s}
+    return render(request, 'website/checkoutpage.html', context)
+
+
+def DocumentsPage(request):
+    return render(request, 'website/Documents.html')

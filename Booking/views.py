@@ -7,6 +7,7 @@ from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
 import datetime
 
+@login_required
 def AddProductCat(request):
     form = ProductCatForm()
 
@@ -24,6 +25,7 @@ def AddProductCat(request):
     return render(request, 'Booking/add_product_cat.html', context)
 
 
+@login_required
 def UpdateProductCat(request, id):
     prodcatid = ProductCat.objects.get(id=id)
     form = ProductCatForm(instance=prodcatid)
@@ -50,6 +52,7 @@ def DeleteProductCatView(request, id):
 
 
 ##################### Product Model #######################
+@login_required
 def AddProductView(request):
     form = ProductForm()
 
@@ -68,6 +71,7 @@ def AddProductView(request):
     return render(request, 'Booking/add_product.html', context)
 
 
+@login_required
 def UpdateProductView(request, id):
     prodid = ProductModel.objects.get(id = id)
     form = ProductForm(instance=prodid)
@@ -92,6 +96,8 @@ def DeleteProductView(request, id):
     ProductModel.objects.filter(id=id).delete()
     return redirect('show_product_model')
 
+
+@login_required
 def AddBookingView(request):
     form = BookingModelForm()
     data = ProductModel.objects.all()
@@ -156,7 +162,7 @@ def GetBookingPrice(request):
 
 
 
-
+# Booking Date and Time From Jquery
 def GetBookingDatentime(request):
     if request.method == "POST":
         datentime = request.POST.get("datentime")

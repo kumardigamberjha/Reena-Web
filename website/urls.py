@@ -21,5 +21,8 @@ urlpatterns = [
     path('NailExtension/', views.NailExtensionView, name="nailextview"),
     path('Henna/', views.HennaView, name="Hennaview"),
     path('Rewards/', views.RewardsView, name="rewards"),
+    # path('Checkoutpage/', views., name="cart"),
 
+    path('Cart/', views.cart, name="cart"),
+    path('Documents/', views.DocumentsPage, name="documents"),
 ]

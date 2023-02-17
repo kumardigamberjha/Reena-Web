@@ -18,10 +18,12 @@
   {% block csslink %}
   {% load static %}
   <link href="{% static 'css/body.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+
   {% endblock csslink %}
   <!--time-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css"> -->
 
   <!-- Tel Validation -->
   <link href="{% static 'build/css/demo.css' %}" rel="stylesheet" />
@@ -32,12 +34,6 @@
   <!--fontawesome-->
   <script src="https://kit.fontawesome.com/8feaa5fbd6.js" crossorigin="anonymous"></script>
   <!--css-->
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 
 
   <style>
@@ -51,29 +47,28 @@
       width: 95%;
       margin: auto;
     }
-    
   </style>
 
 </head>
 
 {% block body %}
 
-<body>
+<body style="background-color: rgb(240, 227, 240)">
   {% endblock body %}
 
   <div class="header fixed-top">
-    <div class="container-fluid bg-secondary" style="height: 2em">
+    <div class="container-fluid bg-light" style="height: 2em">
       <div class="row">
         <div class="col-sm-6 mx-auto">
           <div class="contact mt-1 mx-auto">
             <div class="number">
-              <i class="fa-solid fa-phone mt-1 mx-1" style="color: lightcoral;"></i>
-              07969385877
+              <i class="fa-solid fa-phone mt-1 mx-1" style="color: purple"></i>
+              <span style="color: black"> 07969385877 </span>
             </div>
             <span class="line mx-2">|</span>
             <div class="email">
-              <i class="fa-solid fa-envelope mt-1 mx-1" style="color: lightcoral;"></i>
-              reenavirdee@hotmail.com
+              <i class="fa-solid fa-envelope mt-1 mx-2" style="color: purple"></i>
+              <span style="color: black"> reenavirdee@hotmail.com </span>
             </div>
           </div>
         </div>
@@ -81,16 +76,16 @@
         <div class="col-sm-1">
           <div class="socials mt-1 mx-auto">
             <div class="instagram">
-              <a href="#"><i class="fa-brands fa-instagram mx-2"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram mx-2" style="color: purple"></i></a>
             </div>
             <div class="facebook">
-              <a href="https://www.facebook.com/ReenasHairAndBeauty/"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.facebook.com/ReenasHairAndBeauty/"><i class="fa-brands fa-facebook"
+                  style="color: purple"></i></a>
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
         <a class="navbar-brand mx-3" href="/"><img src="{% static 'images/a2.png' %}" class="img-fluid" /></a>
@@ -137,15 +132,32 @@
               <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="{% url 'documents' %}">Gallery</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{% url 'contactus' %}">Contact</a>
             </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
           </ul>
           <hr />
           <div class="conatiner text-center">
+            {% if user.is_authenticated %}
             <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              <i class="fa-solid fa-calendar mx-2" style="color: lightcoral"></i>Book
+              <i class="fa-solid fa-calendar mx-2" style="color: purple"></i>Book
               Now
             </button>
+            {% else %}
+            <a class="btn btn-outline-dark" href="{% url 'login' %}"><i class="fa-solid fa-calendar mx-2"
+                style="color: purple"></i>Book Now</a>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -153,7 +165,7 @@
   </div>
 
   <!-- Modal -->
-  {% block modal %}
+  <!-- {% block modal %}
   <div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -199,17 +211,23 @@
                         style="color: black; font-size: 20px; font-weight: 500; text-align: left; ">
                         <i class="fa-solid fa-spa mx-2" style="color: lightcoral;"></i>Search For Multiple Service
                       </p>
-                      <select name="services" id="id_services" class="p-2 selectpicker" multiple="multiple" data-live-search="true"
-                        style="border: 1px solid lightcoral; width: 100%; padding-bottom: 20px; border: 1px solid black; ">
+                      <select name="services" id="id_services" class="p-2 selectpicker" multiple="multiple"
+                        data-live-search="true"
+                        style="border: 1px solid lightcoral; width: 100%; padding-bottom: 20px; border: 1px solid black;"
+                        data-actions-box="true" data-done-button="true">
                         {% for i in cat %}
                         <optgroup label="{{i.name}}">
-                            {% for pro in prods %}
-                            {% if pro.cat.name == i.name %}
-                        <option value="{{pro.id}}">
-                          {{pro.name}} - &#163;{{pro.price}}</option>
+                          {% for pro in prods %}
+                          {% if pro.cat.name == i.name %}
+                          {% if item.selected %}
+                          <option value="{{ pro.id }}" selected>{{pro.name}} - &#163;{{pro.price}}</option>
+                          {% else %}
+                          <option value="{{ pro.id }}">{{pro.name}} - &#163;{{pro.price}}</option>
                           {% endif %}
-                        {% endfor %}
-                      </optgroup>
+
+                          {% endif %}
+                          {% endfor %}
+                        </optgroup>
                         {% endfor %}
 
                       </select>
@@ -233,7 +251,6 @@
                   </div>
                   <input type="hidden" name="payment_status" id="paymentstatus">
 
-                  <!-- <div id="paypal-button-container"></div> -->
                   <div id="paypal-button-container" style="width: 50%; margin:auto; margin-bottom: 25px;"></div>
                   <script
                     src="https://www.paypal.com/sdk/js?client-id=AWFL7YRuIbPx-nbOh0-l8K8yxbOKsaaIzjSC4NMMJEcR3el2R0hEjF26UrosJAx7f9R-QQEXMgb_LT7u&currency=USD"></script>
@@ -241,7 +258,6 @@
                   <script>
 
                     paypal.Buttons({
-                      // Sets up the transaction when a payment button is clicked
                       createOrder: (data, actions) => {
                         var amountt = document.getElementById("total_amount").value;
                         return actions.order.create({
@@ -252,7 +268,6 @@
                           }]
                         });
                       },
-                      // Finalize the transaction after payer approval
                       onApprove: (data, actions) => {
                         let amounttt = document.getElementById("total_amount").value;
 
@@ -262,7 +277,6 @@
                           alert(`Payment has been Done`)
                           $('#paymentstatus').val("PaymentisDonecheckit");
                           $('#total_payment').val(amounttt);
-                          // Listen for the payment.success event
 
                           submitform()
                           function submitform() {
@@ -283,8 +297,8 @@
         </form>
       </div>
     </div>
-  </div>
-  {% endblock modal %}
+  </div> -->
+  <!-- {% endblock modal %} -->
   <div class="footer mb-2">
     <p></p>
   </div>
@@ -298,48 +312,261 @@
   </ul>
   {% endif %}
   {% block content %}
-  <div class="main mx-auto">
-    <div class="box mt-5" data-aos="fade-up" data-aos-duration="3000">
-      <img src="{% static 'images/f1 (1).jpeg' %}" class="img-1 mt-5 img-fluid" style="max-width: 100%; width: 100%;" />
-      <div class="container-fluid mx-auto">
-        <h1 class="up mx-auto mt-2" style="color: rgb(255, 85, 85); text-shadow: 2px 2px 2px black;">
-          {{homepage.home1}}
-        </h1>
+  <div class="main mx-auto" style="background-color: rgb(255, 240, 255)">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
       </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <img src="{% static 'images/f1.jpg' %}" class="d-block w-100" alt="..." />
+          <div class="carousel-caption d-none d-md-block">
+            <h1>Welcome to Reena's Spa and Salon</h1>
+            <p style="color: purple; font-size: 1.5em; font-weight: 500">
+              Unleash Your Inner Beauty With Our Top-Notch Makeup and Salon
+              Services.
+            </p>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="{% static 'images/f2.jpg' %}" class="d-block w-100" alt="..." />
+          <div class="carousel-caption d-none d-md-block">
+            <h1 style="color: white">Welcome to Reena's Spa and Salon</h1>
+            <p style="color: purple; font-size: 1.5em; font-weight: 500">
+              Relax, rejuvenate, and look your best with our salon services.
+            </p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/f3.jpg' %}" class="d-block w-100" alt="..." />
+          <div class="carousel-caption d-none d-md-block">
+            <h1 style="color: white">Welcome to Reena's Spa and Salon</h1>
+            <p style="color: purple; font-size: 1.5em; font-weight: 500">
+              Say Goodbye to Bad Skin Days With Our Expert Hair Services at
+              Our Salon.
+            </p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/f4.jpg' %}" class="d-block w-100" alt="..." />
+          <div class="carousel-caption d-none d-md-block">
+            <h1>Welcome to Reena's Spa and Salon</h1>
+            <p style="color: purple; font-size: 1.5em; font-weight: 500">
+              Enhance your natural beauty with our top-notch makeup
+              application services.
+            </p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
 
-    <div class="box" data-aos="fade-up" data-aos-duration="3000">
-      <img src="{% static 'images/f1 (2).jpeg' %}" class="img-2 img-fluid" style="width: 100%" />
-      <div class="container mx-auto">
-        <h1 class="centered mx-auto" style="color: rgb(255, 85, 85); text-shadow: 2px 2px 2px black;">
-          {{homepage.home2}}
-        </h1>
-        <!-- <button class="button mx-auto mt-5" data-bs-toggle="modal" data-bs-target="#bookingmodal">
-          <i class="fa-solid fa-calendar mx-2"></i>Book Now
-        </button> -->
-        <button type="button" class="btn btn-outline-dark button mx-auto mt-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Book Now</button>
-
+    <!--aboutus-->
+    <div class="container text-center mt-5">
+      <h1>Reena's Salon and Spa</h1>
+    </div>
+    <div class="container text-center">
+      <p style="color: purple; font-size: 1.2em">
+        Discover the beauty within you with our professional makeup and salon
+        services. Our expert stylists will help you transform your look,
+        elevating your style to the next level. With our top-of-the-line
+        cosmetics, you can enhance your natural beauty and unleash your inner
+        goddess.
+        <br />
+        Our commitment to quality and expertise means you can trust us to
+        deliver flawless results every time. From everyday looks to special
+        occasion styles, our talented stylists have got you covered. So, why
+        wait? Book your appointment today and get ready to shine with
+        confidence!
+      </p>
+      <div class="container mt-4">
+        <button class="btn-5">BOOK AN APPOINTMENT</button>
       </div>
     </div>
-
-    <div class="box" data-aos="fade-up" data-aos-duration="3000">
-      <img src="{% static 'images/f1 (3).jpeg' %}" class="img-3 img-fluid" style="width: 100%" />
-      <div class="container mx-auto">
-        <h1 class="right mx-auto" style="color: rgb(255, 85, 85); text-shadow: 2px 2px 2px black;">
-          {{homepage.home3}}
-        </h1>
-        <a href="{% url 'aboutus' %}"><button class="button mx-auto mt-5" type="button">About Us</button></a>
-      </div>
+    <br />
+    <br />
+    <div class="container">
+      <hr style="border: 1px solid purple" />
     </div>
 
-    <div class="box" data-aos="fade-up" data-aos-duration="3000">
-      <img src="{% static 'images/f4.jpeg' %}" class="img-4 img-fluid" style="width: 100%" />
-      <div class="container mx-auto">
-        <h1 class="left mx-auto mb-5" style="color: rgb(255, 85, 85); text-shadow: 2px 2px 2px black;">
-          {{homepage.home4}}</h1>
-        <a href="{% url 'rewards' %}"><button class="button mx-auto mt-5" type="button">
-            Find Out More
+    <!--services-->
+
+    <div class="container mt-5 text-center mx-auto">
+      <h1 style="color: purple">OUR BEAUTY TREATMENTS</h1>
+      <p style="color: black; font-size: 1.5em">
+        Experience the ultimate pampering session with our top-rated makeup
+        and salon services
+      </p>
+    </div>
+
+    <div class="container mt-4">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <a href="{% url 'dermalogica' %}" style="text-decoration: none">
+            <div class="card" style="width: 20rem; cursor: pointer; border: none">
+              <img src="{% static 'images/a7.JPG' %}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title text-center" style="color: purple">
+                  DERMALOGICA
+                </h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="{% url 'massageview' %}" style="text-decoration: none">
+            <div class="card" style="width: 20rem; cursor: pointer; border: none">
+              <img src="{% static 'images/a14.JPG' %}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title text-center" style="color: purple">
+                  MASSAGE
+                </h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="{% url 'bridalview' %}" style="text-decoration: none">
+            <div class="card" style="width: 20rem; cursor: pointer; border: none">
+              <img src="{% static 'images/s8.jpg' %}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title text-center" style="color: purple">
+                  BRIDAL MAKE-UP
+                </h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="{% url 'Hennaview' %}" style="text-decoration: none">
+            <div class="card" style="width: 20rem; cursor: pointer; border: none">
+              <img src="{% static 'images/s4.jpg' %}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title text-center" style="color: purple">
+                  HENNA
+                </h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="{% url 'caciview' %}" style="text-decoration: none">
+            <div class="card" style="width: 20rem; cursor: pointer; border: none">
+              <img src="{% static 'images/s1.png' %}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title text-center" style="color: purple">
+                  CACISYNERGY
+                </h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="{% url 'tintingview' %}" style="text-decoration: none">
+            <div class="card" style="width: 20rem; cursor: pointer; border: none">
+              <img src="{% static 'images/s7.jpg' %}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title text-center" style="color: purple">
+                  TINTING
+                </h5>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="container text-center mt-4">
+        <a href="{% url 'pricing' %}"><button class="btn-5" style="padding: 10px 30px 10px">
+            FIND MORE
           </button></a>
+      </div>
+    </div>
+  </div>
+
+  <!--testimonials-->
+
+  <div class="container-fluid bg-light" style="min-height: 70vh">
+    <div class="container bg-light">
+      <div class="row">
+        <div class="col-sm-6">
+          <img src="{% static 'images/silhouette-3605401.png' %}" class="img-fluid" style="padding-top: 2em" />
+        </div>
+        <div class="col-sm-6">
+          <div class="container text-center">
+            <h1 style="color: purple">WHY CHOOSE US?</h1>
+          </div>
+          <p style="color: plum">
+            <span style="color: purple">1.Expert stylists and makeup
+            artists: Our team of skilled professionals will help you achieve
+            your desired look.</span> 
+          </p>
+          <p style="color: plum">
+            <span style="color: purple">2. High-quality products: We
+            only use top-quality products to ensure the best results.</span>
+          </p>
+          <p style="color: plum">
+            <span style="color: purple">3.Customized services: Our
+            services are tailored to meet your individual needs and
+            preferences.</span> 
+          </p>
+          <p style="color: plum">
+            <span style="color: purple">4.Affordable prices: Our salon
+            offers affordable prices without sacrificing quality.</span>
+          </p>
+          <p style="color: plum">
+            <span style="color: purple">5.Wide range of services: From
+            hair care to makeup, we offer a wide range of services to meet all
+            your beauty needs.</span> 
+          </p>
+          <p style="color: plum">
+            <span style="color: purple">6.Enjoy a stress-free and
+            pampering experience.</span> 
+          </p>
+          <p style="color: plum">
+            <span style="color: purple">7. Enjoy a warm and inviting
+            atmosphere.</span>
+          </p>
+          <p style="color: plum">
+            <span style="color: purple">8.Choose from a variety of
+            premium services and treatments</span>
+          </p>
+          <div class="container mt-4 text-center">
+            <a href="{% url 'pricing' %}"><button class="btn-5">BOOK AN APPOINTMENT</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--testimonials-->
+  <div class="container">
+    <h1 style="color: purple">ADDITIONAL LINKS</h1>
+  </div>
+  <div class="container" style="padding: 1em 1em 1em">
+    <div class="row">
+      <div class="col-sm-4">
+        <a href="{% url 'documents' %}">
+          <img src="{% static 'images/OUR GALLERY.png' %}" alt="" class="img-fluid" />
+        </a>
+      </div>
+      <div class="col-sm-4">
+        <a href="{% url 'pricing' %}">
+          <img src="{% static 'images/OUR GALLERY(1).png' %}" alt="" class="img-fluid" />
+        </a>
+      </div>
+      <div class="col-sm-4">
+        <a href="{% url 'contactus' %}">
+          <img src="{% static 'images/OUR GALLERY(2).png' %}" alt="" class="img-fluid" />
+        </a>
       </div>
     </div>
   </div>
@@ -478,7 +705,7 @@
   <script>
 
     $(document).ready(function () {
-      $('.selectpicker').selectpicker({width: "100%"});
+      $('.selectpicker').selectpicker({ width: "100%", header: " " });
     });
 
     $('#id_services').change(function () {

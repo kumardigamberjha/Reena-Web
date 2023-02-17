@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    overflow-x: hidden;
+}
+.button-5{
+    padding: 10px 20px 10px;
+    color:purple;
+    background-color: transparent;
+    border: 2px solid purple;
+    text-align: center;
+  }
+  .button-5:hover{
+    padding: 10px 20px 10px;
+    color:white;
+    background-color: plum;
+    border: 2px solid purple;
+  }
+.navbar{
+    display: flex;
+    flex-direction: row;
+}
+.nav-item .nav-link {
+     font-size: 1.2em;
+     font-family: "Poppins", sans-serif;
+     margin: 4px;
+     font-weight: 500;
+}
+.nav-item .nav-link:hover {
+    text-decoration: 2px underline purple;
+    text-underline-position: under;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+  }
+.dropdown-divider{
+    margin-top: -1px;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    text-align: center;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+ }
+.dropdown-menu  .dropdown-item:hover{
+   background-color: rgb(192, 192, 192);
+   color: purple;
+   font-weight: 500;
+   text-align: center;
+   font-family: "Poppins", sans-serif;
+}
+.main{
+    margin-top: 5em;
+}
+.btn-1{
+    border: 2px solid black;
+    padding: 12px 20px 12px;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    font-family: "Poppins", sans-serif;
+}
+.btn-1:hover{
+    background-color: black;
+    color: white;
+}
+h2{
+    font-family: "Poppins", sans-serif;
+}
+.number{
+    display: flex;
+    flex-direction: row;
+    font-family: "Poppins", sans-serif;
+}
+.email{
+    display: flex;
+    flex-direction: row;
+    font-family: "Poppins", sans-serif;
+}
+.contact{
+    display: flex;
+    flex-direction: row;
+    font-family: "Poppins", sans-serif;
+}
+
+.socials{
+    display: flex;
+    flex-direction: row;
+}
+
+.fa-brands{
+    color: black;
+    font-size: 1.5em;
+}
+.button-2:hover{
+    background-color: black;
+    color: purple;
+
+}
+.btn-5{
+    padding: 10px 20px 10px;
+    color:purple;
+    background-color: transparent;
+    border: 2px solid purple;
+}
+.btn-5:hover{
+    padding: 10px 20px 10px;
+    color:white;
+    background-color: plum;
+    border: 2px solid purple;
+}
+.bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+  }
+  
