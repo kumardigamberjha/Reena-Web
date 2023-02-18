@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from website.models import ContactUsPage, CartItem
+from website.models import ContactUsPage, CartItem, CartBookingModel
 from Pages.models import Homepage, AboutUsPage, DermaLogicaPage, IPLPage, CaciSynergyPage, MakeUpPage, ManPage, MassagePage, EarPage, GiftPage, NailPage, WaxingPage, ElectroPage, TintingPage
 
 
@@ -100,4 +100,9 @@ class MassageForm(ModelForm):
 class CartForm(ModelForm):
     class Meta:
         model = CartItem
+        fields = '__all__'
+
+class CartBookingForm(ModelForm):
+    class Meta:
+        model = CartBookingModel
         fields = '__all__'

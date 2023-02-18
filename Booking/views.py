@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from Booking.models import BookingModel, ProductModel, ProductCat
-from Booking.forms import ProductCatForm, ProductForm, BookingModelForm
+from Booking.models import  ProductModel, ProductCat
+from Booking.forms import ProductCatForm, ProductForm
 from django.contrib import messages
+from website.models import CartBookingModel
 from django.core import serializers
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -99,44 +100,44 @@ def DeleteProductView(request, id):
 
 @login_required
 def AddBookingView(request):
-    form = BookingModelForm()
-    data = ProductModel.objects.all()
-    if request.method == "POST":
-        form = BookingModelForm(request.POST)
+    # form = CartBookingModelForm()
+    # data = ProductModel.objects.all()
+    # if request.method == "POST":
+    #     form = CartBookingModelForm(request.POST)
 
-        payment_status = request.POST.get('payment_status')
-        datentime = request.POST.get('datentime')
-        name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        total_payment = request.POST.get('total_payment')
+    #     payment_status = request.POST.get('payment_status')
+    #     datentime = request.POST.get('datentime')
+    #     name = request.POST.get('name')
+    #     phone = request.POST.get('phone')
+    #     total_payment = request.POST.get('total_payment')
 
-        if payment_status == "PaymentisDonecheckit":
-            if BookingModel.objects.filter(datentime=datentime).exists():
-                response = JsonResponse({"error": form.errors})
-                response.status_code = 403 # To announce that the user isn't allowed to publish
-                return response
+    #     if payment_status == "PaymentisDonecheckit":
+    #         if CartBookingModel.objects.filter(datentime=datentime).exists():
+    #             response = JsonResponse({"error": form.errors})
+    #             response.status_code = 403 # To announce that the user isn't allowed to publish
+    #             return response
                 
-            elif form.is_valid():
-                form.save()
-                print("Form Saved")
-                print("Form Values: ", form)
-                print("Request POST: ", request.POST)
+    #         elif form.is_valid():
+    #             form.save()
+    #             print("Form Saved")
+    #             print("Form Values: ", form)
+    #             print("Request POST: ", request.POST)
 
-                return redirect("add_product_view")
-            else:
-                messages.success(request, form.errors)
-                print("Form Error: ", form.errors)
-                response = JsonResponse({"error":form.errors})
-                response.status_code = 403
-                return response
-        else:
-            print("Form Error", form.errors)
-            messages.success(request, "Please Do Payment before Submittig")
-            return HttpResponse("Please Check this error: ", form.errors)
+    #             return redirect("add_product_view")
+    #         else:
+    #             messages.success(request, form.errors)
+    #             print("Form Error: ", form.errors)
+    #             response = JsonResponse({"error":form.errors})
+    #             response.status_code = 403
+    #             return response
+    #     else:
+    #         print("Form Error", form.errors)
+    #         messages.success(request, "Please Do Payment before Submittig")
+            # return HttpResponse("Please Check this error: ", form.errors)
 
 
-    context = {'form': form, 'data': data}
-    return render(request, 'Booking/add_booking.html', context)
+    # context = {'form': form, 'data': data}
+    return render(request, 'Booking/add_booking.html')
 
 
 def GetBookingPrice(request):
@@ -167,7 +168,7 @@ def GetBookingDatentime(request):
     if request.method == "POST":
         datentime = request.POST.get("datentime")
 
-    if BookingModel.objects.filter(datentime=datentime).exists():
+    if CartBookingModel.objects.filter(datentime=datentime).exists():
         amount = "Time Slot is already Taken"
         return JsonResponse({'amount' : amount}, status=200)
 
@@ -179,7 +180,7 @@ def GetBookingDatentime(request):
 @login_required
 def ShowBookingModel(request):
     if request.user.is_superuser:
-        data = BookingModel.objects.all()
+        data = CartBookingModel.objects.all()
         context = {'data': data}
         return render(request, "Booking/show_booking.html", context)
     context = {}
@@ -207,7 +208,7 @@ def ShowProductCategoryModel(request):
 
 
 def ViewBookingModelData(request, id):
-    data = BookingModel.objects.get(id=id)
+    data = CartBookingModel.objects.get(id=id)
     total = 0
     for i in data.services.all():
         total += i.price
@@ -217,7 +218,7 @@ def ViewBookingModelData(request, id):
 
 @login_required
 def Accounts(request):
-    data = BookingModel.objects.all()
+    data = CartBookingModel.objects.all()
     total = 0
     for i in data:
         total += int(i.total_payment)
@@ -227,7 +228,7 @@ def Accounts(request):
 
 @login_required
 def DeleteBookingView(request, id):
-    BookingModel.objects.filter(id=id).delete()
+    CartBookingModel.objects.filter(id=id).delete()
     return redirect('show_booking')
 
 
@@ -235,7 +236,7 @@ def DeleteBookingView(request, id):
 def TodayBooking(request):
     somemonth = datetime.date.today()
     months = somemonth.month
-    data = BookingModel.objects.filter(datentime__date = somemonth)
+    data = CartBookingModel.objects.filter(datentime__date = somemonth)
     context = {'data': data, 'somemonth': somemonth}
     return render(request, 'Booking/today_book.html', context)
 
@@ -244,6 +245,6 @@ def TodayBooking(request):
 def TodayAppointment(request):
     somemonth = datetime.date.today()
     months = somemonth.month
-    data = BookingModel.objects.filter(BookingTime__date = somemonth)
+    data = CartBookingModel.objects.filter(BookingTime__date = somemonth)
     context = {'data': data, 'somemonth': somemonth}
     return render(request, 'Booking/today_appointment.html', context)

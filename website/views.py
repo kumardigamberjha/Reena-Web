@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
-from website.models import ContactUsPage, CartItem
-from website.forms import ContactForm, HomeForm, AboutUsForm, CartForm
+from website.models import ContactUsPage, CartItem, CartBookingModel
+from website.forms import ContactForm, HomeForm, AboutUsForm, CartForm, CartBookingForm
 from Pages.models import Homepage, AboutUsPage, DermaLogicaPage, CaciSynergyPage, IPLPage, WaxingPage, NailPage, MakeUpPage, TintingPage, EarPage, ElectroPage, ManPage, MassagePage, GiftPage
 from Booking.forms import BookingModelForm, ProductCatForm, ProductForm
 from Booking.models import BookingModel, ProductModel, ProductCat
 from django.http import JsonResponse, HttpResponse
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+
 
 def Index(request):
     prods = ProductModel.objects.all()
@@ -710,17 +711,39 @@ def NailExtensionView(request):
     return render(request, 'website/Nailextension.html', context)
 
 
-def cart(request):
+def CartAndBooking(request):
     allitems = CartItem.objects.all()
+    form = CartBookingForm()
+    lenofcart = len(allitems)
     s = 0
     for i in allitems:
         s += i.price
+    if request.method == "POST":
+        form = CartBookingForm(request.POST)
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        services = request.POST.getlist('services')
+        total_payment = request.POST.get('total_payment')
+        print('name: ', name)
+        print('phone: ', phone)
+        print('email: ', email)
+        print('services: ', services)
+        print('total_payment: ', total_payment)
+        if form.is_valid():
+            form.save()
+            print("Form Saved")
+        else:
+            print("Not Saved: ", form.errors)
 
-    print("Sum: ", s)
-
-    context={'allitems':allitems, 'total': s}
+    context={'allitems':allitems, 'total': s, 'length':lenofcart}
     return render(request, 'website/checkoutpage.html', context)
 
 
 def DocumentsPage(request):
     return render(request, 'website/Documents.html')
+
+def DelBooking(request, id):
+    item = CartItem.objects.get(id=id)
+    item.delete()
+    return redirect('cart')

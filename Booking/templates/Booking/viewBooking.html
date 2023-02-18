@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'website/index.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking</title>
-
+{% block content %}
     {% load static %}
     <!--link css-->
     <!-- <link href="{% static 'css/booking.css' %}" rel="stylesheet" /> -->
@@ -37,13 +31,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
 
-    <!-- JS & CSS library of MultiSelect plugin -->
-
-
-    <!-- Sample PayPal credentials (client-id) are included -->
-    <!-- <script src="https://www.paypal.com/sdk/js?client-id=AY-bROZFB_y8Ul9YQVnFp9WAi5HddplFqoOs0Q7Dl064fSyjAlZgPbgDhF1AsIE11eXrXb5Z9nPz78uo&currency=USD&intent=capture&enable-funding=venmo" data-sdk-integration-source="integrationbuilder"></script> -->
-
-</head>
 
 <body style="background-color: #0e2431;">
     {% if messages %}
@@ -58,8 +45,7 @@
 
     {% load widget_tweaks %}
 
-
-    <div class="main mx-auto ">
+    <div class="main mx-auto" style="margin-top: 155px;">
         <div class="container bg-light">
             <div class="row g-3">
                 <div class="col-sm-7">
@@ -88,8 +74,7 @@
 
                         <div class="container text-center mx-auto mb-3">
                             <label for="datetime-local" class="form-label mt-3">Appointment Date</label>
-                            <!-- <input type="datetime-local" class="form-control mx-auto" required name="datentime" id="datentime" placeholder="Select Date and Time" value="{{data.datentime}}" style="border-radius:0; text-align: center ; width: 50%;"> -->
-                            <p style="padding: 15px; border: 1px solid black; font-weight: 600;">{{data.datentime}}</p>
+                            <p style="padding: 15px; border: 1px solid black; font-weight: 600; color: black;">{{data.datentime}}</p>
                             <input type="text" name="" id="timeslot"  readonly style="text-align: center; border: none; margin-top: 5px; background-color: transparent;">
 
                         </div>
@@ -131,8 +116,8 @@
                 <div class="col-sm-5">
                     <img src="{% static 'images/silhouette-3605401.png' %}" class="img-fluid" alt="makeup">
                     <div class="container">
-                        <h4>Opening Hours</h4>
-                        <p>Monday: Closed<br>
+                        <h4 style="color: black">Opening Hours</h4>
+                        <p style="color: black">Monday: Closed<br>
                             Tuesday: 10am - 6pm<br>
                             Wednesday: 10am - 6pm<br>
                             Thursday: 10am - 6pm<br>
@@ -141,16 +126,16 @@
                             Sunday: Closed</p>
                     </div>
                     <div class="container">
-                        <h4>Address</h4>
-                        <p>207 Waldegrave Road, Teddington, TW11 8LX</p>
+                        <h4 style="color: black">Address</h4>
+                        <p style="color: black">207 Waldegrave Road, Teddington, TW11 8LX</p>
                     </div>
                     <div class="container">
-                        <h4>Contact</h4>
-                        <p>07969385877</p>
+                        <h4 style="color: black">Contact</h4>
+                        <p style="color: black">07969385877</p>
                     </div>
                     <div class="container">
-                        <h4>Email</h4>
-                        <p>reenavirdee@hotmail.com</p>
+                        <h4 style="color: black">Email</h4>
+                        <p style="color: black">reenavirdee@hotmail.com</p>
                     </div>
                 </div>
             </div>
@@ -281,6 +266,5 @@
         }
         flatpickr("input[type=datetime-local]", config);
     </script>
-</body>
 
-</html>
+{% endblock content %}

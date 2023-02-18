@@ -23,6 +23,8 @@ urlpatterns = [
     path('Rewards/', views.RewardsView, name="rewards"),
     # path('Checkoutpage/', views., name="cart"),
 
-    path('Cart/', views.cart, name="cart"),
+    path('Cart/', views.CartAndBooking, name="cart"),
+    path('DelBookingCartItem/<int:id>/', views.DelBooking, name="delbookingcart"),
+
     path('Documents/', views.DocumentsPage, name="documents"),
 ]

@@ -3,10 +3,19 @@
 {% block csslink %}
 {% load static %}
 <link href="{% static 'css/checkout.css' %}" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
 <link href="{% static 'css/aboutus.css' %}" rel="stylesheet" />
 
+<style>
+    #save {
+        display: none;
+    }
+    #paypal-button-container{
+        display: none;
+    }
+</style>
 {% endblock csslink %}
 
 {% block content %}
@@ -16,101 +25,128 @@
     <div class="container">
         <main>
             <div class="py-5 text-center">
-                <img class="d-block mx-auto mb-4" src="/images/a2.png" alt="" width="150px" height="57">
+                <img class="d-block mx-auto mb-4" src="{% static 'images/a2.png' %}" alt="" width="150px" height="57">
                 <h2>Checkout</h2>
-
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="../index.html" style="text-decoration: none; color: black; font-size: 1.5em;">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page" style=" font-size: 1.5em;">Checkout
-                        </li>
-                    </ol>
-                </nav>
             </div>
 
+            <form action="" method="POST" id="bookingform">
+                {% csrf_token %}
 
-            <div class="row g-5">
-                <div class="col-md-5 col-lg-4 order-md-last">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text">Your cart</span>
-                        <span class="badge bg-primary rounded-pill">3</span>
-                    </h4>
-                    <ul class="list-group mb-3">
-                        {% for i in allitems %}
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">{{i.name}}</h6>
-                                <small class="text-muted"></small>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label mt-3 text-center"><i
+                                        class="fa-solid fa-person mx-2"></i>Your
+                                    Name</label>
+                                <input type="text" id="name" name="name" class="form-control" required>
                             </div>
-                            <span class="text-muted">&#163 {{i.price}}</span>
-                        </li>
-                        {% endfor %}
-                        <li class="list-group-item d-flex justify-content-between lh-sm"
-                            style="border-top: 3px solid black;">
-                            <div>
-                                <h6 class="my-0">Strong</h6>
-                                <small class="text-muted"></small>
+                            <div class="col-md-6" id="phonecon">
+                                <label for="phone" class="form-label mt-3 text-center"><i
+                                        class="fa-solid fa-address-book mx-2"></i>Phone</label>
+                                <input type="text" id="name" name="phone" class="form-control" required>
                             </div>
-                            <span class="text-muted"><strong>&#163 {{total}}</strong></span>
-                        </li>
-                    </ul>
+                            <div class="col-md-12">
+                                <label for="email" class="form-label mt-3 text-center"><i
+                                        class="fa-solid fa-address-book mx-2"></i>Email</label>
+                                <input type="text" name="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="col-md-12" id="datentimes">
+                                <label for="datentime" class="form-label mt-3 text-center"><i
+                                        class="fa-solid fa-address-book mx-2"></i>datentime</label>
+                                <input type="datetime" name="datentime" id="datentime" class="form-control" required>
+                            </div>
+                            <div id="paypal-button-container" style="width: 50%; margin:auto; margin-top: 25px;">
+                            </div>
+                            <input type="hidden" id="total_amount"></input>
+                            <input type="hidden" name="total_payment" id="total_payment" value="{{total}}">
+
+                            <input type="hidden" name="username" id="paymentstatus">
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 order-md-last" style="width: 100%;">
+                                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text">Your cart</span>
+                                    <span class="badge bg-primary rounded-pill">{{length}}</span>
+                                </h4>
+                                <ol class="list-group list-group-numbered">
+                                    {% for i in allitems %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold"><input type="hidden" name="services" value="{{i.id}}"></div>
+                                            <div class="fw-bold">{{i.name}}</div>
+                                            £{{i.price}}
+                                        </div>
+                                        <span class="badge bg-primary rounded-pill">1</span>
+                                        <a href="{% url 'delbookingcart' i.id %}" style="margin-left: 15px;"><i class="fa-solid fa-trash"></i></a>
+
+                                    </li>
+                                    {% endfor %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold"><strong style="font-size: 1.4rem;">Total</strong></div>
+
+                                        </div>
+                                        <span class=""><strong
+                                                style="font-size: 1.4rem; margin-left: 35px;">£{{total}}</strong></span>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+                <script
+                    src="https://www.paypal.com/sdk/js?client-id=AWFL7YRuIbPx-nbOh0-l8K8yxbOKsaaIzjSC4NMMJEcR3el2R0hEjF26UrosJAx7f9R-QQEXMgb_LT7u&currency=USD"></script>
+
+                <script>
+
+                    paypal.Buttons({
+                        createOrder: (data, actions) => {
+                            var amountt = document.getElementById("total_amount").value;
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: "{{total}}"
+                                    }
+                                }]
+                            });
+                        },
+                        onApprove: (data, actions) => {
+
+                            return actions.order.capture().then(function (orderData) {
+                                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                                const transaction = orderData.purchase_units[0].payments.captures[0];
+                                alert(`Payment has been Done`)
+                                $('#paymentstatus').val("PaymentisDonecheckit");
+
+                                submitform()
+                                function submitform() {
+                                    document.getElementById("bookingform").submit();
+                                    alert('test');
+                                }
+                            });
+                        }
+                    }).render('#paypal-button-container');
+                </script>
+
+                <input type="submit" value="Book" class="btn btn-primary mb-5" id="save">
+
+            </form>
         </main>
 
-
-        <input type="hidden" id="total_amount"></input>
-        <input type="hidden" name="total_payment" id="total_payment"></input>
-
-        <input type="hidden" name="payment_status" id="paymentstatus">
-
-        <div id="paypal-button-container" style="width: 50%; margin:auto; margin-bottom: 25px;"></div>
-        <script
-            src="https://www.paypal.com/sdk/js?client-id=AWFL7YRuIbPx-nbOh0-l8K8yxbOKsaaIzjSC4NMMJEcR3el2R0hEjF26UrosJAx7f9R-QQEXMgb_LT7u&currency=USD"></script>
-
-        <script>
-
-            paypal.Buttons({
-                createOrder: (data, actions) => {
-                    var amountt = document.getElementById("total_amount").value;
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: "{{total}}"
-                            }
-                        }]
-                    });
-                },
-                onApprove: (data, actions) => {
-                    let amounttt = document.getElementById("total_amount").value;
-
-                    return actions.order.capture().then(function (orderData) {
-                        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-                        const transaction = orderData.purchase_units[0].payments.captures[0];
-                        alert(`Payment has been Done`)
-                        $('#paymentstatus').val("PaymentisDonecheckit");
-                        $('#total_payment').val(amounttt);
-
-                        submitform()
-                        function submitform() {
-                            document.getElementById("bookingform").submit();
-                            alert('test');
-                        }
-                    });
-                }
-            }).render('#paypal-button-container');
-        </script>
     </div>
 
-    <div class="modal-footer">
-        <input type="submit" value="Book" id="save">
-    </div>
+    <script>
+        
+            $("#datentime").on("change paste keyup", function () {
+                $('#paypal-button-container').css('display', 'block')
+            });
+        // }
+    </script>
 
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2022 REENA's SPA AND SALON</p>
-
-    </footer>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
