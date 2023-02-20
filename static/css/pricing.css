@@ -3,8 +3,8 @@
 
 
 .dropdown-menu  .dropdown-item:hover{
-   background-color: black;
-   color: pink;
+  background-color: rgb(192, 192, 192);
+   color: purple;
    text-align: center;
    font-family: "Poppins", sans-serif;
 }
@@ -72,7 +72,7 @@ h2{
     font-size: 10vw;
     transform: translate(-50%, -50%);
     font-family: "Poppins", sans-serif;
-    color:rgb(255, 101, 127);
+    color:plum;
   }
 /*main-body*/
 .heading-1{
@@ -95,15 +95,11 @@ h2{
     font-size: 1.5em;
     border: 5px;
     text-shadow:
-    0 0 5px rgb(255, 142, 160),
-    0 0 10px rgb(255, 126, 147),
-    0 0 20px rgb(255, 128, 149),
-    0 0 40px rgb(255, 85, 113),
-    0 0 80px  pink,
-    0 0 90px pink,
-    0 0 100px pink,
-    0 0 150px pink;
-  }
+    0 0 5px rgb(175, 2, 175),
+    0 0 10px rgb(175, 2, 175),
+    0 0 20px rgb(175, 2, 175),
+    0 0 40px rgb(175, 2, 175),
+     }
 
 .container{
     display: flex;
@@ -123,14 +119,11 @@ font-family: "Poppins", sans-serif;
 color: #0e2431;
 color: rgb(0, 0, 0);
     text-shadow:
-    0 0 5px rgb(255, 142, 160),
-    0 0 10px rgb(255, 126, 147),
-    0 0 20px rgb(255, 128, 149),
-    0 0 40px rgb(255, 85, 113),
-    0 0 80px  pink,
-    0 0 90px pink,
-    0 0 100px pink,
-    0 0 150px pink;
+    0 0 5px rgb(175, 2, 175),
+    0 0 10px rgb(175, 2, 175),
+    0 0 20px rgb(175, 2, 175),
+    0 0 40px rgb(175, 2, 175),
+  
   }
 .container{
   font-family: "Poppins", sans-serif;
@@ -161,7 +154,7 @@ p {
   font-style: normal;
 }
 .ul .nav-link:hover {
-  color: rgb(255, 85, 113);
+  color: rgb(175, 2, 175);
   font-size: 20px;
   font-weight: 400;
   font-family: "Poppins", sans-serif;
@@ -193,7 +186,7 @@ p {
   padding-bottom: 30%;
   position: relative;
   height: 500px;
-  box-shadow: 2px 2px 10px 2px pink;
+  box-shadow: 2px 2px 10px 2px plum;
 }
 
 .map-responsive iframe {

@@ -64,7 +64,8 @@ def Login_view(request):
                 messages.info(request, 'Login Success')
                 return redirect('homepage')
             else:
-                return redirect('/')
+                print("Hello")
+                return redirect('pricing')
         else:
             messages.info(request, 'Invalid username/password')
 

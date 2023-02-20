@@ -1,0 +1,27 @@
+{% extends 'website/index.html' %}
+
+{% block content %}
+<section style="margin-top: 150px;">
+    <h1 class="text-center mt-5">Bookings</h1>
+    <table class="table mt-3" style="width: 90%; margin: auto; margin-bottom: 50px;">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Services</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in userBookings %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{i.name}}</td>
+                <td>{{i.total_payment}}</td>
+                <td>{{i.datentime}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock content %}

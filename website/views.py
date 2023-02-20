@@ -6,6 +6,7 @@ from Booking.forms import BookingModelForm, ProductCatForm, ProductForm
 from Booking.models import BookingModel, ProductModel, ProductCat
 from django.http import JsonResponse, HttpResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -710,14 +711,16 @@ def NailExtensionView(request):
     context = {'prods':prods, 'form': form, 'nail': nail, 'cat':cats}
     return render(request, 'website/Nailextension.html', context)
 
-
+@login_required
 def CartAndBooking(request):
     allitems = CartItem.objects.all()
     form = CartBookingForm()
     lenofcart = len(allitems)
     s = 0
-    for i in allitems:
+    items = CartItem.objects.filter(foruser = request.user.id)
+    for i in items:
         s += i.price
+
     if request.method == "POST":
         form = CartBookingForm(request.POST)
         name = request.POST.get('name')
@@ -725,11 +728,7 @@ def CartAndBooking(request):
         email = request.POST.get('email')
         services = request.POST.getlist('services')
         total_payment = request.POST.get('total_payment')
-        print('name: ', name)
-        print('phone: ', phone)
-        print('email: ', email)
-        print('services: ', services)
-        print('total_payment: ', total_payment)
+
         if form.is_valid():
             form.save()
             print("Form Saved")
@@ -743,7 +742,24 @@ def CartAndBooking(request):
 def DocumentsPage(request):
     return render(request, 'website/Documents.html')
 
-def DelBooking(request, id):
-    item = CartItem.objects.get(id=id)
-    item.delete()
+def DelBooking(request):
+    if request.method == "POST":
+        foruser = request.POST.get('foruser')
+        print("foruser: ", foruser)
+        print("User: ", request.user)
+
+        item = CartItem.objects.filter(foruser=foruser)
+        print("Item: ", item)
+        for i in item:
+            i.delete()
+        print("All Item Deleted")
     return redirect('cart')
+
+
+@login_required
+def ShowUsersBookings(request):
+    usersBooking = CartBookingModel.objects.filter(foruser=request.user.id)
+    for i in usersBooking:
+        print(i)
+    context = {'userBookings': usersBooking}
+    return render(request, 'Booking/show_users_booking.html', context)

@@ -18,11 +18,11 @@
   <div class="main mx-auto">
     <div class="box">
       <img src="{% static 'images/bride.jpg' %}" alt="Dermalogica Treatments" class="img-fluid" />
-      <h1 class="left mx-auto" style="color: rgb(255, 101, 127); text-shadow: 2px 2px 2px black;">{{makeup.name}}</h1>
+      <h1 class="left mx-auto" style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{makeup.name}}</h1>
     </div>
 
     <div class="rectangle mt-4 bg-light" data-aos="fade-up" data-aos-duration="3000">
-      <h1  style="color: rgb(255, 101, 127); text-shadow: 2px 2px 2px black;">{{makeup.dermahead1}}</h1>
+      <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{makeup.dermahead1}}</h1>
       <p class="text">
         {{makeup.derma1}}
       </p>
@@ -39,40 +39,17 @@
           ">
         <div class="row">
           <div class="col-sm-6">
-            <!-- <li>Practice Trial Run for make Up</li>
-            <li>Optional False Eyelashes</li>
-            <li>Full Consultation With Our Beauty Therapist</li>
-            <li>Skin Analysis With Full Skin Care Advice</li>
-            <li>Dermalogica Samples</li>
-            <li>Beauty Maintenance Pack</li>
-            <li>Dermalogica Facial To Suit Your Skin Type</li>
-            <li>Hand And Arm Massage</li>
-            <li>Head, Neck and Shoulder Massage</li> -->
-
             {{makeup.derma2|safe}}
           </div>
           <div class="col-sm-6">
-            <!-- <li>Revital Eye Treatments</li>
-            <li>Eyebrow make over (wax & tint)</li>
-            <li>Eye Lash Tint</li>
-            <li>Luxury Manicure</li>
-            <li>Luxury Pedicure</li>
-            <li>Perfect French Polish</li>
-            <li>Make up on the day</li>
-            <li>Pampering Hand Massage</li>
-            <li>
-              Gentle face cleanse, tone and<br />
-              moisturize to suit your skin tone on the day
-            </li> -->
-
             {{makeup.derma3|safe}}
           </div>
         </div>
       </ul>
     </div>
-    <hr style="border: 1px solid rgb(255, 101, 127)" />
+    <hr style="border: 1px solid rgb(175, 2, 175)," />
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-      <h1  style="color: rgb(255, 101, 127); text-shadow: 2px 2px 2px black;">{{makeup.dermahead2}}</h1>
+      <h1 style="color: rgb(175, 2, 175),; text-shadow: 2px 2px 2px black;">{{makeup.dermahead2}}</h1>
       <p class="text">
         {{makeup.derma4}}
       </p>
@@ -84,15 +61,6 @@
             text-align: center;
             margin-left: -50px;
           ">
-        <!-- <li>French pleat</li>
-        <li>Buns</li>
-        <li>Chignon</li>
-        <li>Blow dry or straightening</li>
-        <li>Curls in all forms</li>
-        <li>Barrel curls</li>
-        <li>Hair extensions</li>
-        <li>Hair pieces</li> -->
-
         {{makeup.derma5|safe}}
       </ul>
 
@@ -101,4 +69,4 @@
       </div>
     </div>
   </div>
-{% endblock content %}
+  {% endblock content %}

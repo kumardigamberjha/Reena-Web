@@ -12,7 +12,8 @@
     #save {
         display: none;
     }
-    #paypal-button-container{
+
+    #paypal-button-container {
         display: none;
     }
 </style>
@@ -39,7 +40,8 @@
                                 <label for="name" class="form-label mt-3 text-center"><i
                                         class="fa-solid fa-person mx-2"></i>Your
                                     Name</label>
-                                <input type="text" id="name" name="name" class="form-control" required>
+                                <input type="text" id="name" name="name" class="form-control" value="{{user.username}}"
+                                    required>
                             </div>
                             <div class="col-md-6" id="phonecon">
                                 <label for="phone" class="form-label mt-3 text-center"><i
@@ -49,9 +51,10 @@
                             <div class="col-md-12">
                                 <label for="email" class="form-label mt-3 text-center"><i
                                         class="fa-solid fa-address-book mx-2"></i>Email</label>
-                                <input type="text" name="email" id="email" class="form-control" required>
+                                <input type="text" name="email" id="email" class="form-control"
+                                    value="{{user.email}}" required>
                             </div>
-                            <div class="col-md-12" id="datentimes">
+                            <div class="col-md-12 mb-3" id="datentimes">
                                 <label for="datentime" class="form-label mt-3 text-center"><i
                                         class="fa-solid fa-address-book mx-2"></i>datentime</label>
                                 <input type="datetime" name="datentime" id="datentime" class="form-control" required>
@@ -60,7 +63,7 @@
                             </div>
                             <input type="hidden" id="total_amount"></input>
                             <input type="hidden" name="total_payment" id="total_payment" value="{{total}}">
-
+                            <input type="hidden" name="foruser" value="{{user.id}}"></input>
                             <input type="hidden" name="username" id="paymentstatus">
                         </div>
                     </div>
@@ -73,21 +76,22 @@
                                 </h4>
                                 <ol class="list-group list-group-numbered">
                                     {% for i in allitems %}
+                                    {% if i.foruser.username == user.username %}
                                     <li class="list-group-item d-flex justify-content-between align-items-start">
                                         <div class="ms-2 me-auto">
-                                            <div class="fw-bold"><input type="hidden" name="services" value="{{i.id}}"></div>
+                                            <div class="fw-bold"><input type="hidden" name="services" value="{{i.id}}">
+                                            </div>
                                             <div class="fw-bold">{{i.name}}</div>
                                             £{{i.price}}
                                         </div>
                                         <span class="badge bg-primary rounded-pill">1</span>
-                                        <a href="{% url 'delbookingcart' i.id %}" style="margin-left: 15px;"><i class="fa-solid fa-trash"></i></a>
-
+                                        <a href="" style="margin-left: 15px;"><i class="fa-solid fa-trash"></i></a>
                                     </li>
+                                    {% endif %}
                                     {% endfor %}
                                     <li class="list-group-item d-flex justify-content-between align-items-start">
                                         <div class="ms-2 me-auto">
                                             <div class="fw-bold"><strong style="font-size: 1.4rem;">Total</strong></div>
-
                                         </div>
                                         <span class=""><strong
                                                 style="font-size: 1.4rem; margin-left: 35px;">£{{total}}</strong></span>
@@ -126,6 +130,7 @@
                                 function submitform() {
                                     document.getElementById("bookingform").submit();
                                     alert('test');
+                                    DelData()
                                 }
                             });
                         }
@@ -140,12 +145,31 @@
     </div>
 
     <script>
-        
-            $("#datentime").on("change paste keyup", function () {
-                $('#paypal-button-container').css('display', 'block')
-            });
+
+        $("#datentime").on("change paste keyup", function () {
+            $('#paypal-button-container').css('display', 'block')
+        });
         // }
     </script>
+
+    <script>
+        function DelData() {
+            let x = "{{user.id}}";
+            console.log("HEllo Coding")
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'delbookingcart' %}",
+                data: { 'foruser': "{{user.id}}", 'csrfmiddlewaretoken': "{{csrf_token}}" },
+                success: function (data) {
+                    console.log("{{user.id}} + {{user.username}}");
+                },
+                error: function (error) {
+
+                }
+            })
+        }
+    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

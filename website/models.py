@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class ContactUsPage(models.Model):
     name = models.CharField(max_length=150)
@@ -15,6 +15,7 @@ class ContactUsPage(models.Model):
 class CartItem(models.Model):
     name = models.CharField(max_length=100)
     price = models.IntegerField()
+    foruser = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -26,7 +27,7 @@ class CartBookingModel(models.Model):
     datentime = models.DateTimeField()
     total_payment = models.CharField(max_length=20)
     services = models.ManyToManyField(CartItem)
-    username = models.CharField(max_length=35)
+    foruser = models.ForeignKey(User, on_delete=models.CASCADE)
     BookingTime = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

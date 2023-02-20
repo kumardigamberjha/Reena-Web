@@ -206,7 +206,7 @@ def ShowProductCategoryModel(request):
     context = {}
     return render(request, "Booking/show_prod_cat.html", context)
 
-
+@login_required
 def ViewBookingModelData(request, id):
     data = CartBookingModel.objects.get(id=id)
     total = 0

@@ -34,7 +34,7 @@
    margin: 4px;
 }
 .nav-item .nav-link:hover {
-  text-decoration: 2px underline pink;
+  text-decoration: 2px underline purple;
   text-underline-position: under;
 }
 .dropdown-divider{
@@ -47,8 +47,8 @@
   font-family: "Poppins", sans-serif;
 }
 .dropdown-menu  .dropdown-item:hover{
- background-color: black;
- color: pink;
+  background-color: rgb(192, 192, 192);
+ color: purple;
  text-align: center;
  font-family: "Poppins", sans-serif;
 }

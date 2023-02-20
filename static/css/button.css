@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 .button{
-    border: 2px solid black;
+    border: 2px solid purple;
     padding: 10px 40px 10px;
     text-align: center;
     background-color: white;
@@ -15,6 +15,6 @@ html{
   } 
 .button:hover{
     color:white;
-    background-color: black;
+    background-color: plum;
     cursor: pointer;
 }

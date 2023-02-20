@@ -8,147 +8,14 @@
 
 {% block content %}
 
-{% block modal %}
-<div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header" style="color: lightcoral">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel"
-          style="color: black; font-size: 20px; font-weight: 500; text-align: left; ">
-          <i class="fa-solid fa-calendar-check" style="color: lightcoral; font-size: 1.2em"></i>
-          Book Appointment
-        </h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="main mx-auto mt-3">
-          <div class="container bg-light" style="
-            box-shadow: 2px 2px 2px lightcoral;
-            border-radius: 10px;
-          ">
-            <div class="row g-3">
-              <form method="POST" action="" id="bookingform">
-                {% csrf_token %}
-                <div class="col-sm-12">
-                  <div class="container-fluid">
-                    <label for="formGroupExampleInput" class="form-label mt-3"
-                      style="color: black; font-size: 20px; font-weight: 500; text-align: left; ">
-                      <i class="fa-solid fa-user mx-2" style="color: lightcoral; font-size: 1.2em"></i>Name</label>
-                  </div>
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" />
-
-                  <div class="container-fluid">
-                    <label for="Phone Number" class="form-label mt-3 mx-auto"
-                      style="color: black; font-size: 20px; font-weight: 500; text-align: left; ">
-                      <i class="fa-solid fa-phone mx-2" style="color: lightcoral; font-size: 1.2em"></i>
-                      Phone Number</label>
-                  </div>
-                  <input type="tel" id="phone" placeholder="Phone Number" name="phone" class="form-control"
-                    style="width: 100%" />
-                </div>
-
-                <div class="row">
-                  <div class="mt-2 col-md-12" id="id_servicescon">
-                    <p class="form-label mt-3"
-                      style="color: black; font-size: 20px; font-weight: 500; text-align: left; ">
-                      <i class="fa-solid fa-spa mx-2" style="color: lightcoral;"></i>Search For Multiple Service
-                    </p>
-                    <select name="services" id="id_services" class="p-2 selectpicker" multiple="multiple" data-live-search="true"
-                      style="border: 1px solid lightcoral; width: 100%; padding-bottom: 20px; border: 1px solid black; ">
-                      {% for i in cat %}
-                      <optgroup label="{{i.name}}">
-                          {% for pro in prods %}
-                          {% if pro.cat.name == i.name %}
-                      <option value="{{pro.id}}">
-                        {{pro.name}} - &#163;{{pro.price}}</option>
-                        {% endif %}
-                      {% endfor %}
-                    </optgroup>
-                      {% endfor %}
-
-                    </select>
-                    <input type="hidden" id="total_amount"></input>
-                    <input type="hidden" name="total_payment" id="total_payment"></input>
-                  </div>
-                </div>
-
-                <div class="container text-center mx-auto">
-                  <label for="datetime-local" class="form-label mt-3">Select Date and Time</label>
-                  <input type="datetime-local" class="form-control mx-auto" name="datentime" id="datentime"
-                    placeholder="Select Date and Time" style="
-                    border-radius: 0;
-                    text-align: center;
-                    width: 50%;
-                  " />
-                </div>
-                <div class="container text-center mt-3">
-                  <input type="hidden" name="timeslot" id="timeslot"
-                    style="text-align: center; border: none; margin-top: 5px; background-color: transparent; pointer-events: none;" />
-                </div>
-                <input type="hidden" name="payment_status" id="paymentstatus">
-
-                <!-- <div id="paypal-button-container"></div> -->
-                <div id="paypal-button-container" style="width: 50%; margin:auto; margin-bottom: 25px;"></div>
-                <script
-                  src="https://www.paypal.com/sdk/js?client-id=AWFL7YRuIbPx-nbOh0-l8K8yxbOKsaaIzjSC4NMMJEcR3el2R0hEjF26UrosJAx7f9R-QQEXMgb_LT7u&currency=USD"></script>
-
-                <script>
-
-                  paypal.Buttons({
-                    // Sets up the transaction when a payment button is clicked
-                    createOrder: (data, actions) => {
-                      var amountt = document.getElementById("total_amount").value;
-                      return actions.order.create({
-                        purchase_units: [{
-                          amount: {
-                            value: amountt
-                          }
-                        }]
-                      });
-                    },
-                    // Finalize the transaction after payer approval
-                    onApprove: (data, actions) => {
-                      let amounttt = document.getElementById("total_amount").value;
-
-                      return actions.order.capture().then(function (orderData) {
-                        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-                        const transaction = orderData.purchase_units[0].payments.captures[0];
-                        alert(`Payment has been Done`)
-                        $('#paymentstatus').val("PaymentisDonecheckit");
-                        $('#total_payment').val(amounttt);
-                        // Listen for the payment.success event
-
-                        submitform()
-                        function submitform() {
-                          document.getElementById("bookingform").submit();
-                          alert('test');
-                        }
-                      });
-                    }
-                  }).render('#paypal-button-container');
-                </script>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <input type="submit" value="Book" id="save" style="display: none;">
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-{% endblock modal %}
-
 {% load static %}
   <div class="main mx-auto">
     <div class="box">
 
       <img src="{% static 'images/aboutus1.jpg' %}" class="img-1 img-fluid">
       <div class="container-fluid mx-auto">
-        <h1 class="left mx-auto mt-2" data-aos="fade-up" data-aos-duration="3000">ABOUT US</h1>
-        <p class="small-left mx-auto mt-1" data-aos="fade-up" data-aos-duration="3000">{{about.about1}}
+        <h1 class="left mx-auto mt-2">ABOUT US</h1>
+        <p class="small-left mx-auto mt-1">{{about.about1}}
         </p>
       </div>
     </div>
@@ -162,7 +29,7 @@
         </p>
       </div>
     </div>
-    <hr class="neon" style="border: 5px solid rgb(255, 238, 0)">
+    <hr class="neon" style="border: 5px solid rgb(175,2,175); ">
 
     <div class="container-fluid bg-light mt-5">
       <div class="row g-5">
@@ -178,7 +45,7 @@
               class="img-5 img-fluid mt-0 mb-4"></a>
         </div>
 
-        <hr class="neon" style="border: 1px solid rgb(255, 238, 0)">
+        <hr class="neon" style="border: 1px solid rgb(175,2,175); ">
 
         <div class="col-sm-6 text-center" data-aos="fade-up" data-aos-duration="3000">
           <img src="{% static 'images/aboutus3.jpg' %}" alt="ipl" class="img-5 img-fluid mt-0 mb-4">
@@ -189,7 +56,7 @@
             <a href="{% url 'iplview' %}"><button class="button mt-2 text-center" type="submit">KNOW MORE</button></a>
         </div>
 
-        <hr style="border: 5px solid rgb(255, 238, 0)">
+        <hr style="border: 5px solid rgb(175,2,175); ">
 
         <div class="col-sm-6 text-center" data-aos="fade-up" data-aos-duration="3000">
           <h2 class="neon mb-4 mt-5">Massage Therapy</h1>
@@ -202,7 +69,7 @@
           <img src="{% static 'images/aboutus4.jpg' %}" alt="massage" class="img-5 img-fluid mt-0 mb-4">
         </div>
 
-        <hr style="border: 5px solid rgb(255, 238, 0)">
+        <hr style="border: 5px solid rgb(175,2,175); ">
 
         <div class="col-sm-6" data-aos="fade-up" data-aos-duration="3000">
           <img src="{% static 'images/aboutus5.jpg' %}" alt="threading" class="img-5 img-fluid mt-0 mb-5">

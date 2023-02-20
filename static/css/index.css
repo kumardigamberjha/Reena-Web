@@ -52,7 +52,7 @@ body{
     font-family: "Poppins", sans-serif;
  }
 .dropdown-menu  .dropdown-item:hover{
-   background-color: rgb(192, 192, 192);
+    background-color: rgb(192, 192, 192);
    color: purple;
    font-weight: 500;
    text-align: center;
