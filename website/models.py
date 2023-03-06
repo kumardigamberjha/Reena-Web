@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from jsonfield import JSONField
 
 class ContactUsPage(models.Model):
     name = models.CharField(max_length=150)
@@ -24,9 +25,10 @@ class CartItem(models.Model):
 class CartBookingModel(models.Model):
     name = models.CharField(max_length=75)
     phone = models.CharField(max_length=15, blank=True, null=True)
+    email = models.EmailField()
     datentime = models.DateTimeField()
     total_payment = models.CharField(max_length=20)
-    services = models.ManyToManyField(CartItem)
+    services = models.JSONField(default=list)
     foruser = models.ForeignKey(User, on_delete=models.CASCADE)
     BookingTime = models.DateTimeField(auto_now_add=True)
 

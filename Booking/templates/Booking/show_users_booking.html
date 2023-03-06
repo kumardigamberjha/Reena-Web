@@ -7,18 +7,20 @@
         <thead class="table-dark">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Name</th>
+                <th scope="col">Date of Appointment</th>
                 <th scope="col">Total Price</th>
-                <th scope="col">Services</th>
+                <th scope="col">Date of Booking</th>
+                <th scope="col">Options</th>
             </tr>
         </thead>
         <tbody>
-            {% for i in userBookings %}
+            {% for i in arr %}
             <tr>
                 <th scope="row">{{forloop.counter}}</th>
-                <td>{{i.name}}</td>
+                <td>{{i.BookingTime}}</td>
                 <td>{{i.total_payment}}</td>
                 <td>{{i.datentime}}</td>
+                <td><a href="{% url 'view_booking_data' i.id %}">Click To View</a></td>
             </tr>
             {% endfor %}
         </tbody>

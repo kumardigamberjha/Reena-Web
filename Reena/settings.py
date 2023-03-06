@@ -69,9 +69,9 @@ CKEDITOR_CONFIGS = {
 DATABASES = {  
    'default': {  
        'ENGINE': 'django.db.backends.mysql',  
-       'NAME': 'reena',  
+       'NAME': 'reena', 
+       'PASSWORD':'dj@jha1011', 
        'USER': 'root',  
-       'PASSWORD': 'dj@jha1011',  
        'HOST': '127.0.0.1',  
        'PORT': '3306',  
    }  
@@ -200,7 +200,7 @@ USE_TZ = True
 import os
 
 LOGIN_URL = 'login'
-# LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -221,3 +221,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "kumardigamberjha@gmail.com"
+EMAIL_HOST_PASSWORD = "zcfqvjoazsvfdsuz"
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

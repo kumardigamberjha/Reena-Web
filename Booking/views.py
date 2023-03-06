@@ -7,6 +7,7 @@ from django.core import serializers
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
 import datetime
+import json
 
 @login_required
 def AddProductCat(request):
@@ -210,9 +211,13 @@ def ShowProductCategoryModel(request):
 def ViewBookingModelData(request, id):
     data = CartBookingModel.objects.get(id=id)
     total = 0
-    for i in data.services.all():
-        total += i.price
-    context = {'data': data, 'total': total}
+    arr = []
+    services = []
+    somedata = json.loads(data.services)
+    
+    print("somedata: ", somedata)
+
+    context = {'data': data, 'total': total, 'somedata': somedata, 'services': services}
     return render(request, "Booking/viewBooking.html", context)
 
 

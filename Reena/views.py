@@ -9,7 +9,7 @@ from Reena import settings
 from django.contrib.auth.models import User
 from datetime import date
 from django.core import serializers
-
+import random
 
 
 ######################## SignUp Views ##########################
@@ -48,6 +48,8 @@ def Login_view(request):
     if request.method == "POST":
         email = request.POST.get('email')
         password = request.POST.get('password')
+        otp = random.randint(111111, 999999)
+        print("OTP: ", otp)
         try:
             username = User.objects.get(email=email).username
             print("Username: ", username)
@@ -76,6 +78,7 @@ def Login_view(request):
 def Logout_view(request):
     logout(request)
     return redirect('login')
+
 
 
 def GetUsername(request):

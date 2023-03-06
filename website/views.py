@@ -6,9 +6,13 @@ from Booking.forms import BookingModelForm, ProductCatForm, ProductForm
 from Booking.models import BookingModel, ProductModel, ProductCat
 from django.http import JsonResponse, HttpResponse
 from django.contrib import messages
+import json
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from Reena.settings import EMAIL_HOST_USER
+import random
 
 def Index(request):
     prods = ProductModel.objects.all()
@@ -183,9 +187,11 @@ def Pricing(request):
     form = CartForm()
     if request.method == "POST":
         name = request.POST.get('name')
+        foruser = request.POST.get('foruser')
+
         form = CartForm(request.POST)
         print("Name: ", name)
-        if not CartItem.objects.filter(name=name).exists():
+        if not CartItem.objects.filter(name=name, foruser=foruser).exists():
             if form.is_valid():
                 s = form.save()
                 s.save()
@@ -684,7 +690,7 @@ def NailExtensionView(request):
         name = request.POST.get('name')
         phone = request.POST.get('phone')
         total_payment = request.POST.get('total_payment')
-
+        
         if payment_status == "PaymentisDonecheckit":
             if BookingModel.objects.filter(datentime=datentime).exists():
                 response = JsonResponse({"error": form.errors})
@@ -711,9 +717,10 @@ def NailExtensionView(request):
     context = {'prods':prods, 'form': form, 'nail': nail, 'cat':cats}
     return render(request, 'website/Nailextension.html', context)
 
+
 @login_required
 def CartAndBooking(request):
-    allitems = CartItem.objects.all()
+    allitems = CartItem.objects.filter(foruser=request.user)
     form = CartBookingForm()
     lenofcart = len(allitems)
     s = 0
@@ -726,14 +733,16 @@ def CartAndBooking(request):
         name = request.POST.get('name')
         phone = request.POST.get('phone')
         email = request.POST.get('email')
-        services = request.POST.getlist('services')
+        someuser = request.POST.get('foruser')
+        foruser = User.objects.get(id=someuser)
+        datentime = request.POST.get('datentime')
+        se = request.POST.getlist('services')
         total_payment = request.POST.get('total_payment')
-
-        if form.is_valid():
-            form.save()
-            print("Form Saved")
-        else:
-            print("Not Saved: ", form.errors)
+        services = json.dumps(se)
+        print("Services: ", services)
+        booking = CartBookingModel(name=name,phone=phone, email=email, datentime=datentime, total_payment=total_payment, services=services, foruser=foruser)
+        booking.save()
+        print("Value Saved")
 
     context={'allitems':allitems, 'total': s, 'length':lenofcart}
     return render(request, 'website/checkoutpage.html', context)
@@ -742,12 +751,18 @@ def CartAndBooking(request):
 def DocumentsPage(request):
     return render(request, 'website/Documents.html')
 
-def DelBooking(request):
+
+def DelCartBooking(request, id):
+    item = CartItem.objects.get(id=id)
+    item.delete()
+    print("Item Deleted")
+    return redirect('cart')
+
+
+def DelAllBooking(request):
     if request.method == "POST":
         foruser = request.POST.get('foruser')
-        print("foruser: ", foruser)
-        print("User: ", request.user)
-
+        
         item = CartItem.objects.filter(foruser=foruser)
         print("Item: ", item)
         for i in item:
@@ -759,7 +774,22 @@ def DelBooking(request):
 @login_required
 def ShowUsersBookings(request):
     usersBooking = CartBookingModel.objects.filter(foruser=request.user.id)
+    arr = []    
     for i in usersBooking:
-        print(i)
-    context = {'userBookings': usersBooking}
+        arr.append(i)
+    print("Arr: ", arr)
+
+    context = {'userBookings': usersBooking, 'arr': arr}
     return render(request, 'Booking/show_users_booking.html', context)
+
+
+
+def ForgetPassword(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        print("Email: ", email)
+
+    # otp = random.randint(111111, 999999)
+    # print("OTP: ", otp)
+    context = {}
+    return render(request, 'website/forgetPassword.html', context)

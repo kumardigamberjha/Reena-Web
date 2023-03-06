@@ -79,13 +79,13 @@
                                     {% if i.foruser.username == user.username %}
                                     <li class="list-group-item d-flex justify-content-between align-items-start">
                                         <div class="ms-2 me-auto">
-                                            <div class="fw-bold"><input type="hidden" name="services" value="{{i.id}}">
+                                            <div class="fw-bold"><input type="hidden" name="services" value="{{i.name}}">
                                             </div>
                                             <div class="fw-bold">{{i.name}}</div>
                                             £{{i.price}}
                                         </div>
-                                        <span class="badge bg-primary rounded-pill">1</span>
-                                        <a href="" style="margin-left: 15px;"><i class="fa-solid fa-trash"></i></a>
+                                        <!-- <span class="badge bg-primary rounded-pill">1</span> -->
+                                        <a href="{% url 'delbookingcart' i.id %}" style="margin-left: 15px;"><i class="fa-solid fa-trash"></i></a>
                                     </li>
                                     {% endif %}
                                     {% endfor %}
@@ -158,7 +158,7 @@
             console.log("HEllo Coding")
             $.ajax({
                 type: 'POST',
-                url: "{% url 'delbookingcart' %}",
+                url: "{% url 'delallbookingcart' %}",
                 data: { 'foruser': "{{user.id}}", 'csrfmiddlewaretoken': "{{csrf_token}}" },
                 success: function (data) {
                     console.log("{{user.id}} + {{user.username}}");

@@ -59,9 +59,9 @@
 				<span>or use your e-mail account</span>
 				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="password" placeholder="Password" />
-				<a href="#">Forgot your password?</a>
+				<a href="{% url 'forgetpassword' %}">Forgot your password?</a>
 				<input type="submit" value="Submit" style="cursor: pointer;">
-				<a href="{% url 'pricing' %}">Book An Appointment as a Guest</a>
+				<!-- <a href="{% url 'pricing' %}">Book An Appointment as a Guest</a> -->
 			</form>
 		</div>
 		<div class="overlay-container">

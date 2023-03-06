@@ -24,9 +24,12 @@ urlpatterns = [
     # path('Checkoutpage/', views., name="cart"),
 
     path('Cart/', views.CartAndBooking, name="cart"),
-    path('DelBookingCartItem/', views.DelBooking, name="delbookingcart"),
+    path('DelAllBookingCartItems/', views.DelAllBooking, name="delallbookingcart"),
+    path('DelBookingCartItem/<int:id>/', views.DelCartBooking, name="delbookingcart"),
 
     path('Documents/', views.DocumentsPage, name="documents"),
+    path('ForgetPassword/', views.ForgetPassword, name="forgetpassword"),
+
     path('ShowUsersBooking/', views.ShowUsersBookings, name="user_bookings"),
 
 ]
