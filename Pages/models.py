@@ -3,10 +3,17 @@ from ckeditor.fields import RichTextField
 
 class Homepage(models.Model):
     name=models.CharField(max_length=30)
+    head1 = models.TextField()
+    head2 = models.TextField()
+    head3 = models.TextField()
+    head4 = models.TextField()
+
     home1 = models.TextField()
     home2 = models.TextField()
-    home3 = models.TextField()
-    home4 = models.TextField()
+    # home3 = models.TextField()
+    home3 = RichTextField()
+
+    # home4 = models.TextField()
 
     def __str__(self):
         return self.name

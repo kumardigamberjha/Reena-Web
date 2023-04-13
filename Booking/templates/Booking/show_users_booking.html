@@ -19,7 +19,7 @@
                 <th scope="row">{{forloop.counter}}</th>
                 <td>{{i.BookingTime}}</td>
                 <td>{{i.total_payment}}</td>
-                <td>{{i.datentime}}</td>
+                <td>{{i.date}} {{i.time}}</td>
                 <td><a href="{% url 'view_booking_data' i.id %}">Click To View</a></td>
             </tr>
             {% endfor %}

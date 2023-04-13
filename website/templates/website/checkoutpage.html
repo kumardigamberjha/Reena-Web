@@ -6,15 +6,33 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 <link href="{% static 'css/aboutus.css' %}" rel="stylesheet" />
+
+<link href="{% static 'build/css/demo.css' %}" rel="stylesheet" />
+<link href="{% static 'build/css/intlTelInput.css' %}" rel="stylesheet" />
 
 <style>
     #save {
         display: none;
     }
 
+    #timeslots {
+        display: none;
+    }
+
     #paypal-button-container {
         display: none;
+    }
+    .radiocss{
+        color: pink;
+        border-bottom: 1px solid red;
+    } 
+    input[type="radio"]{
+        /* color: red; */
+        padding-top: 15px;
     }
 </style>
 {% endblock csslink %}
@@ -51,16 +69,89 @@
                             <div class="col-md-12">
                                 <label for="email" class="form-label mt-3 text-center"><i
                                         class="fa-solid fa-address-book mx-2"></i>Email</label>
-                                <input type="text" name="email" id="email" class="form-control"
-                                    value="{{user.email}}" required>
+                                <input type="text" name="email" id="email" class="form-control" value="{{user.email}}"
+                                    required>
                             </div>
                             <div class="col-md-12 mb-3" id="datentimes">
-                                <label for="datentime" class="form-label mt-3 text-center"><i
-                                        class="fa-solid fa-address-book mx-2"></i>datentime</label>
-                                <input type="datetime" name="datentime" id="datentime" class="form-control" required>
+                                <label for="datentime" class="form-label mt-3">
+                                    <div class="container mx-auto">
+                                    <i class="fa-solid fa-address-book mx-2"></i>Date</label>
+                                <input type="date" name="date" id="date" class="form-control text-center" style="width: 70%;" required>
                             </div>
+                            </div>
+
+                            <div id="radio-buttons" style="border: 1px solid black; background-color: white; width: 100%;" class="row">
+                             
+                            </div>
+                            <!-- <div class="col-md-12 mb-3" id="timeslots">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="time" id="10" value="10:00:00"
+                                        onclick="getRadioValue()">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        10 AM
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="time" id="11" value="11:00:00"
+                                        onclick="getRadioValue()">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        11 AM
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="time" id="12" value="12:00:00"
+                                        onclick="getRadioValue()">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        12 PM
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="time" id="01" value="01:00:00"
+                                        onclick="getRadioValue()">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        01 PM
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="time" id="02" value="02:00:00"
+                                        onclick="getRadioValue()">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        02 PM
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="time" id="03" value="03:00:00"
+                                        onclick="getRadioValue()">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        03 PM
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="time" id="04" value="04:00:00"
+                                        onclick="getRadioValue()">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        04 PM
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="time" id="05" value="05:00:00"
+                                        onclick="getRadioValue()">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        05 PM
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="time" id="06" value="06:00:00"
+                                        onclick="getRadioValue()">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        06 PM
+                                    </label>
+                                </div>
+                            </div> -->
                             <div id="paypal-button-container" style="width: 50%; margin:auto; margin-top: 25px;">
                             </div>
+                            <input type="hidden" id="time" name="time" />
+
                             <input type="hidden" id="total_amount"></input>
                             <input type="hidden" name="total_payment" id="total_payment" value="{{total}}">
                             <input type="hidden" name="foruser" value="{{user.id}}"></input>
@@ -79,13 +170,15 @@
                                     {% if i.foruser.username == user.username %}
                                     <li class="list-group-item d-flex justify-content-between align-items-start">
                                         <div class="ms-2 me-auto">
-                                            <div class="fw-bold"><input type="hidden" name="services" value="{{i.name}}">
+                                            <div class="fw-bold"><input type="hidden" name="services"
+                                                    value="{{i.name}}">
                                             </div>
                                             <div class="fw-bold">{{i.name}}</div>
                                             £{{i.price}}
                                         </div>
                                         <!-- <span class="badge bg-primary rounded-pill">1</span> -->
-                                        <a href="{% url 'delbookingcart' i.id %}" style="margin-left: 15px;"><i class="fa-solid fa-trash"></i></a>
+                                        <a href="{% url 'delbookingcart' i.id %}" style="margin-left: 15px;"><i
+                                                class="fa-solid fa-trash"></i></a>
                                     </li>
                                     {% endif %}
                                     {% endfor %}
@@ -101,9 +194,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="container text-center mt-3">
+                    <input type="hidden" name="timeslot" id="timeslot"
+                        style="text-align: center; border: none; margin-top: 5px; background-color: transparent; pointer-events: none;" />
+                </div>
 
                 <script
                     src="https://www.paypal.com/sdk/js?client-id=AWFL7YRuIbPx-nbOh0-l8K8yxbOKsaaIzjSC4NMMJEcR3el2R0hEjF26UrosJAx7f9R-QQEXMgb_LT7u&currency=USD"></script>
+
 
                 <script>
 
@@ -146,10 +244,33 @@
 
     <script>
 
-        $("#datentime").on("change paste keyup", function () {
-            $('#paypal-button-container').css('display', 'block')
+        config = {
+            enableTime: false,
+            dateFormat: "Y-m-d",
+            minDate: "today",
+            disable: [
+                function (date) {
+                    // return true to disable
+                    return date.getDay() === 0 || date.getDay() === 1;
+                },
+            ],
+            locale: {
+                firstDayOfWeek: 2, // start week on Monday
+            },
+        };
+        flatpickr("input[type=date]", config);
+    </script>
+
+
+    <script>
+
+        $("#date").on("change paste keyup", function () {
+            $('#timeslots').css('display', 'block')
         });
-        // }
+        // $("#timeslots").on("change paste keyup", function () {
+        //     $('#paypal-button-container').css('display', 'block')
+        // });
+
     </script>
 
     <script>
@@ -168,8 +289,124 @@
                 }
             })
         }
+
+
+        // ################## CHECK FOR TIME AND DATE
+        // $('input[name="time"]').change(function () {
+        $('#date').change(function () {
+            let date = $('#date').val()
+            // var time = document.querySelector('input[name="time"]');
+            // var time = $('#time').val();
+
+
+            console.log("C: ", date)
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'get_booking_datentime' %}",
+                data: { 'date': date, 'csrfmiddlewaretoken': "{{csrf_token}}" },
+                success: function (data) {
+                    console.log("Something: ", data['amount'], data['times'])
+                    console.log(data['times'])
+                    console.log(typeof data['times'])
+                    const somedata = JSON.parse(data['times']);
+                    const names = somedata.map(item => item.fields.name);
+                    console.log("Names: ", names);
+                    const radioButtonsContainer = document.getElementById("radio-buttons");
+
+                    radioButtonsContainer.innerHTML = '';
+
+                    names.forEach(name => {
+                        const radioButton = document.createElement("input");
+                        radioButton.type = "radio";
+                        radioButton.name = "timings";
+                        radioButton.value = name;
+                        radioButton.classList.add("col-md-6", "radiocss");
+                        radioButton.onclick = function getRadioValue() {
+                            // var radioButton = document.querySelector('input[name="timing"]:checked');
+                            // var radioValue = radioButton.value;
+                            console.log("radio Value: ", this.value)
+                            if (this.value == "10 AM") {
+                                console.log("10 AM DONE")
+                                $('#time').val(1)
+                            }
+                            if (this.value == "11 AM") {
+                                console.log("11 AM DONE")
+                                $('#time').val(2)
+                            }
+                            if (this.value == "12 PM") {
+                                console.log("12 PM DONE")
+                                $('#time').val(3)
+                            }
+                            if (this.value == "01 PM") {
+                                console.log("01 PM DONE")
+                                $('#time').val(4)
+                            }
+                            if (this.value == "02 PM") {
+                                console.log("02 PM DONE")
+                                $('#time').val(5)
+                            }
+                            if (this.value == "03 PM") {
+                                console.log("03 PM DONE")
+                                $('#time').val(6)
+                            }
+                            if (this.value == "04 PM") {
+                                console.log("04 PM DONE")
+                                $('#time').val(7)
+                            }
+                            if (this.value == "05 PM") {
+                                console.log("05 PM DONE")
+                                $('#time').val(8)
+                            }
+                            $('#paypal-button-container').css('display', 'block')
+                            // return radioValue;
+                        }
+                        // $('#date').change(function () {
+
+                        //     $.ajax({
+                        //         type: 'POST',
+                        //         url: "{% url 'get_booking_datentime' %}",
+                        //         data: { 'date': date, 'csrfmiddlewaretoken': "{{csrf_token}}" },
+                        //         success: function (data) {
+                        //             console.log("Something: ", data['amount'], data['times'])
+                        //             // location.reload()
+                        //             // radioButtonsContainer.innerHTML = '';
+
+                        //         },
+                        //         error: function (error) {
+                        //             console.log("Error")
+                        //         }
+                        //     })
+                        // })
+
+                        const label = document.createElement("label");
+                        label.textContent = name;
+
+                        radioButtonsContainer.appendChild(radioButton);
+                        radioButtonsContainer.appendChild(label);
+                    });
+
+                    $('#timeslot').val(data['amount']);
+                    console.log("Done");
+                    let valueofinp = document.getElementById('timeslot').value
+                    console.log("Value: ", valueofinp)
+                    // if (valueofinp == "Ready To Go") {
+                    //     $('#paypal-button-container').css('display', 'block')
+                    // }
+                    // else if (valueofinp == "Time Slot is already Taken") {
+                    //     $('#paypal-button-container').css('display', 'none')
+                    // }
+                },
+                error: function (error) {
+                }
+            })
+        })
     </script>
 
+    <script src="{% static 'build/js/intlTelInput.js' %}"></script>
+    <script>
+        var input = document.querySelector("#phone");
+        window.intlTelInput(input, {});
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

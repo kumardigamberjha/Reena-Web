@@ -2,12 +2,15 @@ from django.shortcuts import render, redirect
 from Booking.models import  ProductModel, ProductCat
 from Booking.forms import ProductCatForm, ProductForm
 from django.contrib import messages
-from website.models import CartBookingModel
+from website.models import CartBookingModel, Timings
 from django.core import serializers
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
 import datetime
 import json
+from website.forms import CartBookingForm
+from django.contrib.auth.models import User
+
 
 @login_required
 def AddProductCat(request):
@@ -167,12 +170,41 @@ def GetBookingPrice(request):
 # Booking Date and Time From Jquery
 def GetBookingDatentime(request):
     if request.method == "POST":
-        datentime = request.POST.get("datentime")
+        date = request.POST.get("date")
+        # time = request.POST.get("time")
+    
+        print("Date: ", date)
+        # print("Time: ", time)
+        times = CartBookingModel.objects.filter(date=date)
+        bookingTime = []
+        for i in times:
+            # print(i.name)
+            # print(i.date)
+            # print(i.time)
+            bookingTime.append(i.time)
+        print("Booking Time: ", bookingTime)
+        alltimings = Timings.objects.all()
+        allslots = []
+        for i in alltimings:
+            allslots.append(i)
 
-    if CartBookingModel.objects.filter(datentime=datentime).exists():
-        amount = "Time Slot is already Taken"
-        return JsonResponse({'amount' : amount}, status=200)
+        result = [value for value in allslots if value not in bookingTime]
+        print("Result: ", result)
+        if result == []:
+            result = allslots
+            print("Empty: ", result)
 
+        bookingTimes = serializers.serialize('json', result)
+        print("bookingTimes: ", bookingTimes)
+        if CartBookingModel.objects.filter(date=date).exists():
+            amount = "Time Slot is already Taken"
+            print(amount)
+            return JsonResponse({'amount' : amount, 'times': bookingTimes}, status=200)
+
+        else:
+            amount = "Ready To Go"
+            print(amount)
+            return JsonResponse({'amount' : amount, 'times': bookingTimes}, status=200)
     else:
         amount = "Ready To Go"
         return JsonResponse({'amount' : amount}, status=200)
@@ -222,6 +254,38 @@ def ViewBookingModelData(request, id):
 
 
 @login_required
+def UpdateBookingModelData(request, id):
+    data = CartBookingModel.objects.get(id=id)
+    form = CartBookingForm(instance=data)
+    if request.method == "POST":
+        date = request.POST.get('date')
+        print("Date: ", date)
+        form = CartBookingForm(request.POST, instance=data)
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        someuser = request.POST.get('foruser')
+        foruser = User.objects.get(id=someuser)
+        date = request.POST.get('date')
+        stime = request.POST.get('time')
+        time = Timings.objects.get(id=stime)
+        se = request.POST.getlist('services')
+        total_payment = request.POST.get('total_payment')
+        services = json.dumps(se)
+        print("Services: ", services)
+        booking = CartBookingModel(name=name,phone=phone, email=email, date=date, time=time, total_payment=total_payment, services=services, foruser=foruser)
+        booking.save()
+        print("Value Saved")
+
+
+    total = 0
+    arr = []
+    services = []    
+
+    context = {'data': data, 'total': total, 'services': services, 'form': form}
+    return render(request, "Booking/updateBooking.html", context)
+
+@login_required
 def Accounts(request):
     data = CartBookingModel.objects.all()
     total = 0
@@ -237,13 +301,14 @@ def DeleteBookingView(request, id):
     return redirect('show_booking')
 
 
-@login_required
-def TodayBooking(request):
-    somemonth = datetime.date.today()
-    months = somemonth.month
-    data = CartBookingModel.objects.filter(datentime__date = somemonth)
-    context = {'data': data, 'somemonth': somemonth}
-    return render(request, 'Booking/today_book.html', context)
+# @login_required
+# def TodayBooking(request):
+#     somemonth = datetime.date.today()
+#     somemonth_str = somemonth.strftime('%Y-%m-%d')
+#     months = somemonth.month
+#     data = CartBookingModel.objects.filter(appointmentdate__date = somemonth)
+#     context = {'data': data, 'somemonth': somemonth}
+#     return render(request, 'Booking/today_book.html', context)
 
 
 @login_required

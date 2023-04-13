@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from website.models import ContactUsPage, CartItem, CartBookingModel
+from website.models import ContactUsPage, CartItem, CartBookingModel, Timings
 from website.forms import ContactForm, HomeForm, AboutUsForm, CartForm, CartBookingForm
 from Pages.models import Homepage, AboutUsPage, DermaLogicaPage, CaciSynergyPage, IPLPage, WaxingPage, NailPage, MakeUpPage, TintingPage, EarPage, ElectroPage, ManPage, MassagePage, GiftPage
 from Booking.forms import BookingModelForm, ProductCatForm, ProductForm
@@ -723,6 +723,7 @@ def CartAndBooking(request):
     allitems = CartItem.objects.filter(foruser=request.user)
     form = CartBookingForm()
     lenofcart = len(allitems)
+ 
     s = 0
     items = CartItem.objects.filter(foruser = request.user.id)
     for i in items:
@@ -735,12 +736,14 @@ def CartAndBooking(request):
         email = request.POST.get('email')
         someuser = request.POST.get('foruser')
         foruser = User.objects.get(id=someuser)
-        datentime = request.POST.get('datentime')
+        date = request.POST.get('date')
+        stime = request.POST.get('time')
+        time = Timings.objects.get(id=stime)
         se = request.POST.getlist('services')
         total_payment = request.POST.get('total_payment')
         services = json.dumps(se)
         print("Services: ", services)
-        booking = CartBookingModel(name=name,phone=phone, email=email, datentime=datentime, total_payment=total_payment, services=services, foruser=foruser)
+        booking = CartBookingModel(name=name,phone=phone, email=email, date=date, time=time, total_payment=total_payment, services=services, foruser=foruser)
         booking.save()
         print("Value Saved")
 

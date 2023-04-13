@@ -63,7 +63,7 @@
   <div class="container-fluid mb-5 bg-light mx-auto">
     <div class="row g-5 mx-auto">
       <div class="col-sm-5">
-        <p class="heading-2 text-center mt-5 mx-auto" data-aos="fade-up" data-aos-duration="3000">
+        <p class="heading-2 text-center mt-5 mx-auto" data-aos="fade-up" data-aos-duration="3000" id="{{cat.name}}">
           {{cat.name}}
         </p>
       </div>
@@ -121,7 +121,7 @@
           alert('Item Added in Cart: ' + name);
         },
         error: function (xhr, status, error) {
-          alert('Error saving form: ' + error);
+          alert("Please Login First");
         }
       });
     });

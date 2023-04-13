@@ -16,6 +16,7 @@ class ProductModel(models.Model):
     def __str__(self):
         return self.name
 
+    
 
 class BookingModel(models.Model):
     name = models.CharField(max_length=75)

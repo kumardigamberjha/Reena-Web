@@ -78,7 +78,7 @@
                     <div class="container text-center mx-auto mb-3">
                         <label for="datetime-local" class="form-label mt-3">Appointment Date</label>
                         <p style="padding: 15px; border: 1px solid black; font-weight: 600; color: black;">
-                            {{data.datentime}}</p>
+                            {{data.date}} {{date.time}}</p>
                         <input type="text" name="" id="timeslot" readonly
                             style="text-align: center; border: none; margin-top: 5px; background-color: transparent;">
 
@@ -215,6 +215,7 @@
                     if (data['amount'] == "Ready To Go") {
                         $('#timeslot').style.color = "green";
                     }
+                    
                 },
                 error: function (error) {
                     // alert the error if any error occured

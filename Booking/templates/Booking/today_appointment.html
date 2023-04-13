@@ -38,7 +38,7 @@
                     <tr class="table-dark">
                         <th class="table-dark">S.No</th>
                         <th class="table-dark">Name</th>
-                        <th class="table-dark">Services</th>
+                        <!-- <th class="table-dark">Services</th> -->
                         <th class="table-dark">Phone</th>
                         <th class="table-dark">Price</th>
                         <th class="table-dark">View</th>
@@ -49,11 +49,11 @@
                     <tr>
                         <td style="color: #000;">{{forloop.counter}}</td>
                         <td style="color: #000;">{{i.name}}</td>
-                        <td style="color: #000;">
+                        <!-- <td style="color: #000;">
                             {% for k in i.services.all %}
                             {{k.name}},
                             {% endfor %}
-                        </td>
+                        </td> -->
                         <td style="color: #000;">{{i.phone}}</td>
                         <td style="color: #000;">&#163; {{i.total_payment}}</td>
                         <td><a href="{% url 'view_booking_data' i.id %}" style="color: #000;"><svg

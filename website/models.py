@@ -21,12 +21,19 @@ class CartItem(models.Model):
     def __str__(self):
         return self.name
 
+class Timings(models.Model):
+    name = models.CharField(max_length=5)
+
+    def __str__(self):
+        return self.name
 
 class CartBookingModel(models.Model):
     name = models.CharField(max_length=75)
     phone = models.CharField(max_length=15, blank=True, null=True)
     email = models.EmailField()
-    datentime = models.DateTimeField()
+    date = models.DateField()
+    # time = models.TimeField()
+    time = models.ForeignKey(Timings, on_delete=models.DO_NOTHING)
     total_payment = models.CharField(max_length=20)
     services = models.JSONField(default=list)
     foruser = models.ForeignKey(User, on_delete=models.CASCADE)
