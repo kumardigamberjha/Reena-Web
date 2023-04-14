@@ -26,13 +26,10 @@
     #paypal-button-container {
         display: none;
     }
-    .radiocss{
-        color: pink;
-        border-bottom: 1px solid red;
-    } 
+   
     input[type="radio"]{
         /* color: red; */
-        padding-top: 15px;
+        /* padding-top: 15px; */
     }
 </style>
 {% endblock csslink %}
@@ -320,7 +317,7 @@
                         radioButton.type = "radio";
                         radioButton.name = "timings";
                         radioButton.value = name;
-                        radioButton.classList.add("col-md-6", "radiocss");
+                        radioButton.classList.add("col-md-3", "radiocss");
                         radioButton.onclick = function getRadioValue() {
                             // var radioButton = document.querySelector('input[name="timing"]:checked');
                             // var radioValue = radioButton.value;
@@ -356,6 +353,10 @@
                             if (this.value == "05 PM") {
                                 console.log("05 PM DONE")
                                 $('#time').val(8)
+                            }
+                            if (this.value == "06 PM") {
+                                console.log("05 PM DONE")
+                                $('#time').val(9)
                             }
                             $('#paypal-button-container').css('display', 'block')
                             // return radioValue;
