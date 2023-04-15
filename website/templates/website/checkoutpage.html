@@ -31,6 +31,12 @@
         /* color: red; */
         /* padding-top: 15px; */
     }
+    .radio-css{
+       margin-top: 1.5em;
+    }
+    .fa-solid{
+        color: purple;
+    }
 </style>
 {% endblock csslink %}
 
@@ -69,82 +75,24 @@
                                 <input type="text" name="email" id="email" class="form-control" value="{{user.email}}"
                                     required>
                             </div>
-                            <div class="col-md-12 mb-3" id="datentimes">
+
+                            <div class="col-md-12 mb-3 text-center" id="datentimes">
                                 <label for="datentime" class="form-label mt-3">
                                     <div class="container mx-auto">
                                     <i class="fa-solid fa-address-book mx-2"></i>Date</label>
-                                <input type="date" name="date" id="date" class="form-control text-center" style="width: 70%;" required>
+                                <input type="date" name="date" id="date" class="form-control text-center" style="width: 100%;" required>
                             </div>
                             </div>
 
-                            <div id="radio-buttons" style="border: 1px solid black; background-color: white; width: 100%;" class="row">
-                             
+                            <div class="scrollable" style="height: 200px;
+                            overflow: auto;">
+                            <div class="list-group text-center mx-auto">
+                                <p style="color: black; font-size:1.2em">Select Suitable Time</p>
+                                <div id="radio-buttons" style="background-color: transparent; width: 100%; display: flex;" class="row">
                             </div>
-                            <!-- <div class="col-md-12 mb-3" id="timeslots">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="time" id="10" value="10:00:00"
-                                        onclick="getRadioValue()">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        10 AM
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="time" id="11" value="11:00:00"
-                                        onclick="getRadioValue()">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        11 AM
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="time" id="12" value="12:00:00"
-                                        onclick="getRadioValue()">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        12 PM
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="time" id="01" value="01:00:00"
-                                        onclick="getRadioValue()">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        01 PM
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="time" id="02" value="02:00:00"
-                                        onclick="getRadioValue()">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        02 PM
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="time" id="03" value="03:00:00"
-                                        onclick="getRadioValue()">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        03 PM
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="time" id="04" value="04:00:00"
-                                        onclick="getRadioValue()">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        04 PM
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="time" id="05" value="05:00:00"
-                                        onclick="getRadioValue()">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        05 PM
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="time" id="06" value="06:00:00"
-                                        onclick="getRadioValue()">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        06 PM
-                                    </label>
-                                </div>
-                            </div> -->
+                            </div>
+                            </div>
+
                             <div id="paypal-button-container" style="width: 50%; margin:auto; margin-top: 25px;">
                             </div>
                             <input type="hidden" id="time" name="time" />
@@ -317,7 +265,7 @@
                         radioButton.type = "radio";
                         radioButton.name = "timings";
                         radioButton.value = name;
-                        radioButton.classList.add("col-md-3", "radiocss");
+                        radioButton.classList.add("col-sm-12", "radio-css", "list-group-items");
                         radioButton.onclick = function getRadioValue() {
                             // var radioButton = document.querySelector('input[name="timing"]:checked');
                             // var radioValue = radioButton.value;
