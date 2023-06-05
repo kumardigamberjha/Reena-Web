@@ -33,14 +33,7 @@
 
 
 <body style="background-color: #0e2431;">
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }} p-2 mb-2 bg-success text-white"
-            style="list-style: none; border-radius: 10px; width: 95%; margin: auto auto;" {% endif %}>{{ message }}</li>
-            {% endfor %}
-    </ul>
-    {% endif %}
+
 
 
     {% load widget_tweaks %}

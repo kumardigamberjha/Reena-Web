@@ -29,6 +29,10 @@
   .btn-2:active {
     background-color: rgb(255, 134, 255);
   }
+  .added-to-cart {
+        background-color: gray;
+        /* Add your desired styles for the button that is already added to the cart */
+    }
 </style>
 
 {% endblock csslink %}
@@ -44,6 +48,8 @@
     {% endfor %}
 </ul>
 {% endif %}
+
+
 
 <!--mainbody-->
 <div class="main mx-auto bg-light">
@@ -72,25 +78,37 @@
           <div class="Services bg-black">
             <i class="fa-solid fa-spa mx-3"></i>Services
           </div>
-          <form action="#" method="post" id="myforms">
-            {% csrf_token %}
+          <!-- <form a -->
             {% for prod in prods %}
             {% if prod.cat.name == cat.name %}
-            <div class="container border-bottom border-dark mt-4 mb-3">
-              <button class="btn-2 mt-1 mx-1 add-item-btn" data-link-id="{{ prod.id }}" data-name="{{ prod.name }}" data-user="{{ user.id }}" data-value="{{ prod.price }}">
-                <a href="#" style="color: black">
-                  <i class="fa-solid fa-plus mx-2" style="color: white"></i>
-                </a>
-              </button>
-              {{prod.name}}
-              {% if prod.price != 0 %}
-              <div class="rate ms-auto">£ {{ prod.price }}
-                </div>
-              {% endif %}
-            </div>
+                {% if prod.name in cartitem_names %}
+                    <div class="container border-bottom border-dark mt-4 mb-3">
+                        <button class="btn-2 mt-1 mx-1 add-item-btn added-to-cart" data-link-id="{{ prod.id }}" data-name="{{ prod.name }}" data-user="{{ user.id }}" data-value="{{ prod.price }}">
+                            <a href="#" style="color: black">
+                                <i class="fa-solid fa-plus mx-2" style="color: white"></i>
+                            </a>
+                        </button>
+                        {{prod.name}}
+                        {% if prod.price != 0 %}
+                            <div class="rate ms-auto">£ {{ prod.price }}</div>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div class="container border-bottom border-dark mt-4 mb-3">
+                        <button class="btn-2 mt-1 mx-1 add-item-btn" data-link-id="{{ prod.id }}" data-name="{{ prod.name }}" data-user="{{ user.id }}" data-value="{{ prod.price }}">
+                            <a href="#" style="color: black">
+                                <i class="fa-solid fa-plus mx-2" style="color: white"></i>
+                            </a>
+                        </button>
+                        {{prod.name}}
+                        {% if prod.price != 0 %}
+                            <div class="rate ms-auto">£ {{ prod.price }}</div>
+                        {% endif %}
+                    </div>
+                {% endif %}
             {% endif %}
-            {% endfor %}
-          </form>
+        {% endfor %}
+        
         </div>
       </div>
     </div>
@@ -119,11 +137,12 @@
         success: function (response) {
           // $(this).css('color', 'red');
           alert('Item Added in Cart: ' + name);
+          location.reload(); 
         },
         error: function (xhr, status, error) {
           alert("Please Login First");
         }
-      });
+      }); 
     });
   });
 </script>

@@ -6,6 +6,8 @@ urlpatterns = [
     path('aboutus/', views.AboutUs, name="aboutus"),
     path('Services/', views.Services, name="services"),
     path('Pricing/', views.Pricing, name="pricing"),
+    
+    path('Pricing/<str:category>/', views.Pricing, name="pricingCat"),
     path('contact/', views.Contact, name="contactus"),
     path('dermalogica/', views.DermalogicaView, name="dermalogica"),
     path('CACISynergy/', views.CACIView, name="caciview"),

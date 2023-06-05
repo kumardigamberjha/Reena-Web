@@ -52,6 +52,8 @@ def UpdateProductCat(request, id):
 @login_required
 def DeleteProductCatView(request, id):
     ProductCat.objects.filter(id=id).delete()
+    messages.success(request, 'Category Deleted Successfully')
+    
     return redirect('show_product_cat_model')
 
 
@@ -99,6 +101,8 @@ def UpdateProductView(request, id):
 @login_required
 def DeleteProductView(request, id):
     ProductModel.objects.filter(id=id).delete()
+    messages.success(request, 'Form Saved')
+    
     return redirect('show_product_model')
 
 
@@ -213,7 +217,7 @@ def GetBookingDatentime(request):
 @login_required
 def ShowBookingModel(request):
     if request.user.is_superuser:
-        data = CartBookingModel.objects.all()
+        data = CartBookingModel.objects.all().order_by('-BookingTime')
         context = {'data': data}
         return render(request, "Booking/show_booking.html", context)
     context = {}
@@ -226,6 +230,7 @@ def ShowProductModel(request):
         data = ProductModel.objects.all()
         context = {'data': data}
         return render(request, "Booking/Show_Product.html", context)
+    
     context = {}
     return render(request, "Booking/Show_Product.html", context)
 
@@ -238,6 +243,7 @@ def ShowProductCategoryModel(request):
         return render(request, "Booking/show_prod_cat.html", context)
     context = {}
     return render(request, "Booking/show_prod_cat.html", context)
+
 
 @login_required
 def ViewBookingModelData(request, id):
@@ -252,10 +258,13 @@ def ViewBookingModelData(request, id):
     context = {'data': data, 'total': total, 'somedata': somedata, 'services': services}
     return render(request, "Booking/viewBooking.html", context)
 
-
+import ast
 @login_required
 def UpdateBookingModelData(request, id):
+    # somedata = []    
+    
     data = CartBookingModel.objects.get(id=id)
+    somedata = json.loads(data.services)
     form = CartBookingForm(instance=data)
     if request.method == "POST":
         date = request.POST.get('date')
@@ -273,21 +282,34 @@ def UpdateBookingModelData(request, id):
         total_payment = request.POST.get('total_payment')
         services = json.dumps(se)
         print("Services: ", services)
-        booking = CartBookingModel(name=name,phone=phone, email=email, date=date, time=time, total_payment=total_payment, services=services, foruser=foruser)
-        booking.save()
-        print("Value Saved")
+        print("Se: ", se)
+    
+        print("somedata: ", somedata)
 
+        if form.is_valid():
+            form.save()
+            print("Form Saved")
+            messages.success(request, 'Updated')
+            return redirect('show_booking')
+            
+        else:
+            print("Form Error")
+            messages.success(request, f'Form Error: {form.errors}' )
+            
+        # booking = CartBookingModel(name=name,phone=phone, email=email, date=date, time=time, total_payment=total_payment, services=services, foruser=foruser)
+        # booking.save()
+        # print("Value Saved")
 
     total = 0
     arr = []
     services = []    
 
-    context = {'data': data, 'total': total, 'services': services, 'form': form}
+    context = {'data': data, 'total': total, 'services': services, 'form': form, 'somedata': somedata}
     return render(request, "Booking/updateBooking.html", context)
 
 @login_required
 def Accounts(request):
-    data = CartBookingModel.objects.all()
+    data = CartBookingModel.objects.all().order_by('-date')
     total = 0
     for i in data:
         total += int(i.total_payment)
@@ -298,6 +320,7 @@ def Accounts(request):
 @login_required
 def DeleteBookingView(request, id):
     CartBookingModel.objects.filter(id=id).delete()
+    messages.success(request, 'Deleted')
     return redirect('show_booking')
 
 

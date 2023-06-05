@@ -1,72 +1,83 @@
-{% extends 'website/index.html' %}
-
-{% block title %}
+{% extends 'website/index.html' %} {% block title %}
 <title>Bridal Services</title>
-{% endblock title %}
-
-{% block csslink %}
-{% load static %}
+{% endblock title %} {% block csslink %} {% load static %}
 <link href="{% static 'css/caci.css' %}" rel="stylesheet" />
-{% endblock csslink %}
-
-{% block body %}
+{% endblock csslink %} {% block body %}
 
 <body class="bg-light">
-  {% endblock body %}
-
-  {% block content %}
+  {% endblock body %} {% block content %}
   <div class="main mx-auto">
     <div class="box">
-      <img src="{% static 'images/makeup.jpg' %}" alt="Dermalogica Treatments" class="img-fluid" />
-      <h1 class="left mx-auto" style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{makeup.name}}</h1>
+      <img
+        src="{% static 'images/makeup.jpg' %}"
+        alt="Dermalogica Treatments"
+        class="img-fluid"
+      />
+      <h1
+        class="left mx-auto"
+        style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black"
+      >
+        {{makeup.name}}
+      </h1>
     </div>
 
-    <div class="rectangle mt-4 bg-light" data-aos="fade-up" data-aos-duration="3000">
-      <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{makeup.dermahead1}}</h1>
-      <p class="text">
-        {{makeup.derma1}}
-      </p>
+    <div
+      class="rectangle mt-4 bg-light"
+      data-aos="fade-up"
+      data-aos-duration="3000"
+    >
+      <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black">
+        {{makeup.dermahead1}}
+      </h1>
+      <p class="text">{{makeup.derma1}}</p>
       <div class="container text-center">
-        <a href="#" target="_blank"><button class="button" type="submit">Know More</button></a>
+        <a href="{% url 'pricing' %}#Bridal Services" target="_blank"
+          ><button class="button" type="submit">Book An Appointment</button></a
+        >
       </div>
     </div>
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-      <ul class="ul" style="
-            color: rgb(0, 0, 0);
-            list-style: none;
-            font-family: Poppins;
-            text-align: center;
-          ">
+      <ul
+        class="ul"
+        style="
+          color: rgb(0, 0, 0);
+          list-style: none;
+          font-family: Poppins;
+          text-align: center;
+        "
+      >
         <div class="row">
-          <div class="col-sm-6">
-            {{makeup.derma2|safe}}
-          </div>
-          <div class="col-sm-6">
-            {{makeup.derma3|safe}}
-          </div>
+          <div class="col-sm-6">{{makeup.derma2|safe}}</div>
+          <div class="col-sm-6">{{makeup.derma3|safe}}</div>
         </div>
       </ul>
     </div>
-    <hr style="border: 1px solid rgb(175, 2, 175)," />
+    <hr style="border: 1px solid rgb(175, 2, 175)" />
     <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-      <h1 style="color: rgb(175, 2, 175),; text-shadow: 2px 2px 2px black;">{{makeup.dermahead2}}</h1>
-      <p class="text">
-        {{makeup.derma4}}
-      </p>
+      <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black">
+        {{makeup.dermahead2}}
+      </h1>
+      <p class="text">{{makeup.derma4}}</p>
 
-      <ul class="ul" style="
-            color: rgb(0, 0, 0);
-            list-style:circle;
-            font-family: Poppins;
-            text-align: center;
-            margin-left: -50px;
-          ">
+      <ul
+        class="ul"
+        style="
+          color: rgb(0, 0, 0);
+          list-style: circle;
+          font-family: Poppins;
+          text-align: center;
+          margin-left: -50px;
+        "
+      >
         {{makeup.derma5|safe}}
       </ul>
 
       <div class="container text-center">
-        <a href="#" target="_blank"><button class="button mb-2" type="submit">Know More</button></a>
+        <a href="#" target="_blank"
+          ><button class="button mb-2" type="submit">Know More</button></a
+        >
       </div>
     </div>
   </div>
   {% endblock content %}
+</body>

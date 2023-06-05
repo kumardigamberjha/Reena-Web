@@ -60,16 +60,11 @@
                 {% render_field form.total_payment style="width: 100%; height: 40px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #fff; font-size: 16px; resize: none;"|add_class:"form-control" %}
 
             </div>
-            <div class="col-md-3">
-                <label for="text" class="form-label">Services</label>
-                <!-- <input type="text" class="form-control" id="text" name="time" value="{{data.time}}"> -->
-                {% render_field form.services style="width: 100%; height: 40px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #fff; font-size: 16px; resize: none;"|add_class:"form-control" %}
 
-            </div>
             <div class="col-md-3">
-                <label for="text" class="form-label">USer</label>
+                <label for="text" class="form-label">User</label>
                 <!-- <input type="text" class="form-control" id="text" name="time" value="{{data.time}}"> -->
-                {% render_field form.foruser style="width: 100%; height: 40px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #fff; font-size: 16px; resize: none;"|add_class:"form-control" %}
+                <span style="pointer-events: none;">{% render_field form.foruser style="width: 100%; height: 40px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #fff; font-size: 16px; resize: none;"|add_class:"form-control" %}</span>
 
             </div>
             <div class="col-md-3">
@@ -80,9 +75,17 @@
                 <label for="text" class="form-label">Booking Time</label>
                 <input type="text" class="form-control" id="text" name="time" value="{{data.time}}">
             </div> -->
+            <div class="col-md-3">
+                <label for="text" class="form-label">Services</label>
+                <!-- <input type="text" class="form-control" id="text" name="time" value="{{data.services}}"> -->
+              {% for i in somedata %}
+                    <input type="text" value="{{i}}" class="form-control">
+              {% endfor %}
+                {% render_field form.services style="width: 100%; height: 40px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #fff; font-size: 16px; resize: none; display: none"|add_class:"form-control" %}
+
+            </div>
             <div class="col-md-12">
                 <button type="submit" class="btn-2" style="background-color: ff5f1f;">Submit</button>
-            </div>
             <div class="col-md-3">
 
             </div>

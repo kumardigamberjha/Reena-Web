@@ -7,14 +7,6 @@
     {% load static %}
 
 
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }} p-2 mb-2 bg-danger text-white"
-            style="list-style: none; border-radius: 10px; width: 95%; margin: auto auto;" {% endif %}>{{ message }}</li>
-            {% endfor %}
-    </ul>
-    {% endif %}
     <section class="home-section bg-light" style="padding-left: 5%">
         <div class="home-content">
             <i class="bx bx-menu" style="color: rgb(0, 0, 0)"></i>

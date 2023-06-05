@@ -236,13 +236,9 @@
         }
 
 
-        // ################## CHECK FOR TIME AND DATE
         // $('input[name="time"]').change(function () {
         $('#date').change(function () {
             let date = $('#date').val()
-            // var time = document.querySelector('input[name="time"]');
-            // var time = $('#time').val();
-
 
             console.log("C: ", date)
             $.ajax({
@@ -309,23 +305,6 @@
                             $('#paypal-button-container').css('display', 'block')
                             // return radioValue;
                         }
-                        // $('#date').change(function () {
-
-                        //     $.ajax({
-                        //         type: 'POST',
-                        //         url: "{% url 'get_booking_datentime' %}",
-                        //         data: { 'date': date, 'csrfmiddlewaretoken': "{{csrf_token}}" },
-                        //         success: function (data) {
-                        //             console.log("Something: ", data['amount'], data['times'])
-                        //             // location.reload()
-                        //             // radioButtonsContainer.innerHTML = '';
-
-                        //         },
-                        //         error: function (error) {
-                        //             console.log("Error")
-                        //         }
-                        //     })
-                        // })
 
                         const label = document.createElement("label");
                         label.textContent = name;
@@ -338,12 +317,7 @@
                     console.log("Done");
                     let valueofinp = document.getElementById('timeslot').value
                     console.log("Value: ", valueofinp)
-                    // if (valueofinp == "Ready To Go") {
-                    //     $('#paypal-button-container').css('display', 'block')
-                    // }
-                    // else if (valueofinp == "Time Slot is already Taken") {
-                    //     $('#paypal-button-container').css('display', 'none')
-                    // }
+                    
                 },
                 error: function (error) {
                 }

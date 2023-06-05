@@ -180,10 +180,28 @@ def RewardsView(request):
 
 
 @csrf_exempt
-def Pricing(request):
+def Pricing(request, category=None):
+    if category:
+        # Logic for the pricing page with a specific category
+        pass
+        print("Category")
+    else:
+        # Logic for the pricing page without a specific category
+        # pass
+        print("None")
     allprodcat = ProductCat.objects.all()
     cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
+    cartitems = CartItem.objects.filter(foruser=request.user)
+    # for i in prods:
+    #     for j in cartitems:
+    #         print(f"{i.name} and {j.name}" ,i.name == j.name)
+
+    prods = ProductModel.objects.all()
+    cartitems = CartItem.objects.filter(foruser=request.user)
+
+    cartitem_names = set([j.name for j in cartitems])
+    
     form = CartForm()
     if request.method == "POST":
         name = request.POST.get('name')
@@ -204,7 +222,9 @@ def Pricing(request):
             messages.success(request, "Item already Exists in Cart")
             print("Item Already Existes")
 
-    context = {'prods':prods, 'form':form, 'cat':cats, 'allprodcat': allprodcat, }
+    cartitem_names = [item.name for item in cartitems]
+    
+    context = {'prods':prods, 'form':form, 'cat':cats, 'allprodcat': allprodcat,  'cartitem_names': cartitem_names}
     return render(request, 'website/pricing.html', context)
 
 
