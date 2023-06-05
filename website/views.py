@@ -178,30 +178,27 @@ def RewardsView(request):
     context = {'prods':prods, 'form': form, 'gift': gift, 'cat':cats}
     return render(request, 'website/gifts.html', context)
 
-
 @csrf_exempt
 def Pricing(request, category=None):
     if category:
         # Logic for the pricing page with a specific category
-        pass
         print("Category")
     else:
         # Logic for the pricing page without a specific category
-        # pass
         print("None")
+
     allprodcat = ProductCat.objects.all()
     cats = ProductCat.objects.all()
     prods = ProductModel.objects.all()
-    cartitems = CartItem.objects.filter(foruser=request.user)
-    # for i in prods:
-    #     for j in cartitems:
-    #         print(f"{i.name} and {j.name}" ,i.name == j.name)
+
+    cartitems = None
+    if request.user.is_authenticated:
+        cartitems = CartItem.objects.filter(foruser=request.user)
 
     prods = ProductModel.objects.all()
-    cartitems = CartItem.objects.filter(foruser=request.user)
 
-    cartitem_names = set([j.name for j in cartitems])
-    
+    cartitem_names = [item.name for item in cartitems] if cartitems else []
+
     form = CartForm()
     if request.method == "POST":
         name = request.POST.get('name')
@@ -220,12 +217,62 @@ def Pricing(request, category=None):
                 print("Form Error: ", form.errors)
         else:
             messages.success(request, "Item already Exists in Cart")
-            print("Item Already Existes")
+            print("Item Already Exists")
 
-    cartitem_names = [item.name for item in cartitems]
-    
-    context = {'prods':prods, 'form':form, 'cat':cats, 'allprodcat': allprodcat,  'cartitem_names': cartitem_names}
+    context = {'prods': prods, 'form': form, 'cat': cats, 'allprodcat': allprodcat, 'cartitem_names': cartitem_names}
     return render(request, 'website/pricing.html', context)
+
+
+# def Pricing(request, category=None):
+#     if category:
+#         # Logic for the pricing page with a specific category
+#         pass
+#         print("Category")
+#     else:
+#         # Logic for the pricing page without a specific category
+#         # pass
+#         print("None")
+#     allprodcat = ProductCat.objects.all()
+#     cats = ProductCat.objects.all()
+#     prods = ProductModel.objects.all()
+#     try:
+#         cartitems = CartItem.objects.filter(foruser=request.user)
+#     except:
+#         cartitems = None
+#     # for i in prods:
+#     #     for j in cartitems:
+#     #         print(f"{i.name} and {j.name}" ,i.name == j.name)
+
+#     prods = ProductModel.objects.all()
+    
+#     # cartitems = CartItem.objects.filter(foruser=request.user)
+
+#     cartitem_names = set([j.name for j in cartitems])
+    
+#     form = CartForm()
+#     if request.method == "POST":
+#         name = request.POST.get('name')
+#         foruser = request.POST.get('foruser')
+
+#         form = CartForm(request.POST)
+#         print("Name: ", name)
+#         if not CartItem.objects.filter(name=name, foruser=foruser).exists():
+#             if form.is_valid():
+#                 s = form.save()
+#                 s.save()
+#                 messages.success(request, "Item Added To Cart")
+#                 print("Form Saved")
+#             else:
+#                 messages.success(request, "Some Error")
+#                 print("Form Error: ", form.errors)
+#         else:
+#             messages.success(request, "Item already Exists in Cart")
+#             print("Item Already Existes")
+
+#     cartitem_names = [item.name for item in cartitems]
+    
+#     context = {'prods':prods, 'form':form, 'cat':cats, 'allprodcat': allprodcat,  'cartitem_names': cartitem_names}
+#     return render(request, 'website/pricing.html', context)
 
 
 def DermalogicaView(request):
