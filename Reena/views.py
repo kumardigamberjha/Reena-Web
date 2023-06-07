@@ -32,9 +32,19 @@ def Signup_view(request):
             form.save()
             print("Form Saved")
             user = form.cleaned_data.get("username")
-            messages.success(request, "Account created for "+ user+ " succesfully")
+            # messages.success(request, "Account created for "+ user+ " succesfully")
             # response = JsonResponse({"success":True})
             send_mail("User Data: ", f"Hello\nYour Email: {username}\n This is password: {password1}", EMAIL_HOST_USER, ['digamber1011@gmail.com'], fail_silently=True)
+            try:
+                username = User.objects.get(email=email).username
+                print("Username: ", username)
+            except:
+                username = None
+            user = authenticate(request, username= username, password=password1)
+
+            if user is not None:
+                login(request, user)
+                request.session['user'] = username
 
             return redirect("/")
 

@@ -14,7 +14,7 @@ urlpatterns = [
 
     path("Show_Booking/", views.ShowBookingModel, name="show_booking"),
 
-    # path("Today_Booking/", views.TodayBooking, name="today_booking"),
+    path("Today_Booking/", views.TodayBooking, name="today_booking"),
     path("Today_Appointment/", views.TodayAppointment, name="today_appointment"),
 
 
