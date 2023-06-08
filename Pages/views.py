@@ -119,7 +119,7 @@ def HomePageView(request):
     home = Homepage.objects.all()[0]
     homeform = HomeForm(instance=home)
     if request.method == "POST":
-        homeform = HomeForm(request.POST, instance=home)
+        homeform = HomeForm(request.POST, request.FILES, instance=home)
         if homeform.is_valid():
             homeform.save()
             print("Form Saved")
@@ -134,7 +134,7 @@ def AboutusPageView(request):
     about = AboutUsPage.objects.all()[0]
     aboutform = AboutUsForm(instance=about)
     if request.method == "POST":
-        aboutform = AboutUsForm(request.POST, instance=about)
+        aboutform = AboutUsForm(request.POST, request.FILES, instance=about)
         if aboutform.is_valid():
             aboutform.save()
             print("Form Saved")
@@ -150,7 +150,7 @@ def DermaLogicaEditPage(request):
     derma = DermaLogicaPage.objects.all()[0]
     dermaform = DermaForm(instance=derma)
     if request.method == "POST":
-        dermaform = DermaForm(request.POST, instance=derma)
+        dermaform = DermaForm(request.POST, request.FILES, instance=derma)
         if dermaform.is_valid():
             dermaform.save()
             print("Form Saved")
@@ -166,7 +166,7 @@ def CaciEditPage(request):
     caci = CaciSynergyPage.objects.all()[0]
     caciform = CaciForm(instance=caci)
     if request.method == "POST":
-        caciform = CaciForm(request.POST, instance=caci)
+        caciform = CaciForm(request.POST, request.FILES, instance=caci)
         if caciform.is_valid():
             caciform.save()
             print("Form Saved")
@@ -182,7 +182,7 @@ def iplEditPage(request):
     ipl = IPLPage.objects.all()[0]
     iplform = IPLForm(instance=ipl)
     if request.method == "POST":
-        iplform = IPLForm(request.POST, instance=ipl)
+        iplform = IPLForm(request.POST, request.FILES, instance=ipl)
         if iplform.is_valid():
             iplform.save()
             print("Form Saved")
@@ -197,7 +197,7 @@ def waxEditPage(request):
     wax = WaxingPage.objects.all()[0]
     waxform = WaxingForm(instance=wax)
     if request.method == "POST":
-        waxform = WaxingForm(request.POST, instance=wax)
+        waxform = WaxingForm(request.POST, request.FILES, instance=wax)
         if waxform.is_valid():
             waxform.save()
             print("Form Saved")
@@ -212,7 +212,7 @@ def NailEditPage(request):
     nail = NailPage.objects.all()[0]
     nailform = NailForm(instance=nail)
     if request.method == "POST":
-        nailform = NailForm(request.POST, instance=nail)
+        nailform = NailForm(request.POST, request.FILES, instance=nail)
         if nailform.is_valid():
             nailform.save()
             print("Form Saved")
@@ -227,7 +227,7 @@ def MakeUpEditPage(request):
     make = MakeUpPage.objects.all()[0]
     makeform = MakeUpForm(instance=make)
     if request.method == "POST":
-        makeform = MakeUpForm(request.POST, instance=make)
+        makeform = MakeUpForm(request.POST, request.FILES, instance=make)
         if makeform.is_valid():
             makeform.save()
             print("Form Saved")
@@ -242,7 +242,7 @@ def TintingEditPage(request):
     tin = TintingPage.objects.all()[0]
     tinform = TintingForm(instance=tin)
     if request.method == "POST":
-        tinform = TintingForm(request.POST, instance=tin)
+        tinform = TintingForm(request.POST, request.FILES, instance=tin)
         if tinform.is_valid():
             tinform.save()
             print("Form Saved")
@@ -257,7 +257,7 @@ def EarEditPage(request):
     ear = EarPage.objects.all()[0]
     earform = EarPForm(instance=ear)
     if request.method == "POST":
-        earform = EarPForm(request.POST, instance=ear)
+        earform = EarPForm(request.POST, request.FILES, instance=ear)
         if earform.is_valid():
             earform.save()
             print("Form Saved")
@@ -272,7 +272,7 @@ def ElecEditPage(request):
     electro = ElectroPage.objects.all()[0]
     electroform = ElectroForm(instance=electro)
     if request.method == "POST":
-        electroform = ElectroForm(request.POST, instance=electro)
+        electroform = ElectroForm(request.POST, request.FILES, instance=electro)
         if electroform.is_valid():
             electroform.save()
             print("Form Saved")
@@ -287,7 +287,7 @@ def ManEditPage(request):
     electro = ManPage.objects.all()[0]
     electroform = ManForm(instance=electro)
     if request.method == "POST":
-        electroform = ManForm(request.POST, instance=electro)
+        electroform = ManForm(request.POST, request.FILES, instance=electro)
         if electroform.is_valid():
             electroform.save()
             print("Form Saved")
@@ -302,7 +302,7 @@ def MassageEditPage(request):
     electro = MassagePage.objects.all()[0]
     electroform = MassageForm(instance=electro)
     if request.method == "POST":
-        electroform = MassageForm(request.POST, instance=electro)
+        electroform = MassageForm(request.POST, request.FILES, instance=electro)
         if electroform.is_valid():
             electroform.save()
             print("Form Saved")

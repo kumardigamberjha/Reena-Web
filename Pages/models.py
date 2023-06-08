@@ -13,6 +13,12 @@ class Homepage(models.Model):
     # home3 = models.TextField()
     home3 = RichTextField()
 
+    img1 = models.ImageField(blank=True, null=True)
+    img2 = models.ImageField(blank=True, null=True)
+    img3 = models.ImageField(blank=True, null=True)
+    img4 = models.ImageField(blank=True, null=True)
+    # img1 = models.ImageField()
+
     # home4 = models.TextField()
 
     def __str__(self):
@@ -52,6 +58,9 @@ class DermaLogicaPage(models.Model):
     derma7 = models.TextField()
     derma8 = models.TextField()
 
+    img1 = models.ImageField(blank=True, null=True)
+
+
     def __str__(self):
         return self.name
 
@@ -84,6 +93,9 @@ class CaciSynergyPage(models.Model):
     caci11 = models.TextField()
     caci12 = models.TextField()
 
+    img1 = models.ImageField(blank=True, null=True)
+
+
     def __str__(self):
         return self.name
 
@@ -96,6 +108,9 @@ class IPLPage(models.Model):
     derma1 = models.TextField()
     derma2 = RichTextField()
     derma3 = RichTextField()
+
+    img1 = models.ImageField(blank=True, null=True)
+
     
     def __str__(self):
         return self.name
@@ -108,6 +123,8 @@ class WaxingPage(models.Model):
     derma1 = models.TextField()
     derma2 = models.TextField()
     
+    img1 = models.ImageField(blank=True, null=True)
+
     def __str__(self):
         return self.name
 
@@ -122,6 +139,8 @@ class NailPage(models.Model):
     derma2 = RichTextField()
     derma3 = RichTextField()
     derma4 = models.TextField()
+
+    img1 = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -138,6 +157,7 @@ class MakeUpPage(models.Model):
     derma4 = models.TextField()
     derma5 = RichTextField()
 
+    img1 = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -156,6 +176,8 @@ class TintingPage(models.Model):
     derma4 = models.TextField()
     derma5 = models.TextField()
 
+    img1 = models.ImageField(blank=True, null=True)
+
     def __str__(self):
         return self.name
 
@@ -167,6 +189,8 @@ class EarPage(models.Model):
     derma1 = models.TextField()
     derma2 = RichTextField()
 
+    img1 = models.ImageField(blank=True, null=True)
+
     def __str__(self):
         return self.name
 
@@ -177,6 +201,7 @@ class ElectroPage(models.Model):
 
     derma1 = RichTextField()
     derma2 = RichTextField()
+    img1 = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -198,6 +223,8 @@ class ManPage(models.Model):
     derma5 = models.TextField()
     derma6 = models.TextField()
 
+    img1 = models.ImageField(blank=True, null=True)
+
     def __str__(self):
         return self.name
 
@@ -214,6 +241,8 @@ class MassagePage(models.Model):
     derma3 = models.TextField()
     derma4 = models.TextField()
     derma5 = models.TextField()
+
+    img1 = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -236,6 +265,9 @@ class GiftPage(models.Model):
     derma5 = models.TextField()
     derma6 = models.TextField()
     derma7 = models.TextField()
+
+    img1 = models.ImageField(blank=True, null=True)
+
 
     def __str__(self):
         return self.name
