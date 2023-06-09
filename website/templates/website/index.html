@@ -114,6 +114,11 @@
                 <li>
                   <a class="dropdown-item" href="{% url 'massageview' %}">Massage</a>
                 </li>
+                {% for i in new_page %}
+                <li>
+                  <a class="dropdown-item" href="{% url 'show_new_page' i.id %}">{{i.name}}</a>
+                </li>
+                {% endfor %}
               </ul>
             </li>
             <li class="nav-item">

@@ -18,5 +18,7 @@ urlpatterns = [
     path('MassageEdit/', views.MassageEditPage, name="massageeditpage"),
     path('ContactUsView/', views.ContactUsEditPage, name="contacteditpage"),
     path('ContactEditUsView/<int:id>/', views.ShowContactPage, name="showcontact"),
+    path('add_item/', views.NewPageView, name='add_item'),
+    path('ShowPage/<int:id>/', views.ShowNewPage, name='show_new_page'),
 
 ]

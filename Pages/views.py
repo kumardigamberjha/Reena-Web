@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from Pages.models import DermaLogicaPage, Homepage, AboutUsPage, IPLPage, EarPage, ElectroPage, MakeUpPage, ManPage, MassagePage, CaciSynergyPage, GiftPage, NailPage, WaxingPage, TintingPage
-from website.forms import DermaForm, HomeForm, AboutUsForm, CaciForm, IPLForm, WaxingForm, NailForm, MakeUpForm, TintingForm, EarPForm, ElectroForm, ManForm, MassageForm, ContactForm
+from Pages.models import DermaLogicaPage, Homepage, AboutUsPage, IPLPage, EarPage, ElectroPage, MakeUpPage, ManPage, MassagePage, CaciSynergyPage, GiftPage, NailPage, WaxingPage, TintingPage, NewPage, AddItemModel
+from website.forms import DermaForm, HomeForm, AboutUsForm, CaciForm, IPLForm, WaxingForm, NailForm, MakeUpForm, TintingForm, EarPForm, ElectroForm, ManForm, MassageForm, ContactForm, NewPageForm, AddItemNewPageForm
 from django.contrib.auth.decorators import login_required
 from Booking.models import BookingModel
 import datetime
@@ -325,3 +325,54 @@ def ShowContactPage(request, id):
     form = ContactForm(instance=data)
     context = {'data': data, 'form': form}
     return render(request, 'Pages/viewContactForm.html', context)
+
+
+# def NewPageView(request):
+#     form = NewPageForm()
+
+#     if request.method == 'POST':
+#         form = NewPageForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             print("Form Saved")
+#         else:
+#             print("Form Error: ", form.errors)
+    
+#     return render(request, 'Pages/newpage.html', {'form': form})
+
+
+def NewPageView(request):
+    form1 = NewPageForm()
+    form2 = AddItemNewPageForm()
+    
+    if request.method == "POST":
+        form1 = NewPageForm(request.POST)
+        content = request.POST.get('content')
+        print('content: ', content)
+        if form1.is_valid():
+            ss = form1.save()
+            print("SS id: ", ss.id)
+
+            print("Form Saved")
+
+        else:
+            print("Form Error: ", form1.errors)
+        name = request.POST.get('name')
+        content = request.POST.get('content')
+        new_page = NewPage.objects.get(id=ss.id)
+        form23 = AddItemModel(entry_instance=new_page, content=content)
+        sd = form23.save()
+        print("Form2 Saved: ", sd)
+
+    context = {'form2': form2}
+       
+    return render(request, 'Pages/newpage.html', context)
+
+
+def ShowNewPage(request, id):
+    data = NewPage.objects.get(id=id)
+    pagedata = AddItemModel.objects.filter(entry_instance=data.id)
+    print("page Data: ", pagedata)
+    print("data: ", data)
+    context = {'data': data}
+    return render(request, 'Pages/show_new_page.html', context)

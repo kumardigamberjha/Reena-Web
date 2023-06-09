@@ -271,3 +271,15 @@ class GiftPage(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class NewPage(models.Model):
+    name = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.name
+
+
+class AddItemModel(models.Model):
+    entry_instance = models.ForeignKey(NewPage, on_delete=models.CASCADE)
+    content = RichTextField()

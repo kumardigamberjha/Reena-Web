@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zc8a5+y5)*yaynbf0&$u4k2^3fo9%bwkodritp&moq%=@-eb+$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.29.124', '127.0.0.1', '192.168.29.124']
+ALLOWED_HOSTS = ['192.168.29.124', '127.0.0.1', '192.168.29.17']
 
 
 # Application definition
@@ -56,15 +56,21 @@ INSTALLED_APPS = [
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'],
-            ['Link', 'Unlink'],
-            ['RemoveFormat', 'Source']
+        'toolbar': [
+            ['Format', 'Font', 'FontSize'],
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'],
+            ['TextColor', 'BGColor'],
+            ['NumberedList', 'BulletedList', 'Blockquote'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Table', 'HorizontalRule', 'SpecialChar'],
+            ['Source'],
         ],
+        'height': 300,
+        'width': 800,
     },
 }
+
 
 DATABASES = {  
    'default': {  
@@ -79,6 +85,8 @@ DATABASES = {
 
 PAYPAL_TEST = True  # Set to False when ready to go live
 PAYPAL_RECEIVER_EMAIL = 'kumardigamberjha@gmail.com'
+
+
 
 SOCIALACCOUNT_LOGIN_ON_GET=True
 
