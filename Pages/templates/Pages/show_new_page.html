@@ -1,5 +1,14 @@
 {% extends 'website/index.html' %}
 
 {% block content %}
-    <h1 style="padding: 150px">Coding India</h1>
+    <h1 style="padding: 30px; padding-top: 150px;">{{data.name}}</h1>
+    <div class="container-fluid">
+        {% autoescape off %}
+        <h1 style="padding: 30px;">
+          <span style="color: #000;">{{ pagedata.0.content|safe }}</span>
+          
+        </h1>
+        {% endautoescape %}
+    </div>
+
 {% endblock content %}

@@ -3,31 +3,40 @@
 
 {% block content %}
 {% load widget_tweaks %}
+
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }} p-2 mb-2 bg-danger text-white"
+    style="list-style: none; border-radius: 10px; width: 95%; margin: auto auto;" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 <section class="home-section bg-light">
     <div class="home-content">
         <i class="bx bx-menu" style="color: rgb(0, 0, 0)"></i>
         <h1 style="color: rgb(0, 0, 0)" class="ms-4 mt-2"></h1>
     </div>
 
-    <div class="container">
+    <div class="container" style="">
         <h1>Add New Page</h1>
         <form method="post" action="" enctype="multipart/form-data">
             {% csrf_token %}
+            
             <!-- <div id="extra-fields"></div> -->
-            <div class="row">
-                <div class="col-md-12">
-                    <input type="text" name="name" class="form-control" placeholder="hello">
-                </div>
-                <div class="col-md-12">
-                    {% render_field form2.content style="width: 100%; height: 100%; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #fff; font-size: 16px; resize: none;"|add_class:"form-control" %}
-                </div>
-                <div class="col-md-12">
-                    <!-- <button type="submit">Save</button> -->
-                    <input type="submit" value="Submit" style="padding: 6px 15px; width: 50%; margin: auto; color: white; background-color: black;">
-                </div>
-                <!-- <button id="add-more-btn" type="button">Add More</button> -->
-
+            <div class="col-md-12">
+                <input type="text" name="name" class="form-control" placeholder="hello" value="{{data.name}}">
             </div>
+            <div class="col-md-12">
+                <input type="hidden" name="entry_instance" value="{{data.id}}">
+                {% render_field form2.content style="width: 100%; height: 100%; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #fff; font-size: 16px; resize: none;"|add_class:"form-control" %}
+            </div>
+            <div class="col-md-">
+                <!-- <button style="padding: 6px 15px; width: 50%; margin: auto; color: white; background-color: black;" type="submit">Save</button> -->
+                <input type="submit" value="Submit" style="padding: 6px 15px; width: 50%; margin: auto; color: white; background-color: black;">
+            </div>
+            <!-- <button id="add-more-btn" type="button">Add More</button> -->
         </form>
         {{ form2.media }}
     </div>
@@ -36,7 +45,7 @@
     <!-- add_item.html -->
     <!-- add_item.html -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
 <script>
     let arrow = document.querySelectorAll(".arrow");
     for (var i = 0; i < arrow.length; i++) {

@@ -19,6 +19,11 @@ urlpatterns = [
     path('ContactUsView/', views.ContactUsEditPage, name="contacteditpage"),
     path('ContactEditUsView/<int:id>/', views.ShowContactPage, name="showcontact"),
     path('add_item/', views.NewPageView, name='add_item'),
+    path('ViewAllPages/', views.ViewAllNewPageAdmin, name='allnewpages'),
+    
     path('ShowPage/<int:id>/', views.ShowNewPage, name='show_new_page'),
+    path('UpdateNewPage/<int:id>/', views.UpdateNewPage, name='update_new_page'),
 
+
+    path('DeleteNewPage/<int:id>/', views.DeleteNewPage, name="delete_new_page"),
 ]

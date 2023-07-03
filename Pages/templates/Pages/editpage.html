@@ -494,7 +494,22 @@
           <li><a href="{% url 'today_appointment' %}">Appointments</a></li>
         </ul>
       </li>
+      <li>
+        <div class="icon-link">
+          <a href="#">
+            <i class='bx bxs-edit'></i>
+            <span class="link_name">New Pages</span>
+          </a>
+          <i class="bx bxs-chevron-down arrow"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="{% url 'add_item' %}" class="link_name">New Pages</a></li>
 
+          <li><a href="{% url 'add_item' %}">Add</a></li>
+          <li><a href="{% url 'allnewpages' %}">View</a></li>
+        </ul>
+      </li>
+      
       <li>
         <div class="icon-link">
           <a href="#">
@@ -507,7 +522,7 @@
           <li><a class="link_name" href="#">Master</a></li>
           <li><a href="{% url 'show_booking' %}">Booking</a></li>
           <li><a href="{% url 'prodaccounts' %}">Accounts</a></li>
-          <li><a href="{% url 'add_item' %}">New Page</a></li>
+          
         </ul>
       </li>
 

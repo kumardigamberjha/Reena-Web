@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from Pages.models import DermaLogicaPage, Homepage, AboutUsPage, IPLPage, EarPage, ElectroPage, MakeUpPage, ManPage, MassagePage, CaciSynergyPage, GiftPage, NailPage, WaxingPage, TintingPage, NewPage, AddItemModel
 from website.forms import DermaForm, HomeForm, AboutUsForm, CaciForm, IPLForm, WaxingForm, NailForm, MakeUpForm, TintingForm, EarPForm, ElectroForm, ManForm, MassageForm, ContactForm, NewPageForm, AddItemNewPageForm
 from django.contrib.auth.decorators import login_required
 from Booking.models import BookingModel
 import datetime
+from django.contrib import messages
+
 from website.models import ContactUsPage, CartBookingModel
 
 @login_required
@@ -353,26 +355,68 @@ def NewPageView(request):
             ss = form1.save()
             print("SS id: ", ss.id)
 
-            print("Form Saved")
-
+            new_page = NewPage.objects.get(id=ss.id)
+            form23 = AddItemModel(entry_instance=new_page, content=content)
+            form23.save()
+            print("Form2 Saved")
+            messages.success(request, "New Page Added")
         else:
             print("Form Error: ", form1.errors)
-        name = request.POST.get('name')
-        content = request.POST.get('content')
-        new_page = NewPage.objects.get(id=ss.id)
-        form23 = AddItemModel(entry_instance=new_page, content=content)
-        sd = form23.save()
-        print("Form2 Saved: ", sd)
+            messages.success(request, "New Page Adding Failed")
 
     context = {'form2': form2}
-       
     return render(request, 'Pages/newpage.html', context)
 
 
 def ShowNewPage(request, id):
     data = NewPage.objects.get(id=id)
     pagedata = AddItemModel.objects.filter(entry_instance=data.id)
-    print("page Data: ", pagedata)
-    print("data: ", data)
-    context = {'data': data}
+    context = {'data': data, 'pagedata': pagedata}
     return render(request, 'Pages/show_new_page.html', context)
+
+
+def ViewAllNewPageAdmin(request):
+    data = NewPage.objects.all()
+    context = {'data': data}
+    return render(request, 'Pages/viewallnewpage.html', context)
+
+
+def DeleteNewPage(request, id):
+    data = NewPage.objects.get(id=id)
+    data.delete()
+    return redirect('allnewpages')
+
+
+def UpdateNewPage(request, id):
+    data = NewPage.objects.get(id=id)
+    pagedata = AddItemModel.objects.get(entry_instance=data.id)
+
+    form1 = NewPageForm(instance=data)
+    form2 = AddItemNewPageForm(instance=pagedata)
+    
+    if request.method == "POST":
+        form1 = NewPageForm(request.POST, instance=data)
+        form2 = AddItemNewPageForm(request.POST, request.FILES, instance=pagedata)
+        content = request.POST.get('content')
+        print('content: ', content)
+
+        if form1.is_valid() and form2.is_valid():
+            ss = form1.save()
+            form2.save()
+            print("Form2 Request: ", request.POST)
+            print("Form Saved")
+            print("Form2 Saved")
+
+            messages.success(request, "Form Saved")
+            return redirect('allnewpages')
+        else:
+            print("Form Error: ", form1.errors , form2.errors)
+            messages.success(request, "New Page Updation Failed")
+            
+        # new_page = NewPage.objects.get(id=ss.id)
+        # form23 = AddItemModel(entry_instance=new_page, content=content)
+        # sd = form23.save()
+        # print("Form2 Saved: ", sd)
+
+    context = {'data': data, 'pagedata': pagedata, 'form2': form2}
+    return render(request, 'Pages/UpdateNewPage.html', context)
