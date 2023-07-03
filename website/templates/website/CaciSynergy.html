@@ -1,9 +1,9 @@
 {% extends 'website/index.html' %}
 
 {% block csslink %}
-  {% load static %}
+{% load static %}
 
-  <link rel="stylesheet" href="{% static 'css/caci.css' %}">
+<link rel="stylesheet" href="{% static 'css/caci.css' %}">
 
 {% endblock csslink %}
 
@@ -12,24 +12,27 @@
 red
 <div class="main">
   <div class="box">
-    <img src="{% static 'images/s1.png' %}" class="img-1 img-fluid" style="width: 100%;" />
+
+    <img src="{{caci.img1.url}}" alt="Dermalogica Treatments" class="img-fluid" width="100%; height: 80vh" />
+
     <h1 class="left mx-auto" style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.name}}</h1>
   </div>
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1  style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead1}}</h1>
+    <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead1}}</h1>
     <p class="text">
       {{caci.caci1}}
     </p>
     <div class="container text-center">
-      <a href="{% static 'pdf/Reenas_caci.pdf' %}" target="_blank"> <button class="button" type="submit">Read More</button></a>
+      <a href="{% static 'pdf/Reenas_caci.pdf' %}" target="_blank"> <button class="button" type="submit">Read
+          More</button></a>
     </div>
   </div>
 
   <hr style="border: 1px solid rgb(175, 2, 175)" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1  style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead2}}</h1>
+    <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead2}}</h1>
     <p class="text">
       {{caci.caci2}}
     </p>
@@ -41,7 +44,7 @@ red
   <hr style="border: 1px solid rgb(175, 2, 175);" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1  style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead3}}</h1>
+    <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead3}}</h1>
     <p class="text">
       {{caci.caci3}}
     </p>
@@ -53,7 +56,7 @@ red
   <hr style="border: 1px solid rgb(175, 2, 175);" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1  style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead4}}</h1>
+    <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead4}}</h1>
     <p class="text">
       {{caci.caci4}}
     </p>
@@ -65,7 +68,7 @@ red
   <hr style="border: 1px solid rgb(175, 2, 175);" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1  style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead5}}</h1>
+    <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead5}}</h1>
     <p class="text">
       {{caci.caci5}}
     </p>
@@ -76,7 +79,7 @@ red
   <hr style="border: 1px solid rgb(175, 2, 175);" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1  style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead6}}</h1>
+    <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead6}}</h1>
     <p class="text">
       {{caci.caci6}}
     </p>
@@ -88,7 +91,7 @@ red
   <hr style="border: 1px solid rgb(175, 2, 175);" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1  style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead7}}</h1>
+    <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead7}}</h1>
     <p class="text">
       {{caci.caci7}}
     </p>
@@ -100,7 +103,7 @@ red
   <hr style="border: 1px solid rgb(175, 2, 175);" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1  style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead8}}</h1>
+    <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead8}}</h1>
     <p class="text">
       {{caci.caci8}}
     </p>
@@ -112,7 +115,7 @@ red
   <hr style="border: 1px solid rgb(175, 2, 175);" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1  style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead9}}</h1>
+    <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead9}}</h1>
     <p class="text">
       {{caci.caci9}}
     </p>
@@ -124,7 +127,7 @@ red
   <hr style="border: 1px solid rgb(175, 2, 175);" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1  style="color: rrgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead10}}</h1>
+    <h1 style="color: rrgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead10}}</h1>
     <p class="text">
       {{caci.caci10}}
     </p>
@@ -136,7 +139,7 @@ red
   <hr style="border: 1px solid rgb(175, 2, 175);" />
 
   <div class="rectangle mt-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1  style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead11}}</h1>
+    <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead11}}</h1>
     <p class="text">
       {{caci.caci11}}
     </p>
@@ -148,7 +151,7 @@ red
   <hr style="border: 1px solid rgb(175, 2, 175);" />
 
   <div class="rectangle mt-4 mb-4" data-aos="fade-up" data-aos-duration="3000">
-    <h1  style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead12}}</h1>
+    <h1 style="color: rgb(175, 2, 175); text-shadow: 2px 2px 2px black;">{{caci.cacihead12}}</h1>
     <p class="text">
       {{caci.caci12}}
     </p>

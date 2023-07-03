@@ -14,7 +14,7 @@
         </div>
         <hr style="border: 1px solid rgb(0, 0, 0)" />
         <div class="container-fluid text-center">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="name" value="Home">
 
@@ -45,6 +45,7 @@
                             </h5>
                         </div>
                     </div>
+                    
                     <div class="col-sm-6">
                         <div class="container mx-auto">
                             <p>New Text</p>
@@ -57,6 +58,101 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row g-3">
+    
+                    <div class="col-sm-6"></div>
+                    <div class="container mx-auto"></div>
+                    <div class="col-sm-6">
+                        <div class="container mx-auto">
+                            <p>Current Image</p>
+                            <hr>
+                            <h5>
+                                <img src="{{home.img1.url}}"  alt="" style="width: 400px; height: 300px">
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="container mx-auto">
+                            <p>New Image</p>
+                            <hr>
+                            <div class="form-floating">
+                                <input type="file" name="img1" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-sm-6"></div>
+                    <div class="container mx-auto"></div>
+                    <div class="col-sm-6">
+                        <div class="container mx-auto">
+                            <p>Current Image</p>
+                            <hr>
+                            <h5>
+                                <img src="{{home.img2.url}}"  alt="" style="width: 400px; height: 300px">
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="container mx-auto">
+                            <p>New Image</p>
+                            <hr>
+                            <div class="form-floating">
+                                <input type="file" name="img2" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+
+                    <div class="col-sm-6"></div>
+                    <div class="container mx-auto"></div>
+                    <div class="col-sm-6">
+                        <div class="container mx-auto">
+                            <p>Current Image</p>
+                            <hr>
+                            <h5>
+                                <img src="{{home.img3.url}}"  alt="" style="width: 400px; height: 300px">
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="container mx-auto">
+                            <p>New Image</p>
+                            <hr>
+                            <div class="form-floating">
+                                <input type="file" name="img3" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-sm-6"></div>
+                    <div class="container mx-auto"></div>
+                    <div class="col-sm-6">
+                        <div class="container mx-auto">
+                            <p>Current Image</p>
+                            <hr>
+                            <h5>
+                                <img src="{{home.img4.url}}"  alt="" style="width: 400px; height: 300px">
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="container mx-auto">
+                            <p>New Image</p>
+                            <hr>
+                            <div class="form-floating">
+                                <input type="file" name="img4" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="container mx-auto">

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from website.models import ContactUsPage, CartItem, CartBookingModel, Timings
 from website.forms import ContactForm, HomeForm, AboutUsForm, CartForm, CartBookingForm
-from Pages.models import Homepage, AboutUsPage, DermaLogicaPage, CaciSynergyPage, IPLPage, WaxingPage, NailPage, MakeUpPage, TintingPage, EarPage, ElectroPage, ManPage, MassagePage, GiftPage
+from Pages.models import Homepage, AboutUsPage, DermaLogicaPage, CaciSynergyPage, IPLPage, WaxingPage, NailPage, MakeUpPage, TintingPage, EarPage, ElectroPage, ManPage, MassagePage, GiftPage, AddItemModel,NewPage
 from Booking.forms import BookingModelForm, ProductCatForm, ProductForm
 from Booking.models import BookingModel, ProductModel, ProductCat
 from django.http import JsonResponse, HttpResponse
@@ -18,6 +18,8 @@ def Index(request):
     prods = ProductModel.objects.all()
     homepage = Homepage.objects.all()[0]
     cats = ProductCat.objects.all()
+    new_page = NewPage.objects.all()
+
     form = BookingModelForm()
     if request.method == "POST":
         form = BookingModelForm(request.POST)
@@ -52,7 +54,7 @@ def Index(request):
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
             
-    context = {'prods': prods, 'form': form, 'homepage':homepage, 'cat': cats}
+    context = {'prods': prods, 'form': form, 'homepage':homepage, 'cat': cats, 'new_page': new_page}
     return render(request, 'website/index.html', context)
 
 

@@ -114,6 +114,11 @@
                 <li>
                   <a class="dropdown-item" href="{% url 'massageview' %}">Massage</a>
                 </li>
+                {% for i in new_page %}
+                <li>
+                  <a class="dropdown-item" href="{% url 'show_new_page' i.id %}">{{i.name}}</a>
+                </li>
+                {% endfor %}
               </ul>
             </li>
             <li class="nav-item">
@@ -322,7 +327,7 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
-          <img src="{% static 'images/a13.jpg' %}" class="d-block w-100" alt="..." />
+          <img src="{{ homepage.img1.url }}" class="d-block w-100" alt="..." />
           <div class="carousel-caption d-none d-md-block">
             <h1>Welcome to Reena's Spa and Salon</h1>
             <p style="color: purple; font-size: 1.5em; font-weight: 500">
@@ -332,7 +337,7 @@
           </div>
         </div>
         <div class="carousel-item" data-bs-interval="2000">
-          <img src="{% static 'images/a14.JPG' %}" class="d-block w-100" alt="..." />
+          <img src="{{ homepage.img2.url }}" class="d-block w-100" alt="..." />
           <div class="carousel-caption d-none d-md-block">
             <h1 style="color: white">Welcome to Reena's Spa and Salon</h1>
             <p style="color: purple; font-size: 1.5em; font-weight: 500">
@@ -341,7 +346,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img src="{% static 'images/a3.jpg' %}" class="d-block w-100" alt="..." />
+          <img src="{{ homepage.img3.url }}" class="d-block w-100" alt="..." />
           <div class="carousel-caption d-none d-md-block">
             <h1 style="color: white">Welcome to Reena's Spa and Salon</h1>
             <p style="color: purple; font-size: 1.5em; font-weight: 500">
@@ -351,7 +356,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img src="{% static 'images/bride.jpg' %}" class="d-block w-100" alt="..." />
+          <img src="{{ homepage.img4.url }}" class="d-block w-100" alt="..." />
           <div class="carousel-caption d-none d-md-block">
             <h1>Welcome to Reena's Spa and Salon</h1>
             <p style="color: purple; font-size: 1.5em; font-weight: 500">
@@ -476,7 +481,7 @@
         </div>
       </div>
       <div class="container text-center mt-4">
-        <a href="{% url 'pricing' %}"><button class="btn-5" style="padding: 10px 30px 10px">
+        <a href="{% url 'documents' %}"><button class="btn-5" style="padding: 10px 30px 10px">
             KNOW MORE
           </button></a>
       </div>
@@ -546,17 +551,17 @@
     <div class="row">
       <div class="col-sm-4">
         <a href="{% url 'documents' %}">
-          <img src="{% static 'images/OUR GALLERY.png' %}" alt="" class="img-fluid" />
+          <img src="{% static 'images/ourgallery.png' %}" alt="" class="img-fluid" />
         </a>
       </div>
       <div class="col-sm-4">
         <a href="{% url 'pricing' %}">
-          <img src="{% static 'images/OUR GALLERY(1).png' %}" alt="" class="img-fluid" />
+          <img src="{% static 'images/ourpricing.png' %}" alt="" class="img-fluid" />
         </a>
       </div>
       <div class="col-sm-4">
         <a href="{% url 'contactus' %}">
-          <img src="{% static 'images/OUR GALLERY(2).png' %}" alt="" class="img-fluid" />
+          <img src="{% static 'images/contactus12.png' %}" alt="" class="img-fluid" />
         </a>
       </div>
     </div>

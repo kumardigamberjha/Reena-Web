@@ -324,14 +324,14 @@ def DeleteBookingView(request, id):
     return redirect('show_booking')
 
 
-# @login_required
-# def TodayBooking(request):
-#     somemonth = datetime.date.today()
-#     somemonth_str = somemonth.strftime('%Y-%m-%d')
-#     months = somemonth.month
-#     data = CartBookingModel.objects.filter(appointmentdate__date = somemonth)
-#     context = {'data': data, 'somemonth': somemonth}
-#     return render(request, 'Booking/today_book.html', context)
+@login_required
+def TodayBooking(request):
+    somemonth = datetime.date.today()
+    somemonth_str = somemonth.strftime('%Y-%m-%d')
+    months = somemonth.month
+    data = CartBookingModel.objects.filter(date = somemonth)
+    context = {'data': data, 'somemonth': somemonth}
+    return render(request, 'Booking/today_book.html', context)
 
 
 @login_required

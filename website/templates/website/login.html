@@ -11,7 +11,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.3.js"
 		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
-		<script src="https://kit.fontawesome.com/a895c3d792.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/a895c3d792.js" crossorigin="anonymous"></script>
 	<style>
 		.red {
 			border: 1px solid red;
@@ -28,11 +28,12 @@
 
 	<div class="container" id="container">
 		<div class="form-container sign-up-container">
-			<form action="" method="POST" id="submit-form" autocomplete="off">
+			<form action="{% url 'signup' %}" method="POST" autocomplete="off">
 				{% csrf_token %}
 				<h1>Create Account</h1>
 				<div class="social-container">
-					<a href="{% provider_login_url 'google' %}" class="social"><ion-icon name="logo-google"></ion-icon></a>
+					<a href="{% provider_login_url 'google' %}" class="social"><ion-icon
+							name="logo-google"></ion-icon></a>
 				</div>
 				<span>or use your email for registration</span>
 				<input type="text" placeholder="username" name="username" id="username" />
@@ -54,7 +55,8 @@
 				{% csrf_token %}
 				<h1>Sign in</h1>
 				<div class="social-container">
-					<a href="{% provider_login_url 'google' %}" class="social"><ion-icon name="logo-google"></ion-icon></a>
+					<a href="{% provider_login_url 'google' %}" class="social"><ion-icon
+							name="logo-google"></ion-icon></a>
 				</div>
 				<span>or use your e-mail account</span>
 				<input type="email" name="email" placeholder="Email" />
@@ -84,7 +86,8 @@
 	{% if messages %}
 	<ul class="messages">
 		{% for message in messages %}
-		<li{% if message.tags %} class="{{ message.tags }} p-2 mb-2 bg-success text-white" style="list-style: none; border-radius: 10px; width: 95%; margin: auto auto; z-index: 10000;" {% endif %}>{{ message }}</li>
+		<li{% if message.tags %} class="{{ message.tags }} p-2 mb-2 bg-success text-white"
+			style="list-style: none; border-radius: 10px; width: 95%; margin: auto auto; z-index: 10000;" {% endif %}>{{ message }}</li>
 			{% endfor %}
 	</ul>
 	{% endif %}
@@ -109,28 +112,41 @@
 	<script>
 
 		// Booking Model AJAX CALL 
-		$(document).on('submit', '#submit-form', function (event) {
-			event.preventDefault();
-			let x = $('#submit-form')
+		// $(document).on('submit', '#submit-form', function (event) {
+		// 	event.preventDefault();
+		// 	let x = $('#submit-form')
 
-			$.ajax({
-				type: 'POST',
-				url: "{% url 'signup' %}",
-				data: x.serialize(),
+		// 	$.ajax({
+		// 		type: 'POST',
+		// 		url: "{% url 'signup' %}",
+		// 		data: x.serialize(),
 
-				success: function (data) {
-					console.log("Done");
-					window.location = "/"
-				},
-				error: function (data) {
-					const errdata = data;
-					console.log("Error: ", errdata.responseText)
-					alert(errdata.responseText)
-					// console.log("Error: ", errdata.responseText.error.password2)
-					// alert(data.responseText)
-				}
-			})
-		})
+		// 		success: function (data) {
+		// 			console.log("Done");
+		// 			window.location.href = "/"
+		// 			alert("Sign Up Done")
+		// 		},
+		// 		error: function (data) {
+		// 			const errdata = data;
+		// 			console.log("Error: ", errdata.responseText)
+		// 			alert(errdata.responseText)
+
+		// 		}
+		// 	})
+		// })
+
+		// Handle the enter key press event
+		// $(document).on('keypress', function (event) {
+		// 	if (event.which === 13) { // 13 is the key code for Enter
+		// 		event.preventDefault();
+		// 		$('#submit-form').submit();
+		// 	}
+		// });
+
+		// // Handle the click event on the signup button
+		// $('#signup-button').on('click', function () {
+		// 	$('#submit-form').submit();
+		// });
 
 
 		// ###################### USername Check ################

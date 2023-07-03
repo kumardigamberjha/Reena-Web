@@ -3,8 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from website.models import ContactUsPage, CartItem, CartBookingModel
-from Pages.models import Homepage, AboutUsPage, DermaLogicaPage, IPLPage, CaciSynergyPage, MakeUpPage, ManPage, MassagePage, EarPage, GiftPage, NailPage, WaxingPage, ElectroPage, TintingPage
-
+from Pages.models import Homepage, AboutUsPage, DermaLogicaPage, IPLPage, CaciSynergyPage, MakeUpPage, ManPage, MassagePage, EarPage, GiftPage, NailPage, WaxingPage, ElectroPage, TintingPage, NewPage, AddItemModel
 
 class CreateUserForm(UserCreationForm):
     # phone_no = forms.CharField(max_length = 10)
@@ -105,4 +104,16 @@ class CartForm(ModelForm):
 class CartBookingForm(ModelForm):
     class Meta:
         model = CartBookingModel
+        fields = '__all__'
+
+
+class NewPageForm(ModelForm):
+    class Meta:
+        model = NewPage
+        fields = '__all__'
+
+
+class AddItemNewPageForm(ModelForm):
+    class Meta:
+        model = AddItemModel
         fields = '__all__'
