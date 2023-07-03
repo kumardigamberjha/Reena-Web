@@ -97,7 +97,7 @@ def AboutUs(request):
             messages.success(request, "Please Do Payment before Submittig")
             return HttpResponse("Please Check this error: ", form.errors)
 
-    context = { 'new_page': new_page, 'prods':prods, 'form': form, 'about': about, 'cat': cats, 'new_page': new_page}
+    context = {'prods':prods, 'form': form, 'about': about, 'cat': cats, 'new_page': new_page}
     return render(request, 'website/aboutus.html', context)
 
 
@@ -367,6 +367,7 @@ def CACIView(request):
 
 def Contact(request):
     form = ContactForm()
+    new_page = NewPage.objects.all()
 
     if request.method == "POST":
         form = ContactForm(request.POST)
@@ -880,5 +881,5 @@ def ForgetPassword(request):
 
     # otp = random.randint(111111, 999999)
     # print("OTP: ", otp)
-    context = { 'new_page': new_page, }
+    context = { }
     return render(request, 'website/forgetPassword.html', context)
