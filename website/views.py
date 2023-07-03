@@ -838,7 +838,9 @@ def CartAndBooking(request):
 
 
 def DocumentsPage(request):
-    return render(request, 'website/Documents.html')
+    new_page = NewPage.objects.all()
+    context = {'new_page': new_page}
+    return render(request, 'website/Documents.html', context)
 
 
 def DelCartBooking(request, id):
