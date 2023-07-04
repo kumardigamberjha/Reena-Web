@@ -283,3 +283,13 @@ class NewPage(models.Model):
 class AddItemModel(models.Model):
     entry_instance = models.ForeignKey(NewPage, on_delete=models.CASCADE)
     content = RichTextField()
+
+    def __str__(self):
+        return self.entry_instance.name
+    
+    
+class PayPalIntegration(models.Model):
+    client_id = models.CharField(max_length=150)
+    secret_key = models.CharField(max_length=300, blank=True, null=True)
+
+    

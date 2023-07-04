@@ -20,6 +20,7 @@ urlpatterns = [
     path('ContactEditUsView/<int:id>/', views.ShowContactPage, name="showcontact"),
     path('add_item/', views.NewPageView, name='add_item'),
     path('ViewAllPages/', views.ViewAllNewPageAdmin, name='allnewpages'),
+    path('PayPalAccount/', views.PaypalChangeView, name="changepaypal"),
     
     path('ShowPage/<int:id>/', views.ShowNewPage, name='show_new_page'),
     path('UpdateNewPage/<int:id>/', views.UpdateNewPage, name='update_new_page'),

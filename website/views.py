@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from website.models import ContactUsPage, CartItem, CartBookingModel, Timings
 from website.forms import ContactForm, HomeForm, AboutUsForm, CartForm, CartBookingForm
-from Pages.models import Homepage, AboutUsPage, DermaLogicaPage, CaciSynergyPage, IPLPage, WaxingPage, NailPage, MakeUpPage, TintingPage, EarPage, ElectroPage, ManPage, MassagePage, GiftPage, AddItemModel,NewPage
+from Pages.models import Homepage, AboutUsPage, DermaLogicaPage, CaciSynergyPage, IPLPage, WaxingPage, NailPage, MakeUpPage, TintingPage, EarPage, ElectroPage, ManPage, MassagePage, GiftPage, AddItemModel,NewPage, PayPalIntegration
 from Booking.forms import BookingModelForm, ProductCatForm, ProductForm
 from Booking.models import BookingModel, ProductModel, ProductCat
 from django.http import JsonResponse, HttpResponse
@@ -809,7 +809,7 @@ def CartAndBooking(request):
     new_page = NewPage.objects.all()
     form = CartBookingForm()
     lenofcart = len(allitems)
- 
+    paypal = PayPalIntegration.objects.get(id=1)
     s = 0
     items = CartItem.objects.filter(foruser = request.user.id)
     for i in items:
@@ -833,7 +833,7 @@ def CartAndBooking(request):
         booking.save()
         print("Value Saved")
 
-    context={'new_page': new_page, 'allitems':allitems, 'total': s, 'length':lenofcart}
+    context={'new_page': new_page, 'allitems':allitems, 'total': s, 'length':lenofcart, 'paypal': paypal}
     return render(request, 'website/checkoutpage.html', context)
 
 

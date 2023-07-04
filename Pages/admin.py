@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from Pages.models import AboutUsPage, Homepage, DermaLogicaPage, CaciSynergyPage, IPLPage, WaxingPage, NailPage, MakeUpPage, TintingPage, EarPage, ElectroPage, ManPage, MassagePage, GiftPage, NewPage, AddItemModel
+from Pages.models import AboutUsPage, Homepage, DermaLogicaPage, CaciSynergyPage, IPLPage, WaxingPage, NailPage, MakeUpPage, TintingPage, EarPage, ElectroPage, ManPage, MassagePage, GiftPage, NewPage, AddItemModel, PayPalIntegration
 
 
 admin.site.register(Homepage)
@@ -19,3 +19,4 @@ admin.site.register(MassagePage)
 admin.site.register(GiftPage)
 admin.site.register(NewPage)
 admin.site.register(AddItemModel)
+admin.site.register(PayPalIntegration)

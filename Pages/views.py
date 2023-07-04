@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
-from Pages.models import DermaLogicaPage, Homepage, AboutUsPage, IPLPage, EarPage, ElectroPage, MakeUpPage, ManPage, MassagePage, CaciSynergyPage, GiftPage, NailPage, WaxingPage, TintingPage, NewPage, AddItemModel
-from website.forms import DermaForm, HomeForm, AboutUsForm, CaciForm, IPLForm, WaxingForm, NailForm, MakeUpForm, TintingForm, EarPForm, ElectroForm, ManForm, MassageForm, ContactForm, NewPageForm, AddItemNewPageForm
+from Pages.models import DermaLogicaPage, Homepage, AboutUsPage, IPLPage, EarPage, ElectroPage, MakeUpPage, ManPage, MassagePage, CaciSynergyPage, GiftPage, NailPage, WaxingPage, TintingPage, NewPage, AddItemModel, PayPalIntegration
+from website.forms import DermaForm, HomeForm, AboutUsForm, CaciForm, IPLForm, WaxingForm, NailForm, MakeUpForm, TintingForm, EarPForm, ElectroForm, ManForm, MassageForm, ContactForm, NewPageForm, AddItemNewPageForm, PayPalIntegrationForm
 from django.contrib.auth.decorators import login_required
 from Booking.models import BookingModel
 import datetime
 from django.contrib import messages
-
 from website.models import ContactUsPage, CartBookingModel
+
 
 @login_required
 def EditPageView(request):
@@ -115,6 +115,7 @@ def EditPageView(request):
 
     context = {'todays_bookings': todays_bookings, 'todays_appointment': todays_appointment, 'monthly_appointment': monthly_appointment, 'mac': mac, 'total': total, 'todays_bookings_q':todays_bookings_q, 'todays_appointment_q':todays_appointment_q, 'ta6': ta6, 'tb6': tb6, "Jan": jan, 'Feb':  feb, 'mar': mar, 'apr': apr, 'may': may, 'june': june, 'july': july, 'aug': aug,'sep': sep, 'oct': oct1, 'nov': nov, 'dec': dec}
     return render(request, 'Pages/editpage.html', context)
+
 
 @login_required
 def HomePageView(request):
@@ -420,3 +421,22 @@ def UpdateNewPage(request, id):
 
     context = {'data': data, 'pagedata': pagedata, 'form2': form2}
     return render(request, 'Pages/UpdateNewPage.html', context)
+
+
+def PaypalChangeView(request):
+    data = PayPalIntegration.objects.get(id=1)
+    form = PayPalIntegrationForm(instance=data)
+
+    if request.method == "POST":
+        form = PayPalIntegrationForm(request.POST, instance=data)
+
+        if form.is_valid():
+            form.save()
+            print("Form Saved")
+            messages.success(request, "Form Saved")
+        else:
+            messages.success(request, f"Form Error: {form.errors}")
+            print("Form Error: ", form.errors)
+            
+    context = {'data': data, 'form': form}
+    return render(request, 'Pages/ChangePaypal.html', context)
